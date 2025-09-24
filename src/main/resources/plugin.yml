@@ -1,0 +1,14 @@
+name: AgnHesapEsle
+version: 1.2
+main: me.agnes.agnesesle.AgnesEsle
+api-version: 1.21
+author: agnes
+commands:
+  hesapeşle:
+    description: Hesap eşleştirme komutu
+    usage: /hesapeşle <eşle|onayla|kaldır|yenile|durum|yardım>
+    aliases: [hesapesle]
+
+permissions:
+  agnesesle.admin:
+    default: op

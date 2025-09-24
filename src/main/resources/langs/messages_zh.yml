@@ -1,0 +1,63 @@
+hesap-zaten-eslesmis:
+  title: "§c已绑定"
+  subtitle: "§7你已经与一个Discord账号绑定。"
+
+kod-lutfen-bekleyin:
+  title: "§c请稍等"
+  subtitle: "§7请等待之前的代码过期。"
+
+kod-verildi:
+  title: "§a代码已发"
+  subtitle: "§7你的代码: §f%kod%"
+
+eslesme-onayi-beklemiyor:
+  title: "§c无待处理代码"
+  subtitle: "§7没有等待确认的代码。"
+
+eslesme-onaylanamadi:
+  title: "§c失败"
+  subtitle: "§7账户无法绑定。"
+
+eslesme-basariyla-tamamlandi:
+  title: "§a成功"
+  subtitle: "§7你的账户已成功绑定！"
+
+kaldirildi:
+  title: "§c绑定已移除"
+  subtitle: "§7你的绑定已被移除。"
+
+yenilendi:
+  title: "§a已重新加载"
+  subtitle: "§7消息已重新加载。"
+
+bilinmeyen-komut:
+  title: "§c未知命令"
+  subtitle: "§7请使用有效命令。"
+
+hesap-esle-kodiptal:
+  title: "§c代码已取消"
+  subtitle: "§7你的绑定代码已被取消。"
+
+yetki-yok:
+  title: "§c无权限"
+  subtitle: "§7你没有权限使用此命令。"
+
+hatalı-kullanim:
+  title: "§c使用错误"
+  subtitle: "§7请正确使用命令。"
+
+oyuncu-bulunamadi:
+  title: "§c未找到玩家"
+  subtitle: "§7未找到该玩家。"
+
+eslesme-yok:
+  title: "§c无绑定"
+  subtitle: "§7该玩家没有绑定账户。"
+
+title-baslik:
+  title: "§a绑定成功!"
+  subtitle: "§7奖励已发放。"
+
+title-alt:
+  title: "§a账户绑定"
+  subtitle: "§7为你的Minecraft服务器提供优质服务。"

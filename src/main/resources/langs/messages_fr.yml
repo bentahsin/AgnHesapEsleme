@@ -1,0 +1,63 @@
+hesap-zaten-eslesmis:
+  title: "§cDéjà Lié"
+  subtitle: "§7Vous êtes déjà lié à un compte Discord."
+
+kod-lutfen-bekleyin:
+  title: "§cVeuillez patienter"
+  subtitle: "§7Veuillez attendre que le code précédent expire."
+
+kod-verildi:
+  title: "§aCode Donné"
+  subtitle: "§7Votre code : §f%kod%"
+
+eslesme-onayi-beklemiyor:
+  title: "§cPas de Code en Attente"
+  subtitle: "§7Aucun code n'attend une approbation."
+
+eslesme-onaylanamadi:
+  title: "§cÉchec"
+  subtitle: "§7Le compte n'a pas pu être lié."
+
+eslesme-basariyla-tamamlandi:
+  title: "§aRéussi"
+  subtitle: "§7Votre compte a été lié avec succès !"
+
+kaldirildi:
+  title: "§cLien Supprimé"
+  subtitle: "§7Votre lien de compte a été supprimé."
+
+yenilendi:
+  title: "§aRechargé"
+  subtitle: "§7Les messages ont été rechargés."
+
+bilinmeyen-komut:
+  title: "§cCommande Inconnue"
+  subtitle: "§7Veuillez utiliser une commande valide."
+
+hesap-esle-kodiptal:
+  title: "§cCode Annulé"
+  subtitle: "§7Votre code de liaison a été annulé."
+
+yetki-yok:
+  title: "§cPas de Permission"
+  subtitle: "§7Vous n'avez pas la permission d'utiliser cette commande."
+
+hatalı-kullanim:
+  title: "§cMauvaise Utilisation"
+  subtitle: "§7Veuillez utiliser la commande correctement."
+
+oyuncu-bulunamadi:
+  title: "§cJoueur Introuvable"
+  subtitle: "§7Aucun joueur trouvé."
+
+eslesme-yok:
+  title: "§cPas de Lien"
+  subtitle: "§7Ce joueur n'a pas de compte lié."
+
+title-baslik:
+  title: "§aLien Réussi!"
+  subtitle: "§7Les récompenses ont été livrées."
+
+title-alt:
+  title: "§aCompteLien"
+  subtitle: "§7Fournir un service de qualité sur votre serveur Minecraft."

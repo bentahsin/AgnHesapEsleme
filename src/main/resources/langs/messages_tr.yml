@@ -1,0 +1,63 @@
+hesap-zaten-eslesmis:
+  title: "§cZaten Eşleşmiş"
+  subtitle: "§7Bir Discord hesabı ile zaten eşleşmişsin."
+
+kod-lutfen-bekleyin:
+  title: "§cBekleyin"
+  subtitle: "§7Lütfen önceki kodun süresinin dolmasını bekle."
+
+kod-verildi:
+  title: "§aKod Verildi"
+  subtitle: "§7Kodunuz: §f%kod%"
+
+eslesme-onayi-beklemiyor:
+  title: "§cBekleyen Kod Yok"
+  subtitle: "§7Eşleşme onayı bekleyen bir kod yok."
+
+eslesme-onaylanamadi:
+  title: "§cBaşarısız"
+  subtitle: "§7Eşleşme onaylanamadı."
+
+eslesme-basariyla-tamamlandi:
+  title: "§aBaşarılı"
+  subtitle: "§7Hesabınız başarıyla eşleşti!"
+
+kaldirildi:
+  title: "§cEşleşme Kaldırıldı"
+  subtitle: "§7Eşleşmeniz kaldırıldı."
+
+yenilendi:
+  title: "§aYenilendi"
+  subtitle: "§7Mesajlar yeniden yüklendi."
+
+bilinmeyen-komut:
+  title: "§cBilinmeyen Komut"
+  subtitle: "§7Lütfen geçerli bir komut kullanın."
+
+hesap-esle-kodiptal:
+  title: "§cKod İptal Edildi"
+  subtitle: "§7Eşleştirme kodunuz iptal edildi."
+
+yetki-yok:
+  title: "§cYetki Yok"
+  subtitle: "§7Bu komutu kullanmak için yetkin yok."
+
+hatalı-kullanim:
+  title: "§cHatalı Kullanım"
+  subtitle: "§7Lütfen komutu doğru biçimde kullanın."
+
+oyuncu-bulunamadi:
+  title: "§cOyuncu Bulunamadı"
+  subtitle: "§7Böyle bir oyuncu bulunamadı."
+
+eslesme-yok:
+  title: "§cEşleşme Yok"
+  subtitle: "§7Bu oyuncunun eşleşmesi yok."
+
+title-baslik:
+  title: "§aEşleşme Başarılı!"
+  subtitle: "§7Ödüllerin Teslim Edildi."
+
+title-alt:
+  title: "§aHesapEşle"
+  subtitle: "§7Minecraft sunucunuzda kaliteli hizmet."

@@ -1,0 +1,63 @@
+hesap-zaten-eslesmis:
+  title: "§cBereits verknüpft"
+  subtitle: "§7Du bist bereits mit einem Discord-Konto verknüpft."
+
+kod-lutfen-bekleyin:
+  title: "§cBitte warten"
+  subtitle: "§7Bitte warte, bis der vorherige Code abgelaufen ist."
+
+kod-verildi:
+  title: "§aCode gegeben"
+  subtitle: "§7Dein Code: §f%kod%"
+
+eslesme-onayi-beklemiyor:
+  title: "§cKein ausstehender Code"
+  subtitle: "§7Es gibt keinen Code, der auf Genehmigung wartet."
+
+eslesme-onaylanamadi:
+  title: "§cFehlgeschlagen"
+  subtitle: "§7Das Konto konnte nicht verknüpft werden."
+
+eslesme-basariyla-tamamlandi:
+  title: "§aErfolgreich"
+  subtitle: "§7Dein Konto wurde erfolgreich verknüpft!"
+
+kaldirildi:
+  title: "§cVerknüpfung entfernt"
+  subtitle: "§7Deine Kontoverknüpfung wurde entfernt."
+
+yenilendi:
+  title: "§aNeu geladen"
+  subtitle: "§7Nachrichten wurden neu geladen."
+
+bilinmeyen-komut:
+  title: "§cUnbekannter Befehl"
+  subtitle: "§7Bitte verwende einen gültigen Befehl."
+
+hesap-esle-kodiptal:
+  title: "§cCode Abgebrochen"
+  subtitle: "§7Dein Verknüpfungscode wurde abgebrochen."
+
+yetki-yok:
+  title: "§cKeine Berechtigung"
+  subtitle: "§7Du hast keine Berechtigung, diesen Befehl zu verwenden."
+
+hatalı-kullanim:
+  title: "§cFalsche Verwendung"
+  subtitle: "§7Bitte verwende den Befehl korrekt."
+
+oyuncu-bulunamadi:
+  title: "§cSpieler Nicht Gefunden"
+  subtitle: "§7Kein solcher Spieler gefunden."
+
+eslesme-yok:
+  title: "§cKeine Verknüpfung"
+  subtitle: "§7Dieser Spieler hat kein verknüpftes Konto."
+
+title-baslik:
+  title: "§aVerknüpfung Erfolgreich!"
+  subtitle: "§7Belohnungen wurden geliefert."
+
+title-alt:
+  title: "§aAccountVerknüpfung"
+  subtitle: "§7Qualitätsservice auf deinem Minecraft-Server."

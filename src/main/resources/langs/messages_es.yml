@@ -1,0 +1,63 @@
+hesap-zaten-eslesmis:
+  title: "§cYa Vinculado"
+  subtitle: "§7Ya estás vinculado con una cuenta de Discord."
+
+kod-lutfen-bekleyin:
+  title: "§cEspere"
+  subtitle: "§7Por favor, espere a que caduque el código anterior."
+
+kod-verildi:
+  title: "§aCódigo Enviado"
+  subtitle: "§7Su código: §f%kod%"
+
+eslesme-onayi-beklemiyor:
+  title: "§cNo Hay Código Pendiente"
+  subtitle: "§7No hay ningún código esperando aprobación."
+
+eslesme-onaylanamadi:
+  title: "§cFallido"
+  subtitle: "§7No se pudo vincular la cuenta."
+
+eslesme-basariyla-tamamlandi:
+  title: "§aÉxito"
+  subtitle: "§7¡Tu cuenta se ha vinculado correctamente!"
+
+kaldirildi:
+  title: "§cVinculación Eliminada"
+  subtitle: "§7Tu vinculación ha sido eliminada."
+
+yenilendi:
+  title: "§aRecargado"
+  subtitle: "§7Los mensajes han sido recargados."
+
+bilinmeyen-komut:
+  title: "§cComando Desconocido"
+  subtitle: "§7Por favor, usa un comando válido."
+
+hesap-esle-kodiptal:
+  title: "§cCódigo Cancelado"
+  subtitle: "§7Tu código de vinculación ha sido cancelado."
+
+yetki-yok:
+  title: "§cSin Permiso"
+  subtitle: "§7No tienes permiso para usar este comando."
+
+hatalı-kullanim:
+  title: "§cUso Incorrecto"
+  subtitle: "§7Por favor, usa el comando correctamente."
+
+oyuncu-bulunamadi:
+  title: "§cJugador No Encontrado"
+  subtitle: "§7No se encontró tal jugador."
+
+eslesme-yok:
+  title: "§cSin Vinculación"
+  subtitle: "§7Este jugador no tiene cuenta vinculada."
+
+title-baslik:
+  title: "§aVinculación Exitosa!"
+  subtitle: "§7Las recompensas han sido entregadas."
+
+title-alt:
+  title: "§aCuentaVinculada"
+  subtitle: "§7Ofreciendo servicio de calidad en tu servidor de Minecraft."

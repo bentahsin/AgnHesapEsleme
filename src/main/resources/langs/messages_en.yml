@@ -1,0 +1,63 @@
+hesap-zaten-eslesmis:
+  title: "§cAlready Linked"
+  subtitle: "§7You are already linked with a Discord account."
+
+kod-lutfen-bekleyin:
+  title: "§cPlease Wait"
+  subtitle: "§7Please wait for the previous code to expire."
+
+kod-verildi:
+  title: "§aCode Given"
+  subtitle: "§7Your code: §f%kod%"
+
+eslesme-onayi-beklemiyor:
+  title: "§cNo Pending Code"
+  subtitle: "§7There is no code waiting for approval."
+
+eslesme-onaylanamadi:
+  title: "§cFailed"
+  subtitle: "§7The account could not be linked."
+
+eslesme-basariyla-tamamlandi:
+  title: "§aSuccess"
+  subtitle: "§7Your account has been successfully linked!"
+
+kaldirildi:
+  title: "§cLink Removed"
+  subtitle: "§7Your account link has been removed."
+
+yenilendi:
+  title: "§aReloaded"
+  subtitle: "§7Messages have been reloaded."
+
+bilinmeyen-komut:
+  title: "§cUnknown Command"
+  subtitle: "§7Please use a valid command."
+
+hesap-esle-kodiptal:
+  title: "§cCode Cancelled"
+  subtitle: "§7Your linking code has been cancelled."
+
+yetki-yok:
+  title: "§cNo Permission"
+  subtitle: "§7You don't have permission to use this command."
+
+hatalı-kullanim:
+  title: "§cIncorrect Usage"
+  subtitle: "§7Please use the command correctly."
+
+oyuncu-bulunamadi:
+  title: "§cPlayer Not Found"
+  subtitle: "§7No such player found."
+
+eslesme-yok:
+  title: "§cNo Link"
+  subtitle: "§7This player has no linked account."
+
+title-baslik:
+  title: "§aLink Successful!"
+  subtitle: "§7Rewards have been delivered."
+
+title-alt:
+  title: "§aAccountLink"
+  subtitle: "§7Providing quality service on your Minecraft server."

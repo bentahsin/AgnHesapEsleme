@@ -1,0 +1,30 @@
+token: "DISCORD_BOT_TOKEN"
+prefix: "&6[&bHesapEşle&6] "
+role-id: "role-id"
+log-kanal-id: "log-kanal-id"
+durum-mesajlari:
+  - "SunucuAdi.net"
+  - "HesapEşlemeSistemi"
+  - "{aktifkullanici} Oyuncu Aktif"
+oduller:
+  - "give %player% minecraft:diamond 5"
+  - "say Tebrikler %player% hesabını eşleştirdi!"
+  - "experience add %player% 100 points"
+discord:
+  bilgilendirme-kanal-id: "" #bilgilendirme mesajının gönderileceği kanal id
+  guild-id: "" #Discord Guild İd Giriniz.
+
+# Dil seçimi: tr, en, es, fr, de, zh
+lang: tr
+
+roller:
+  vip-rol-id: ""
+  vipplus-rol-id: ""
+  mvip-rol-id: ""
+  mvipplus-rol-id: ""
+
+oyuncular:
+  2fa:
+    "uuid-string": true
+
+config-version: 1.2
