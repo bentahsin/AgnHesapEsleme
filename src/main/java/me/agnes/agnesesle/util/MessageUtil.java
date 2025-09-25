@@ -54,8 +54,12 @@ public class MessageUtil {
 
         if (vars != null) {
             for (Map.Entry<String, String> entry : vars.entrySet()) {
-                title = title.replace("%" + entry.getKey() + "%", entry.getValue());
-                subtitle = subtitle.replace("%" + entry.getKey() + "%", entry.getValue());
+                if (title != null) {
+                    title = title.replace("%" + entry.getKey() + "%", entry.getValue());
+                }
+                if (subtitle != null) {
+                    subtitle = subtitle.replace("%" + entry.getKey() + "%", entry.getValue());
+                }
             }
         }
 

@@ -10,6 +10,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.Sound;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
@@ -31,11 +32,13 @@ public class EsleCommand implements CommandExecutor, TabCompleter {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender instanceof Player p)) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        if (!(sender instanceof Player)) {
             sender.sendMessage("Bu komut sadece oyuncular için.");
             return true;
         }
+
+        Player p = (Player) sender;
 
         if (args.length < 1) {
             playError(p);
@@ -90,11 +93,6 @@ public class EsleCommand implements CommandExecutor, TabCompleter {
                     return true;
                 }
                 String kod = EslestirmeManager.uretKod(p.getUniqueId());
-                if (kod == null) {
-                    playError(p);
-                    MessageUtil.sendTitle(p, "kod-lutfen-bekleyin");
-                    return true;
-                }
                 playSuccess(p);
                 Map<String, String> vars = new HashMap<>();
                 vars.put("kod", kod);
@@ -139,16 +137,27 @@ public class EsleCommand implements CommandExecutor, TabCompleter {
                             DiscordBot bot = AgnesEsle.getInstance().getDiscordBot();
                             bot.changeNickname(discordId, p.getName());
 
-                            LuckPermsUtil lpUtil = new LuckPermsUtil(AgnesEsle.getInstance().getLuckPerms());
+                            LuckPermsUtil lpUtil = new LuckPermsUtil(AgnesEsle.getInstance().getLuckPerms(), AgnesEsle.getInstance().getLogger());
                             String group = lpUtil.getPrimaryGroup(p.getUniqueId());
                             if (group != null) {
-                                String rolePath = switch (group.toLowerCase()) {
-                                    case "vip" -> "roller.vip-rol-id";
-                                    case "vipplus" -> "roller.vipplus-rol-id";
-                                    case "mvip" -> "roller.mvip-rol-id";
-                                    case "mvipplus" -> "roller.mvipplus-rol-id";
-                                    default -> null;
-                                };
+                                String rolePath;
+                                switch (group.toLowerCase()) {
+                                    case "vip":
+                                        rolePath = "roller.vip-rol-id";
+                                        break;
+                                    case "vipplus":
+                                        rolePath = "roller.vipplus-rol-id";
+                                        break;
+                                    case "mvip":
+                                        rolePath = "roller.mvip-rol-id";
+                                        break;
+                                    case "mvipplus":
+                                        rolePath = "roller.mvipplus-rol-id";
+                                        break;
+                                    default:
+                                        rolePath = null;
+                                        break;
+                                }
                                 if (rolePath != null) {
                                     String roleId = AgnesEsle.getInstance().getConfig().getString(rolePath);
                                     if (roleId != null && !roleId.isEmpty()) {
@@ -219,8 +228,10 @@ public class EsleCommand implements CommandExecutor, TabCompleter {
                     MessageUtil.sendTitle(p, "hatalı-kullanim");
                     return true;
                 }
-                OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
-                if (target == null || !target.hasPlayedBefore()) {
+                String playerName = args[1];
+                @SuppressWarnings("deprecation")
+                OfflinePlayer target = Bukkit.getOfflinePlayer(playerName);
+                if (!target.hasPlayedBefore()) {
                     playError(p);
                     MessageUtil.sendTitle(p, "oyuncu-bulunamadi");
                     return true;
@@ -251,7 +262,7 @@ public class EsleCommand implements CommandExecutor, TabCompleter {
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, String[] args) {
         if (args.length == 1) {
             List<String> tamamla = new ArrayList<>();
             for (String alt : ALT_KOMUTLAR) {

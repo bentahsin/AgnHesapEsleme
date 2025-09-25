@@ -7,11 +7,10 @@ import me.agnes.agnesesle.util.MessageUtil;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class AgnesEsle extends JavaPlugin {
@@ -42,8 +41,8 @@ public class AgnesEsle extends JavaPlugin {
 
         EsleCommand esleCommand = new EsleCommand();
         if (getCommand("hesapesle") != null) {
-            getCommand("hesapesle").setExecutor(esleCommand);
-            getCommand("hesapesle").setTabCompleter(esleCommand);
+            Objects.requireNonNull(getCommand("hesapesle")).setExecutor(esleCommand);
+            Objects.requireNonNull(getCommand("hesapesle")).setTabCompleter(esleCommand);
         } else {
             getLogger().severe("Komut bulunamadı: hesapesle!");
         }

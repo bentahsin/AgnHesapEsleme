@@ -8,15 +8,18 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Logger;
 
 public class EslestirmeManager {
+
+    private static final Logger logger = AgnesEsle.getInstance().getLogger();
 
     private static final Map<String, UUID> kodlar = new ConcurrentHashMap<>();
     private static final Map<UUID, String> eslesmeler = new ConcurrentHashMap<>();
     private static final Map<UUID, String> bekleyenEslesmeler = new ConcurrentHashMap<>();
 
     private static final Map<String, UUID> bekleyenKodlar = new ConcurrentHashMap<>();
-    private static final Map<String, Long> kodZamanları = new ConcurrentHashMap<>();
+    private static final Map<String, Long> kodZamanlari = new ConcurrentHashMap<>();
 
     private static final Set<UUID> odulVerilenler = ConcurrentHashMap.newKeySet();
 
@@ -47,7 +50,7 @@ public class EslestirmeManager {
             Set<UUID> loaded = gson.fromJson(reader, type);
             if (loaded != null) odulVerilenler.addAll(loaded);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.warning(e.getMessage());
         }
     }
 
@@ -55,7 +58,7 @@ public class EslestirmeManager {
         try (Writer writer = new FileWriter(odulFile)) {
             gson.toJson(odulVerilenler, writer);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.warning(e.getMessage());
         }
     }
 
@@ -65,7 +68,7 @@ public class EslestirmeManager {
         String kod = UUID.randomUUID().toString().substring(0, 6).toUpperCase();
         kodlar.put(kod, uuid);
         bekleyenKodlar.put(kod, uuid);
-        kodZamanları.put(kod, System.currentTimeMillis());
+        kodZamanlari.put(kod, System.currentTimeMillis());
         return kod;
     }
 
@@ -100,7 +103,7 @@ public class EslestirmeManager {
 
         kodlar.values().removeIf(u -> u.equals(uuid));
         bekleyenKodlar.values().removeIf(u -> u.equals(uuid));
-        kodZamanları.entrySet().removeIf(entry -> {
+        kodZamanlari.entrySet().removeIf(entry -> {
             String k = entry.getKey();
             UUID val = bekleyenKodlar.get(k);
             return val != null && val.equals(uuid);
@@ -183,7 +186,7 @@ public class EslestirmeManager {
             if (kod != null) {
                 kodlar.remove(kod);
                 bekleyenKodlar.remove(kod);
-                kodZamanları.remove(kod);
+                kodZamanlari.remove(kod);
                 return true;
             }
         }
@@ -239,7 +242,7 @@ public class EslestirmeManager {
             Map<UUID, String> veriler = gson.fromJson(reader, type);
             if (veriler != null) eslesmeler.putAll(veriler);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.warning(e.getMessage());
         }
     }
 
@@ -247,7 +250,7 @@ public class EslestirmeManager {
         try (Writer writer = new FileWriter(dataFile)) {
             gson.toJson(eslesmeler, writer);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.warning(e.getMessage());
         }
     }
 
@@ -261,7 +264,7 @@ public class EslestirmeManager {
                 data.forEach((k,v) -> ikiFADurumu.put(UUID.fromString(k), v));
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.warning(e.getMessage());
         }
     }
 
@@ -271,7 +274,7 @@ public class EslestirmeManager {
         try (Writer writer = new FileWriter(ikiFAFile)) {
             gson.toJson(data, writer);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.warning(e.getMessage());
         }
     }
 
@@ -285,7 +288,7 @@ public class EslestirmeManager {
                 data.forEach((k,v) -> kayitliIPler.put(UUID.fromString(k), v));
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.warning(e.getMessage());
         }
     }
 
@@ -295,7 +298,7 @@ public class EslestirmeManager {
         try (Writer writer = new FileWriter(ipFile)) {
             gson.toJson(data, writer);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.warning(e.getMessage());
         }
     }
 }
