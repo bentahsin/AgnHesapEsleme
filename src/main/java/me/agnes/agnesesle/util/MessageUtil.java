@@ -1,6 +1,7 @@
 package me.agnes.agnesesle.util;
 
 import me.agnes.agnesesle.AgnesEsle;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -8,6 +9,7 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class MessageUtil {
 
@@ -44,6 +46,29 @@ public class MessageUtil {
             config = messagesByLang.get("tr"); // fallback Türkçe
         }
         return config;
+    }
+
+    public static String getMessage(String path, Map<String, String> vars) {
+        FileConfiguration messages = getMessages();
+        String message = messages.getString(path, "§cMesaj bulunamadı: " + path); // Hata durumunda yolu göster
+
+        if (message != null && vars != null) {
+            for (Map.Entry<String, String> entry : vars.entrySet()) {
+                message = message.replace("%" + entry.getKey() + "%", entry.getValue());
+            }
+        }
+
+        return Optional.ofNullable(message)
+                .map(msg -> ChatColor.translateAlternateColorCodes('&', msg))
+                .orElse("§cMesaj bulunamadı: " + path);
+    }
+
+    public static String getMessage(String path) {
+        return getMessage(path, null);
+    }
+
+    public static String stripColors(String message) {
+        return net.md_5.bungee.api.ChatColor.stripColor(message);
     }
 
     public static void sendTitle(Player p, String path, Map<String, String> vars) {

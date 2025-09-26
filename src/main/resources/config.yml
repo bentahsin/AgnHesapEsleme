@@ -1,7 +1,7 @@
 token: "DISCORD_BOT_TOKEN"
 prefix: "&6[&bHesapEşle&6] "
-role-id: "role-id"
 log-kanal-id: "log-kanal-id"
+yetkili-rol-id: "yetkili-rol-id"
 durum-mesajlari:
   - "SunucuAdi.net"
   - "HesapEşlemeSistemi"

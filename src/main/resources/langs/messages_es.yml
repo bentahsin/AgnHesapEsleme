@@ -3,28 +3,36 @@ hesap-zaten-eslesmis:
   subtitle: "§7Ya estás vinculado con una cuenta de Discord."
 
 kod-lutfen-bekleyin:
-  title: "§cEspere"
-  subtitle: "§7Por favor, espere a que caduque el código anterior."
+  title: "§cPor Favor, Espera"
+  subtitle: "§7Por favor, espera a que el código anterior expire."
 
 kod-verildi:
-  title: "§aCódigo Enviado"
-  subtitle: "§7Su código: §f%kod%"
+  title: "§aCódigo Proporcionado"
+  subtitle: "§7Tu código es: §f%kod%"
 
 eslesme-onayi-beklemiyor:
   title: "§cNo Hay Código Pendiente"
-  subtitle: "§7No hay ningún código esperando aprobación."
+  subtitle: "§7No hay ningún código esperando la confirmación del vínculo."
 
 eslesme-onaylanamadi:
-  title: "§cFallido"
-  subtitle: "§7No se pudo vincular la cuenta."
+  title: "§cFallo"
+  subtitle: "§7No se pudo confirmar el vínculo."
+
+eslesme-iptal-edilemedi:
+  title: "§cFallo al Cancelar"
+  subtitle: "§7No se encontró ningún código pendiente o ocurrió un error."
 
 eslesme-basariyla-tamamlandi:
   title: "§aÉxito"
-  subtitle: "§7¡Tu cuenta se ha vinculado correctamente!"
+  subtitle: "§7¡Tu cuenta ha sido vinculada exitosamente!"
+
+eslesme-zaten-bekliyor:
+  title: "§cConfirmación Pendiente"
+  subtitle: "§7Ya estás esperando una confirmación. Por favor, escribe /vincularcuenta confirmar."
 
 kaldirildi:
-  title: "§cVinculación Eliminada"
-  subtitle: "§7Tu vinculación ha sido eliminada."
+  title: "§cVínculo Eliminado"
+  subtitle: "§7Tu vínculo ha sido eliminado."
 
 yenilendi:
   title: "§aRecargado"
@@ -32,7 +40,7 @@ yenilendi:
 
 bilinmeyen-komut:
   title: "§cComando Desconocido"
-  subtitle: "§7Por favor, usa un comando válido."
+  subtitle: "§7Por favor, utiliza un comando válido."
 
 hesap-esle-kodiptal:
   title: "§cCódigo Cancelado"
@@ -48,16 +56,118 @@ hatalı-kullanim:
 
 oyuncu-bulunamadi:
   title: "§cJugador No Encontrado"
-  subtitle: "§7No se encontró tal jugador."
+  subtitle: "§7No se encontró a ese jugador."
 
 eslesme-yok:
-  title: "§cSin Vinculación"
-  subtitle: "§7Este jugador no tiene cuenta vinculada."
+  title: "§cSin Vínculo"
+  subtitle: "§7Este jugador no tiene un vínculo."
 
 title-baslik:
-  title: "§aVinculación Exitosa!"
-  subtitle: "§7Las recompensas han sido entregadas."
+  title: "§a¡Vínculo Exitoso!"
+  subtitle: "§7Tus recompensas han sido entregadas."
 
 title-alt:
-  title: "§aCuentaVinculada"
-  subtitle: "§7Ofreciendo servicio de calidad en tu servidor de Minecraft."
+  title: "§aVincularCuenta"
+  subtitle: "§7Servicio de calidad en tu servidor de Minecraft."
+
+# Mensajes Generales
+only-for-players: "&cEste comando solo puede ser utilizado por jugadores."
+reward-message: "&a¡Felicidades! ¡Has vinculado tu cuenta exitosamente y has ganado una recompensa!"
+
+# Mensajes de 2FA
+2fa-usage-help: "&cPor favor, escribe /vincularcuenta 2fa activar o /vincularcuenta 2fa desactivar."
+2fa-already-enabled: "&eEl 2FA ya está activado."
+2fa-successfully-enabled: "&a2FA activado exitosamente."
+2fa-already-disabled: "&eEl 2FA ya está desactivado."
+2fa-successfully-disabled: "&c2FA desactivado."
+2fa-not-linked: "&cNo puedes usar la función de 2FA porque tu cuenta no está vinculada."
+
+# Mensajes de Administrador
+no-matches-yet: "&cTodavía no hay vínculos."
+list-header: "&6---- [Lista de Vínculos Página %page%/%maxPage%] ----"
+list-entry: "&e%player% &7- ID de Discord: &a%discordId%"
+list-footer: "&7Para cambiar de página: /vincularcuenta lista <página>"
+player-match-reset: "&aEl vínculo del jugador %player% ha sido restablecido."
+
+# Mensajes de Expulsión (Kick)
+kick-2fa-ip-changed: |
+  &c&lADVERTENCIA DE SEGURIDAD
+  
+  &e¡Se está intentando iniciar sesión desde una ubicación diferente!
+  &fPor favor, revisa tu cuenta de Discord para confirmar.
+
+# ===============================================
+# Textos de Discord (¡No se usan códigos de color!)
+# ===============================================
+
+# Estado del Bot y Descripciones de Comandos
+discord-bot-status-starting: "Iniciando..."
+discord-command-description-esle: "Vincula tu cuenta de Minecraft"
+discord-command-option-code: "Tu código de vinculación"
+discord-command-description-raporla: "Reporta a un jugador al staff"
+discord-command-option-player: "El nombre del jugador que quieres reportar"
+discord-command-option-reason: "La razón de tu reporte"
+discord-command-description-info: "Muestra la cuenta de Minecraft vinculada de un usuario de Discord."
+discord-command-option-user: "El usuario de Discord a consultar"
+discord-info-reply-no-match: "Este usuario no tiene una cuenta de Minecraft vinculada."
+discord-info-reply-success: "Este usuario está vinculado a la cuenta de Minecraft **%player%**."
+
+# Mensaje Embed del Canal de Información
+discord-info-embed-title: "📘 AgnVincular - Vinculación de Cuentas"
+discord-info-embed-description: |
+  ¡Hola! ¡Puedes ganar recompensas especiales vinculando tu cuenta de Minecraft con Discord!
+  
+  ➤ Entra al servidor y escribe `/vincularcuenta vincular` para obtener tu código.
+  ➤ Haz clic en el botón de abajo e introduce tu código.
+  ➤ ¡Finalmente, completa el proceso escribiendo `/vincularcuenta confirmar` en Minecraft!
+discord-info-embed-footer: "Sistema AgnVincularCuenta"
+discord-info-button-label: "🔗 Vincular"
+
+# Modal de Vinculación (Ventana Emergente)
+discord-modal-title: "Introduce Tu Código de Vinculación"
+discord-modal-textfield-label: "Código de Vinculación"
+discord-modal-textfield-placeholder: "Ej: X7Y2-Z9"
+
+# Interacciones de Botones 2FA
+discord-2fa-confirm-reply: "✅ Solicitud de inicio de sesión aprobada con éxito. Ya puedes entrar al servidor."
+discord-2fa-confirm-message-edit: "Esta solicitud de inicio de sesión fue **aprobada**."
+discord-2fa-deny-reply: "❌ Solicitud de inicio de sesión denegada. Tu cuenta está segura. Te recomendamos cambiar tu contraseña."
+discord-2fa-deny-message-edit: "Esta solicitud de inicio de sesión fue **denegada**."
+
+# Interacciones de Botones de Reporte
+discord-button-invalid-id: "¡ID de botón inválido!"
+discord-button-no-permission: "❌ Solo los miembros del staff pueden usar este botón."
+discord-button-player-not-found: "¡Jugador no encontrado!"
+discord-button-control-kick-reason: "Estás siendo llamado para una revisión por un miembro del staff."
+discord-button-control-reply: "El jugador %player% (%discordId%) ha sido expulsado del servidor para una revisión."
+discord-button-ban-reason: "Baneado a través de Discord."
+discord-button-ban-kick-reason: "Has sido baneado por un miembro del staff a través de Discord."
+discord-button-ban-reply: "El jugador %player% ha sido baneado."
+
+# Respuestas de Comandos de Barra (Slash)
+discord-cooldown-message: "❌ Estás usando este comando con demasiada frecuencia. Por favor, inténtalo de nuevo en **%timeLeft% segundos**."
+discord-invalid-code: "❌ Código inválido."
+discord-already-linked-mc: "❌ Esta cuenta de Minecraft ya está vinculada a otra cuenta."
+discord-already-linked-discord: "❌ Esta cuenta de Discord ya está vinculada a otra cuenta de Minecraft o está pendiente de confirmación."
+discord-generic-error: "❌ Falló la vinculación. Por favor, inténtalo de nuevo."
+discord-success: "✅ ¡El código es correcto! Ahora, completa el vínculo escribiendo `/vincularcuenta confirmar` en Minecraft."
+discord-report-channel-not-set: "❌ El canal de reportes no está configurado, la operación falló."
+discord-report-channel-not-found: "❌ No se pudo encontrar el canal de reportes, la operación falló."
+discord-report-embed-title: "🚨 Nuevo Reporte de Jugador"
+discord-report-embed-field-player: "Jugador Reportado"
+discord-report-embed-field-reason: "Razón del Reporte"
+discord-report-embed-footer: "Reportado por: %reporter%"
+discord-report-success: "✅ Tu reporte ha sido enviado exitosamente al staff."
+
+# Mensaje Embed de MD para 2FA
+discord-2fa-embed-title: "🔒 Alerta de Seguridad: Nuevo Intento de Inicio de Sesión"
+discord-2fa-embed-description: "Se está intentando iniciar sesión en tu cuenta de Minecraft **%player%** desde una nueva ubicación."
+discord-2fa-embed-field-ip: "Dirección IP de Inicio de Sesión"
+discord-2fa-embed-footer: "Si no iniciaste esta acción, no la apruebes."
+discord-2fa-button-confirm: "Sí, Fui Yo (Aprobar)"
+discord-2fa-button-deny: "No, No Fui Yo (Rechazar)"
+
+# Mensajes de Recompensa
+odul-not-linked: "&cLa cuenta de este jugador no está vinculada."
+odul-already-given: "&eEste jugador ya ha recibido su recompensa."
+odul-given-success: "&aLa recompensa fue entregada exitosamente al jugador %player%."
