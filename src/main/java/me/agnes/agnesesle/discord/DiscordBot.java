@@ -412,4 +412,8 @@ public class DiscordBot extends ListenerAdapter {
         if (jda != null) jda.shutdownNow();
         if (scheduler != null) scheduler.shutdownNow();
     }
+
+    public JDA getJda() {
+        return jda;
+    }
 }

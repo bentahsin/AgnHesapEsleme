@@ -33,7 +33,6 @@
             <version>4.13.1</version>
         </dependency>
 
-
         <!-- JDA (Java Discord API) -->
         <dependency>
             <groupId>net.dv8tion</groupId>
@@ -64,6 +63,19 @@
         </dependency>
 
         <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>2.11.6</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.bentahsin</groupId>
+            <artifactId>BenthPAPIManager</artifactId>
+            <version>v1.0.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>
             <artifactId>caffeine</artifactId>
             <version>2.9.3</version> <!-- Versiyon 3.x Java 8 desteklemiyor. -->
@@ -80,6 +92,11 @@
         <repository>
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </repository>
+
+        <repository>
+            <id>placeholderapi</id>
+            <url>https://repo.extendedclip.com/releases/</url>
         </repository>
 
         <repository>

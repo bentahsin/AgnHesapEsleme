@@ -2,6 +2,7 @@ name: AgnHesapEsle
 version: 1.2
 main: me.agnes.agnesesle.AgnesEsle
 api-version: 1.13
+softdepend: [PlaceholderAPI]
 depend: [LuckPerms]
 author: agnes
 commands:

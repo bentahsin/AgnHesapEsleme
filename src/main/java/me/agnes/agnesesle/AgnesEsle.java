@@ -2,6 +2,7 @@ package me.agnes.agnesesle;
 
 import co.aikar.commands.BukkitCommandIssuer;
 import co.aikar.commands.PaperCommandManager;
+import com.bentahsin.benthpapimanager.BenthPAPIManager;
 import me.agnes.agnesesle.commands.EsleCommandACF;
 import me.agnes.agnesesle.discord.DiscordBot;
 import me.agnes.agnesesle.data.EslestirmeManager;
@@ -55,6 +56,19 @@ public class AgnesEsle extends JavaPlugin {
         EslestirmeManager.init();
 
         getServer().getPluginManager().registerEvents(new me.agnes.agnesesle.listener.PlayerLoginListener(), this);
+
+        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+            try {
+                BenthPAPIManager papiManager = new BenthPAPIManager(this);
+                papiManager.registerPlaceholders("me.agnes.agnesesle.placeholders");
+                getLogger().info("PlaceholderAPI desteği başarıyla etkinleştirildi.");
+            } catch (Exception e) {
+                getLogger().severe("BenthPAPIManager başlatılırken bir hata oluştu!");
+                getLogger().warning(e.getMessage());
+            }
+        } else {
+            getLogger().warning("PlaceholderAPI bulunamadı, placeholder'lar yüklenemedi.");
+        }
 
         getLogger().info("[AgnHesapEsle] Plugin başarıyla yüklendi!");
     }
