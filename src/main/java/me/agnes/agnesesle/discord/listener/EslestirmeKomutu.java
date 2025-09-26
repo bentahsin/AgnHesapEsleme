@@ -4,6 +4,7 @@ import me.agnes.agnesesle.data.EslestirmeManager;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class EslestirmeKomutu extends ListenerAdapter {
@@ -15,7 +16,7 @@ public class EslestirmeKomutu extends ListenerAdapter {
         event.deferReply(true).queue();
 
         try {
-            String kod = event.getOption("kod").getAsString().toUpperCase();
+            String kod = Objects.requireNonNull(event.getOption("kod")).getAsString().toUpperCase();
             UUID uuid = EslestirmeManager.koduKontrolEt(kod);
 
             if (uuid == null) {

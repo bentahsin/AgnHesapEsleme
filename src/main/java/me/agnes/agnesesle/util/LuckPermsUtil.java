@@ -5,13 +5,15 @@ import net.luckperms.api.model.user.User;
 import net.luckperms.api.node.types.InheritanceNode;
 
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
+import java.util.logging.Logger;
 
 public class LuckPermsUtil {
     private final LuckPerms luckPerms;
+    private final Logger logger;
 
-    public LuckPermsUtil(LuckPerms luckPerms) {
+    public LuckPermsUtil(LuckPerms luckPerms, Logger logger) {
         this.luckPerms = luckPerms;
+        this.logger = logger;
     }
 
     public boolean isPlayerInGroup(UUID uuid, String groupName) {
@@ -21,7 +23,8 @@ public class LuckPermsUtil {
             try {
                 user = luckPerms.getUserManager().loadUser(uuid).get();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.warning("Failed to load user " + uuid);
+                logger.warning(e.getMessage());
                 return false;
             }
         }
@@ -38,7 +41,8 @@ public class LuckPermsUtil {
             try {
                 user = luckPerms.getUserManager().loadUser(uuid).get();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.warning("Failed to load user " + uuid);
+                logger.warning(e.getMessage());
                 return null;
             }
         }
