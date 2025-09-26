@@ -7,7 +7,7 @@
 
     <groupId>me.agnes</groupId>
     <artifactId>AgnHesapEsle</artifactId>
-    <version>1.21</version>
+    <version>1.0.2</version>
     <name>AgnHesapEsle</name>
     <description>Discord - Minecraft Hesap Eşleme Sistemi</description>
 
@@ -55,6 +55,19 @@
             <version>5.4</version>
             <scope>compile</scope>
         </dependency>
+
+        <dependency>
+            <groupId>co.aikar</groupId>
+            <artifactId>acf-paper</artifactId>
+            <version>0.5.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+            <version>2.9.3</version> <!-- Versiyon 3.x Java 8 desteklemiyor. -->
+        </dependency>
     </dependencies>
 
     <repositories>
@@ -78,10 +91,27 @@
             <id>jcenter</id>
             <url>https://jcenter.bintray.com/</url>
         </repository>
+
+        <repository>
+            <id>aikar</id>
+            <url>https://repo.aikar.co/content/groups/aikar/</url>
+        </repository>
     </repositories>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -96,7 +126,27 @@
                                     <pattern>net.dv8tion</pattern>
                                     <shadedPattern>me.agnes.shaded.jda</shadedPattern>
                                 </relocation>
+                                <relocation>
+                                    <pattern>org.slf4j</pattern>
+                                    <shadedPattern>me.agnes.shaded.slf4j</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>com.github.benmanes.caffeine</pattern>
+                                    <shadedPattern>me.agnes.shaded.caffeine</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>co.aikar</pattern>
+                                    <shadedPattern>me.agnes.shaded.acf</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>co.aikar.locales</pattern>
+                                    <shadedPattern>me.agnes.shaded.locales</shadedPattern>
+                                </relocation>
                             </relocations>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"/>
+                            </transformers>
                         </configuration>
                     </execution>
                 </executions>

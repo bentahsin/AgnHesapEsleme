@@ -74,6 +74,11 @@ title-alt:
 only-for-players: "&cBu komut sadece oyuncular tarafından kullanılabilir."
 reward-message: "&aTebrikler! Hesabını başarıyla eşleştirdin, ödül kazandın!"
 
+# Yardım Menüsü
+help-header: "&6&lAgnHesapEsle &r&7- Komut Listesi"
+help-format: "&e/hesapesle %command% %syntax% &7- %description%"
+help-footer: "&7Daha fazla bilgi için komutları kullanın."
+
 # 2FA Mesajları
 2fa-usage-help: "&cLütfen /hesapeşle 2fa aç veya /hesapeşle 2fa kapat yazın."
 2fa-already-enabled: "&e2FA zaten açık."

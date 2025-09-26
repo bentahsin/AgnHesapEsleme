@@ -1,6 +1,8 @@
 package me.agnes.agnesesle;
 
-import me.agnes.agnesesle.commands.EsleCommand;
+import co.aikar.commands.BukkitCommandIssuer;
+import co.aikar.commands.PaperCommandManager;
+import me.agnes.agnesesle.commands.EsleCommandACF;
 import me.agnes.agnesesle.discord.DiscordBot;
 import me.agnes.agnesesle.data.EslestirmeManager;
 import me.agnes.agnesesle.util.MessageUtil;
@@ -10,8 +12,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class AgnesEsle extends JavaPlugin {
 
@@ -39,13 +41,16 @@ public class AgnesEsle extends JavaPlugin {
         MessageUtil.load();
         MessageUtil.setLang(getConfig().getString("lang", "tr"));
 
-        EsleCommand esleCommand = new EsleCommand();
-        if (getCommand("hesapesle") != null) {
-            Objects.requireNonNull(getCommand("hesapesle")).setExecutor(esleCommand);
-            Objects.requireNonNull(getCommand("hesapesle")).setTabCompleter(esleCommand);
-        } else {
-            getLogger().severe("Komut bulunamadı: hesapesle!");
-        }
+        PaperCommandManager commandManager = new PaperCommandManager(this);
+        commandManager.getCommandContexts().registerContext(BukkitCommandIssuer.class, c -> {
+            return commandManager.getCommandIssuer(c.getSender());
+        });
+
+        commandManager.getCommandCompletions().registerAsyncCompletion("@players", c -> {
+            return Bukkit.getOnlinePlayers().stream().map(Player::getName).collect(Collectors.toList());
+        });
+
+        commandManager.registerCommand(new EsleCommandACF());
 
         EslestirmeManager.init();
 

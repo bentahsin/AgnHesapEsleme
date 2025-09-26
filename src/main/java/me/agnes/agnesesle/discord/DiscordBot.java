@@ -1,5 +1,7 @@
 package me.agnes.agnesesle.discord;
 
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
 import me.agnes.agnesesle.util.MessageUtil;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -30,14 +32,17 @@ import java.util.logging.Logger;
 
 public class DiscordBot extends ListenerAdapter {
 
+    private static final long ESLE_COOLDOWN_SECONDS = 60; // 1 dakika
+    private static final long REPORT_COOLDOWN_SECONDS = 300; // 5 dakika
+
     private final Logger logger;
     private final String token;
     private JDA jda;
     private ScheduledExecutorService scheduler;
 
-    // Timeout schedulerlar
-    private final ConcurrentHashMap<String, Long> oneriCooldowns = new ConcurrentHashMap<>();
-    private final ConcurrentHashMap<String, Long> reportCooldowns = new ConcurrentHashMap<>();
+    // Cache'ler
+    private final Cache<String, Long> esleCooldowns;
+    private final Cache<String, Long> reportCooldowns;
 
     private String parsePlaceholders(String mesaj) {
         int aktifKullanici = Bukkit.getOnlinePlayers().size();
@@ -48,6 +53,14 @@ public class DiscordBot extends ListenerAdapter {
     public DiscordBot(String token) {
         this.logger = AgnesEsle.getInstance().getLogger();
         this.token = token;
+
+        this.esleCooldowns = Caffeine.newBuilder()
+                .expireAfterWrite(60, TimeUnit.SECONDS)
+                .build();
+
+        this.reportCooldowns = Caffeine.newBuilder()
+                .expireAfterWrite(5, TimeUnit.MINUTES)
+                .build();
     }
 
     public void start() {
@@ -218,7 +231,7 @@ public class DiscordBot extends ListenerAdapter {
         try {
             if (event.getName().equals("eşle")) {
                 String userId = event.getUser().getId();
-                if (isUserOnCooldown(userId, oneriCooldowns, 60, event)) {
+                if (isUserOnCooldown(userId, esleCooldowns, ESLE_COOLDOWN_SECONDS, event)) {
                     return;
                 }
 
@@ -249,7 +262,7 @@ public class DiscordBot extends ListenerAdapter {
                         return;
                     }
 
-                    setUserCooldown(userId, oneriCooldowns);
+                    setUserCooldown(userId, esleCooldowns);
 
                     event.getHook().sendMessage(MessageUtil.getMessage("discord-success")).queue();
                 });
@@ -257,7 +270,7 @@ public class DiscordBot extends ListenerAdapter {
             else if (event.getName().equals("raporla")) {
                 String userId = event.getUser().getId();
 
-                if (isUserOnCooldown(userId, reportCooldowns, 300, event)) {
+                if (isUserOnCooldown(userId, reportCooldowns, REPORT_COOLDOWN_SECONDS, event)) {
                     return;
                 }
 
@@ -371,34 +384,27 @@ public class DiscordBot extends ListenerAdapter {
         });
     }
 
-    /**
-     * Belirtilen kullanıcının cooldown süresinin dolup dolmadığını kontrol eder.
-     * @param userId Kontrol edilecek Discord kullanıcı ID'si.
-     * @param cooldowns Cooldown verilerini tutan harita (örn: reportCooldowns).
-     * @param cooldownTimeSeconds Saniye cinsinden bekleme süresi.
-     * @param event Etkileşim olayı, kullanıcıya geri bildirim göndermek için.
-     * @return Cooldown aktifse true, değilse false döner.
-     */
-    private boolean isUserOnCooldown(String userId, ConcurrentHashMap<String, Long> cooldowns, long cooldownTimeSeconds, net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent event) {
-        if (cooldowns.containsKey(userId)) {
-            long secondsSinceLastUse = (System.currentTimeMillis() - cooldowns.get(userId)) / 1000;
+    private boolean isUserOnCooldown(String userId, Cache<String, Long> cooldowns, long cooldownTimeSeconds, net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent event) {
+        Long lastUsed = cooldowns.getIfPresent(userId);
+
+        if (lastUsed != null) {
+            long secondsSinceLastUse = (System.currentTimeMillis() - lastUsed) / 1000;
+
             if (secondsSinceLastUse < cooldownTimeSeconds) {
                 long timeLeft = cooldownTimeSeconds - secondsSinceLastUse;
+
                 Map<String, String> vars = new HashMap<>();
                 vars.put("timeLeft", String.valueOf(timeLeft));
                 event.reply(MessageUtil.getMessage("discord-cooldown-message", vars)).setEphemeral(true).queue();
+
                 return true;
             }
         }
+
         return false;
     }
 
-    /**
-     * Belirtilen kullanıcı için cooldown süresini başlatır/sıfırlar.
-     * @param userId Cooldown'a girecek Discord kullanıcı ID'si.
-     * @param cooldowns Cooldown verilerini tutan harita.
-     */
-    private void setUserCooldown(String userId, ConcurrentHashMap<String, Long> cooldowns) {
+    private void setUserCooldown(String userId, Cache<String, Long> cooldowns) {
         cooldowns.put(userId, System.currentTimeMillis());
     }
 

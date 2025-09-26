@@ -43,7 +43,10 @@ public class MessageUtil {
     private static FileConfiguration getMessages() {
         FileConfiguration config = messagesByLang.get(lang);
         if (config == null) {
-            config = messagesByLang.get("tr"); // fallback Türkçe
+            config = messagesByLang.get("tr");
+            if (config == null) {
+                return new org.bukkit.configuration.file.YamlConfiguration();
+            }
         }
         return config;
     }
