@@ -91,14 +91,12 @@ public class EslestirmeManager {
         String discordId = bekleyenEslesmeler.remove(uuid);
         if (discordId == null) return false;
 
-
-
         eslesmeler.put(uuid, discordId);
 
         if (!odulVerilenler.contains(uuid)) {
-            odulVerilenler.add(uuid); // Ödül verildi olarak işaretle
-            AgnesEsle.getInstance().odulVer(uuid); // Ödül ver
-            saveOdulVerilenler(); // Kaydet (bu metod senin yazman lazım)
+            odulVerilenler.add(uuid);
+            AgnesEsle.getInstance().odulVer(uuid);
+            saveOdulVerilenler();
         }
 
         kodlar.values().removeIf(u -> u.equals(uuid));
@@ -116,23 +114,12 @@ public class EslestirmeManager {
         saveEslesmeler();
         saveIPler();
 
-        // Burada ödül verilip verilmediğini kontrol ediyoruz
-        if (!odulVerilenler.contains(uuid)) {
-            odulVerilenler.add(uuid); // Ödül verildi olarak işaretle
-            // Burada ödül komutlarını çalıştırmak için bir metodu çağırabilirsin
-            AgnesEsle.getInstance().odulVer(uuid); // Örnek metod, sen eklemen lazım
-        }
-
         return true;
     }
 
 
     public static boolean beklemeVar(UUID uuid) {
         return bekleyenEslesmeler.containsKey(uuid);
-    }
-
-    public static String bekleyenDiscordId(UUID uuid) {
-        return bekleyenEslesmeler.get(uuid);
     }
 
     public static void kaldirEslesme(UUID uuid) {
@@ -159,10 +146,6 @@ public class EslestirmeManager {
 
     public static boolean discordZatenEslesmis(String discordId) {
         return eslesmeler.containsValue(discordId) || bekleyenEslesmeler.containsValue(discordId);
-    }
-
-    public static String discordId(UUID uuid) {
-        return eslesmeler.get(uuid);
     }
 
     public static UUID getUUIDByDiscordId(String discordId) {
@@ -234,24 +217,15 @@ public class EslestirmeManager {
     }
 
 
-    private static void loadEslesmeler() {
-        if (!dataFile.exists()) return;
-
-        try (Reader reader = new FileReader(dataFile)) {
-            Type type = new TypeToken<Map<UUID, String>>() {}.getType();
-            Map<UUID, String> veriler = gson.fromJson(reader, type);
-            if (veriler != null) eslesmeler.putAll(veriler);
-        } catch (IOException e) {
-            logger.warning(e.getMessage());
+    public static void loadEslesmeler() {
+        Map<UUID, String> veriler = loadData(new TypeToken<Map<UUID, String>>() {}.getType());
+        if (veriler != null) {
+            eslesmeler.putAll(veriler);
         }
     }
 
     private static void saveEslesmeler() {
-        try (Writer writer = new FileWriter(dataFile)) {
-            gson.toJson(eslesmeler, writer);
-        } catch (IOException e) {
-            logger.warning(e.getMessage());
-        }
+        saveData(dataFile, eslesmeler);
     }
 
     private static void loadIkiFA() {
@@ -271,11 +245,7 @@ public class EslestirmeManager {
     private static void saveIkiFA() {
         Map<String, Boolean> data = new HashMap<>();
         ikiFADurumu.forEach((k,v) -> data.put(k.toString(), v));
-        try (Writer writer = new FileWriter(ikiFAFile)) {
-            gson.toJson(data, writer);
-        } catch (IOException e) {
-            logger.warning(e.getMessage());
-        }
+        saveData(ikiFAFile, data);
     }
 
     private static void loadIPler() {
@@ -299,6 +269,26 @@ public class EslestirmeManager {
             gson.toJson(data, writer);
         } catch (IOException e) {
             logger.warning(e.getMessage());
+        }
+    }
+
+    private static <T> void saveData(File file, T data) {
+        try (Writer writer = new FileWriter(file)) {
+            gson.toJson(data, writer);
+        } catch (IOException e) {
+            logger.warning("Veri kaydedilemedi: " + file.getName() + " -> " + e.getMessage());
+        }
+    }
+
+    private static <T> T loadData(Type type) {
+        if (!EslestirmeManager.dataFile.exists()) {
+            return null;
+        }
+        try (Reader reader = new FileReader(EslestirmeManager.dataFile)) {
+            return gson.fromJson(reader, type);
+        } catch (IOException e) {
+            logger.warning("Veri okunamadı: " + EslestirmeManager.dataFile.getName() + " -> " + e.getMessage());
+            return null;
         }
     }
 }

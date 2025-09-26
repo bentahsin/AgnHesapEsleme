@@ -18,7 +18,7 @@ public class EsleCommand implements CommandExecutor, TabCompleter {
 
     private final int PAGE_SIZE = 10;
     private final List<String> ALT_KOMUTLAR = Arrays.asList(
-            "eşle", "onayla", "iptal", "kaldir", "liste", "sifirla", "yenile", "2fa"
+            "eşle", "onayla", "iptal", "kaldir", "liste", "sifirla", "yenile", "2fa", "odul"
     );
 
     private final List<String> IKI_FA_ALT_KOMUTLARI = Arrays.asList("aç", "kapat");
@@ -34,7 +34,7 @@ public class EsleCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage("Bu komut sadece oyuncular için.");
+            sender.sendMessage(MessageUtil.getMessage("only-for-players"));
             return true;
         }
 
@@ -52,34 +52,35 @@ public class EsleCommand implements CommandExecutor, TabCompleter {
             if (!EslestirmeManager.eslesmeVar(p.getUniqueId())) {
                 playError(p);
                 MessageUtil.sendTitle(p, "hesap-eslesmemis");
+                p.sendMessage(MessageUtil.getMessage("2fa-not-linked"));
                 return true;
             }
             if (args.length < 2) {
                 playError(p);
-                p.sendMessage("§cLütfen /hesapeşle 2fa aç veya /hesapeşle 2fa kapat yazın.");
+                p.sendMessage(MessageUtil.getMessage("2fa-usage-help"));
                 return true;
             }
 
             String durum = args[1].toLowerCase();
             if (durum.equals("aç") || durum.equals("ac")) {
                 if (EslestirmeManager.isIkiFAOpen(p.getUniqueId())) {
-                    p.sendMessage("§e2FA zaten açık.");
+                    p.sendMessage(MessageUtil.getMessage("2fa-already-enabled"));
                 } else {
                     EslestirmeManager.setIkiFA(p.getUniqueId(), true);
-                    p.sendMessage("§a2FA başarıyla açıldı.");
+                    p.sendMessage(MessageUtil.getMessage("2fa-successfully-enabled"));
                     playSuccess(p);
                 }
             } else if (durum.equals("kapat") || durum.equals("kapa")) {
                 if (!EslestirmeManager.isIkiFAOpen(p.getUniqueId())) {
-                    p.sendMessage("§e2FA zaten kapalı.");
+                    p.sendMessage(MessageUtil.getMessage("2fa-already-disabled"));
                 } else {
                     EslestirmeManager.setIkiFA(p.getUniqueId(), false);
-                    p.sendMessage("§c2FA kapatıldı.");
+                    p.sendMessage(MessageUtil.getMessage("2fa-successfully-disabled"));
                     playSuccess(p);
                 }
             } else {
                 playError(p);
-                p.sendMessage("§cGeçersiz kullanım! /hesapeşle 2fa aç veya /hesapeşle 2fa kapat");
+                p.sendMessage(MessageUtil.getMessage("2fa-invalid-subcommand"));
             }
             return true;
         }
@@ -87,6 +88,11 @@ public class EsleCommand implements CommandExecutor, TabCompleter {
         // --- Mevcut komutlar ---
         switch (altKomut) {
             case "eşle":
+                if (EslestirmeManager.beklemeVar(p.getUniqueId())) {
+                    playError(p);
+                    MessageUtil.sendTitle(p, "eslesme-zaten-bekliyor");
+                    return true;
+                }
                 if (EslestirmeManager.eslesmeVar(p.getUniqueId())) {
                     playError(p);
                     MessageUtil.sendTitle(p, "hesap-zaten-eslesmis");
@@ -105,7 +111,12 @@ public class EsleCommand implements CommandExecutor, TabCompleter {
                     MessageUtil.sendTitle(p, "eslesme-onayi-beklemiyor");
                     return true;
                 }
-                EslestirmeManager.iptalEt(p.getUniqueId());
+                boolean isSuccess = EslestirmeManager.iptalEt(p.getUniqueId());
+                if (!isSuccess) {
+                    playError(p);
+                    MessageUtil.sendTitle(p, "eslesme-iptal-edilemedi");
+                    return true;
+                }
                 playSuccess(p);
                 MessageUtil.sendTitle(p, "hesap-esle-kodiptal");
                 break;
@@ -132,7 +143,7 @@ public class EsleCommand implements CommandExecutor, TabCompleter {
                         p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1f, 1f);
                         p.getWorld().spawnParticle(org.bukkit.Particle.VILLAGER_HAPPY, p.getLocation().add(0,1,0), 15,0.5,0.5,0.5);
 
-                        String discordId = EslestirmeManager.discordId(p.getUniqueId());
+                        String discordId = EslestirmeManager.getDiscordId(p.getUniqueId());
                         if (discordId != null) {
                             DiscordBot bot = AgnesEsle.getInstance().getDiscordBot();
                             bot.changeNickname(discordId, p.getName());
@@ -190,7 +201,7 @@ public class EsleCommand implements CommandExecutor, TabCompleter {
                 Map<UUID,String> eslesmeler = EslestirmeManager.getTumEslesmeler();
                 if (eslesmeler.isEmpty()) {
                     playError(p);
-                    p.sendMessage("§cHenüz eşleşme yok.");
+                    p.sendMessage(MessageUtil.getMessage("no-matches-yet"));
                     return true;
                 }
 
@@ -202,7 +213,11 @@ public class EsleCommand implements CommandExecutor, TabCompleter {
                 }
                 if (page > maxPage) page = maxPage;
 
-                p.sendMessage("§6---- [Eşleşme Listesi Sayfa "+page+"/"+maxPage+"] ----");
+                Map<String, String> listVars = new HashMap<>();
+                listVars.put("page", String.valueOf(page));
+                listVars.put("maxPage", String.valueOf(maxPage));
+                p.sendMessage(MessageUtil.getMessage("list-header", listVars));
+
                 UUID[] uuids = eslesmeler.keySet().toArray(new UUID[0]);
                 int start = (page-1)*PAGE_SIZE;
                 int end = Math.min(start+PAGE_SIZE, toplam);
@@ -210,10 +225,14 @@ public class EsleCommand implements CommandExecutor, TabCompleter {
                     UUID uuid = uuids[i];
                     String id = eslesmeler.get(uuid);
                     OfflinePlayer op = Bukkit.getOfflinePlayer(uuid);
-                    String ad = op.getName() != null ? op.getName() : "Bilinmiyor";
-                    p.sendMessage("§e"+ad+" §7- Discord ID: §a"+id);
+                    String ad = op.getName() != null ? op.getName() : MessageUtil.getMessage("unknown-player");
+
+                    listVars.clear();
+                    listVars.put("player", ad);
+                    listVars.put("discordId", id);
+                    p.sendMessage(MessageUtil.getMessage("list-entry", listVars));
                 }
-                if(maxPage > 1) p.sendMessage("§7Sayfa değiştirmek için: /hesapeşle liste <sayfa>");
+                if (maxPage > 1) p.sendMessage(MessageUtil.getMessage("list-footer"));
                 playSuccess(p);
                 break;
 
@@ -244,13 +263,55 @@ public class EsleCommand implements CommandExecutor, TabCompleter {
                 }
                 EslestirmeManager.kaldirEslesme(targetUUID);
                 playSuccess(p);
-                p.sendMessage("§a" + target.getName() + " isimli oyuncunun eşleşmesi sıfırlandı.");
+
+                Map<String, String> resetVars = new HashMap<>();
+                resetVars.put("player", target.getName() != null ? target.getName() : MessageUtil.getMessage("unknown-player"));
+
+                p.sendMessage(MessageUtil.getMessage("player-match-reset", resetVars));
                 break;
 
             case "yenile":
                 MessageUtil.yenile();
                 playSuccess(p);
                 MessageUtil.sendTitle(p, "yenilendi");
+                break;
+
+            case "odul":
+                if (!p.hasPermission("agnesesle.admin")) {
+                    playError(p);
+                    MessageUtil.sendTitle(p, "yetki-yok");
+                    return true;
+                }
+                if (args.length < 2) {
+                    playError(p);
+                    MessageUtil.sendTitle(p, "hatalı-kullanim");
+                    return true;
+                }
+                @SuppressWarnings("deprecation")
+                OfflinePlayer targetp = Bukkit.getOfflinePlayer(args[1]);
+                if (!targetp.hasPlayedBefore()) {
+                    playError(p);
+                    MessageUtil.sendTitle(p, "oyuncu-bulunamadi");
+                    return true;
+                }
+                UUID targetpUUID = targetp.getUniqueId();
+                if (!EslestirmeManager.eslesmeVar(targetpUUID)) {
+                    p.sendMessage(MessageUtil.getMessage("odul-not-linked"));
+                    return true;
+                }
+                if (EslestirmeManager.odulVerildiMi(targetpUUID)) {
+                    p.sendMessage(MessageUtil.getMessage("odul-already-given"));
+                    return true;
+                }
+
+                AgnesEsle.getInstance().odulVer(targetpUUID);
+                EslestirmeManager.odulVerildi(targetpUUID);
+                EslestirmeManager.saveOdulVerilenler();
+
+                Map<String, String> odulVars = new HashMap<>();
+                odulVars.put("player", targetp.getName());
+                p.sendMessage(MessageUtil.getMessage("odul-given-success", odulVars));
+                playSuccess(p);
                 break;
 
             default:

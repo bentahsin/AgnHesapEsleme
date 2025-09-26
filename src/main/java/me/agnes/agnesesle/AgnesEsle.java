@@ -49,6 +49,8 @@ public class AgnesEsle extends JavaPlugin {
 
         EslestirmeManager.init();
 
+        getServer().getPluginManager().registerEvents(new me.agnes.agnesesle.listener.PlayerLoginListener(), this);
+
         getLogger().info("[AgnHesapEsle] Plugin başarıyla yüklendi!");
     }
 
@@ -74,7 +76,7 @@ public class AgnesEsle extends JavaPlugin {
         Player player = Bukkit.getPlayer(uuid);
         if (player != null && player.isOnline()) {
             getLogger().info("Ödül veriliyor: " + player.getName());
-            player.sendMessage("§aTebrikler! Hesabını başarıyla eşleştirdin, ödül kazandın!");
+            player.sendMessage(MessageUtil.getMessage("reward-message"));
 
             for (String cmd : getConfig().getStringList("oduller")) {
                 String command = cmd.replace("%player%", player.getName());

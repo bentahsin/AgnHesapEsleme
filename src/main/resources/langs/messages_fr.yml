@@ -3,28 +3,36 @@ hesap-zaten-eslesmis:
   subtitle: "§7Vous êtes déjà lié à un compte Discord."
 
 kod-lutfen-bekleyin:
-  title: "§cVeuillez patienter"
+  title: "§cVeuillez Patienter"
   subtitle: "§7Veuillez attendre que le code précédent expire."
 
 kod-verildi:
-  title: "§aCode Donné"
+  title: "§aCode Fourni"
   subtitle: "§7Votre code : §f%kod%"
 
 eslesme-onayi-beklemiyor:
-  title: "§cPas de Code en Attente"
-  subtitle: "§7Aucun code n'attend une approbation."
+  title: "§cAucun Code en Attente"
+  subtitle: "§7Il n'y a aucun code en attente de confirmation de liaison."
 
 eslesme-onaylanamadi:
   title: "§cÉchec"
-  subtitle: "§7Le compte n'a pas pu être lié."
+  subtitle: "§7La liaison n'a pas pu être confirmée."
+
+eslesme-iptal-edilemedi:
+  title: "§cÉchec de l'Annulation"
+  subtitle: "§7Aucun code en attente n'a été trouvé ou une erreur est survenue."
 
 eslesme-basariyla-tamamlandi:
-  title: "§aRéussi"
+  title: "§aSuccès"
   subtitle: "§7Votre compte a été lié avec succès !"
 
+eslesme-zaten-bekliyor:
+  title: "§cConfirmation en Attente"
+  subtitle: "§7Vous attendez déjà une confirmation. Veuillez taper /liercompte confirmer."
+
 kaldirildi:
-  title: "§cLien Supprimé"
-  subtitle: "§7Votre lien de compte a été supprimé."
+  title: "§cLiaison Supprimée"
+  subtitle: "§7Votre liaison a été supprimée."
 
 yenilendi:
   title: "§aRechargé"
@@ -39,25 +47,127 @@ hesap-esle-kodiptal:
   subtitle: "§7Votre code de liaison a été annulé."
 
 yetki-yok:
-  title: "§cPas de Permission"
+  title: "§cPermission Refusée"
   subtitle: "§7Vous n'avez pas la permission d'utiliser cette commande."
 
 hatalı-kullanim:
-  title: "§cMauvaise Utilisation"
+  title: "§cUtilisation Incorrecte"
   subtitle: "§7Veuillez utiliser la commande correctement."
 
 oyuncu-bulunamadi:
   title: "§cJoueur Introuvable"
-  subtitle: "§7Aucun joueur trouvé."
+  subtitle: "§7Ce joueur n'a pas été trouvé."
 
 eslesme-yok:
-  title: "§cPas de Lien"
-  subtitle: "§7Ce joueur n'a pas de compte lié."
+  title: "§cAucune Liaison"
+  subtitle: "§7Ce joueur n'est pas lié."
 
 title-baslik:
-  title: "§aLien Réussi!"
-  subtitle: "§7Les récompenses ont été livrées."
+  title: "§aLiaison Réussie !"
+  subtitle: "§7Vos récompenses ont été livrées."
 
 title-alt:
-  title: "§aCompteLien"
-  subtitle: "§7Fournir un service de qualité sur votre serveur Minecraft."
+  title: "§aLierCompte"
+  subtitle: "§7Un service de qualité sur votre serveur Minecraft."
+
+# Messages Généraux
+only-for-players: "&cCette commande ne peut être utilisée que par les joueurs."
+reward-message: "&aFélicitations ! Vous avez lié votre compte avec succès et gagné une récompense !"
+
+# Messages 2FA
+2fa-usage-help: "&cVeuillez taper /liercompte 2fa activer ou /liercompte 2fa désactiver."
+2fa-already-enabled: "&eLa 2FA est déjà activée."
+2fa-successfully-enabled: "&a2FA activée avec succès."
+2fa-already-disabled: "&eLa 2FA est déjà désactivée."
+2fa-successfully-disabled: "&c2FA désactivée."
+2fa-not-linked: "&cVous ne pouvez pas utiliser la fonction 2FA car votre compte n'est pas lié."
+
+# Messages d'Administration
+no-matches-yet: "&cIl n'y a pas encore de liaisons."
+list-header: "&6---- [Liste des Liaisons Page %page%/%maxPage%] ----"
+list-entry: "&e%player% &7- ID Discord : &a%discordId%"
+list-footer: "&7Pour changer de page : /liercompte liste <page>"
+player-match-reset: "&aLa liaison du joueur %player% a été réinitialisée."
+
+# Messages d'Expulsion (Kick)
+kick-2fa-ip-changed: |
+  &c&lALERTE DE SÉCURITÉ
+  
+  &eUne tentative de connexion est en cours depuis un nouvel emplacement !
+  &fVeuillez vérifier votre compte Discord pour confirmer.
+
+# ===============================================
+# Textes Discord (Les codes de couleur ne sont pas utilisés !)
+# ===============================================
+
+# Statut du Bot et Descriptions des Commandes
+discord-bot-status-starting: "Démarrage en cours..."
+discord-command-description-esle: "Lier votre compte Minecraft"
+discord-command-option-code: "Votre code de liaison"
+discord-command-description-raporla: "Signaler un joueur au staff"
+discord-command-option-player: "Le nom du joueur que vous voulez signaler"
+discord-command-option-reason: "La raison de votre signalement"
+discord-command-description-info: "Affiche le compte Minecraft lié d'un utilisateur Discord."
+discord-command-option-user: "L'utilisateur Discord à rechercher"
+discord-info-reply-no-match: "Cet utilisateur n'a pas de compte Minecraft lié."
+discord-info-reply-success: "Cet utilisateur est lié au compte Minecraft **%player%**."
+
+# Message Embed du Canal d'Information
+discord-info-embed-title: "📘 AgnLiaison - Liaison de Compte"
+discord-info-embed-description: |
+  Bonjour ! Vous pouvez gagner des récompenses spéciales en liant votre compte Minecraft à Discord !
+  
+  ➤ Rejoignez le serveur et tapez `/liercompte lier` pour obtenir votre code.
+  ➤ Cliquez sur le bouton ci-dessous et entrez votre code.
+  ➤ Enfin, terminez le processus en tapant `/liercompte confirmer` dans Minecraft !
+discord-info-embed-footer: "Système AgnLierCompte"
+discord-info-button-label: "🔗 Lier"
+
+# Modale de Liaison (Fenêtre Pop-up)
+discord-modal-title: "Entrez Votre Code de Liaison"
+discord-modal-textfield-label: "Code de Liaison"
+discord-modal-textfield-placeholder: "Ex : X7Y2-Z9"
+
+# Interactions des Boutons 2FA
+discord-2fa-confirm-reply: "✅ Demande de connexion approuvée avec succès. Vous pouvez maintenant vous connecter au serveur."
+discord-2fa-confirm-message-edit: "Cette demande de connexion a été **approuvée**."
+discord-2fa-deny-reply: "❌ Demande de connexion refusée. Votre compte est en sécurité. Nous vous recommandons de changer votre mot de passe."
+discord-2fa-deny-message-edit: "Cette demande de connexion a été **refusée**."
+
+# Interactions des Boutons de Signalement
+discord-button-invalid-id: "ID de bouton invalide !"
+discord-button-no-permission: "❌ Seuls les membres du staff peuvent utiliser ce bouton."
+discord-button-player-not-found: "Joueur introuvable !"
+discord-button-control-kick-reason: "Vous êtes convoqué pour une vérification par un membre du staff."
+discord-button-control-reply: "Le joueur %player% (%discordId%) a été expulsé du serveur pour une vérification."
+discord-button-ban-reason: "Banni via Discord."
+discord-button-ban-kick-reason: "Vous avez été banni par un membre du staff via Discord."
+discord-button-ban-reply: "Le joueur %player% a été banni."
+
+# Réponses aux Commandes Slash
+discord-cooldown-message: "❌ Vous utilisez cette commande trop fréquemment. Veuillez réessayer dans **%timeLeft% secondes**."
+discord-invalid-code: "❌ Code invalide."
+discord-already-linked-mc: "❌ Ce compte Minecraft est déjà lié à un autre compte."
+discord-already-linked-discord: "❌ Ce compte Discord est déjà lié à un autre compte Minecraft ou est en attente de confirmation."
+discord-generic-error: "❌ La liaison a échoué. Veuillez réessayer."
+discord-success: "✅ Le code est correct ! Maintenant, terminez la liaison en tapant `/liercompte confirmer` dans Minecraft."
+discord-report-channel-not-set: "❌ Le canal des signalements n'est pas configuré, l'opération a échoué."
+discord-report-channel-not-found: "❌ Le canal des signalements n'a pas pu être trouvé, l'opération a échoué."
+discord-report-embed-title: "🚨 Nouveau Signalement de Joueur"
+discord-report-embed-field-player: "Joueur Signalé"
+discord-report-embed-field-reason: "Raison du Signalement"
+discord-report-embed-footer: "Signalé par : %reporter%"
+discord-report-success: "✅ Votre signalement a été envoyé avec succès au staff."
+
+# Message Embed de MP pour 2FA
+discord-2fa-embed-title: "🔒 Alerte de Sécurité : Nouvelle Tentative de Connexion"
+discord-2fa-embed-description: "Une tentative de connexion à votre compte Minecraft **%player%** est en cours depuis un nouvel emplacement."
+discord-2fa-embed-field-ip: "Adresse IP de Connexion"
+discord-2fa-embed-footer: "Si vous n'êtes pas à l'origine de cette action, ne l'approuvez pas."
+discord-2fa-button-confirm: "Oui, c'était moi (Approuver)"
+discord-2fa-button-deny: "Non, ce n'était pas moi (Refuser)"
+
+# Messages de Récompense
+odul-not-linked: "&cLe compte de ce joueur n'est pas lié."
+odul-already-given: "&eCe joueur a déjà reçu sa récompense."
+odul-given-success: "&aLa récompense a été donnée avec succès au joueur %player%."
