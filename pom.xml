@@ -72,7 +72,7 @@
         <dependency>
             <groupId>com.github.bentahsin</groupId>
             <artifactId>BenthPAPIManager</artifactId>
-            <version>v1.0.1</version>
+            <version>v1.0.2</version>
         </dependency>
 
         <dependency>
