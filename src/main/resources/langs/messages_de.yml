@@ -1,99 +1,104 @@
-hesap-zaten-eslesmis:
-  title: "§cBereits Verknüpft"
-  subtitle: "§7Du bist bereits mit einem Discord-Konto verknüpft."
+bereits-verbunden:
+  title: "§cBereits Verbunden"
+  subtitle: "§7Du bist bereits mit einem Discord-Konto verbunden."
 
-kod-lutfen-bekleyin:
+code-bitte-warten:
   title: "§cBitte Warten"
   subtitle: "§7Bitte warte, bis der vorherige Code abgelaufen ist."
 
-kod-verildi:
+code-erhalten:
   title: "§aCode Erhalten"
   subtitle: "§7Dein Code: §f%kod%"
 
-eslesme-onayi-beklemiyor:
+verbindung-bestaetigung-nicht-ausstehend:
   title: "§cKein Code Ausstehend"
-  subtitle: "§7Es wartet kein Code auf die Bestätigung der Verknüpfung."
+  subtitle: "§7Es gibt keinen Code, der auf Bestätigung wartet."
 
-eslesme-onaylanamadi:
+verbindung-konnte-nicht-bestaetigt-werden:
   title: "§cFehlgeschlagen"
-  subtitle: "§7Die Verknüpfung konnte nicht bestätigt werden."
+  subtitle: "§7Die Verbindung konnte nicht bestätigt werden."
 
-eslesme-iptal-edilemedi:
-  title: "§cAbbruch Fehlgeschlagen"
-  subtitle: "§7Es wurde kein ausstehender Code gefunden oder ein Fehler ist aufgetreten."
+verbindung-konnte-nicht-abgebrochen-werden:
+  title: "§cKonnte Nicht Abgebrochen Werden"
+  subtitle: "§7Kein ausstehender Code gefunden oder ein Fehler ist aufgetreten."
 
-eslesme-basariyla-tamamlandi:
+verbindung-erfolgreich-abgeschlossen:
   title: "§aErfolgreich"
-  subtitle: "§7Dein Konto wurde erfolgreich verknüpft!"
+  subtitle: "§7Dein Konto wurde erfolgreich verbunden!"
 
-eslesme-zaten-bekliyor:
-  title: "§cBestätigung Ausstehend"
-  subtitle: "§7Du wartest bereits auf eine Bestätigung. Bitte gib /kontoverknüpfen bestätigen ein."
+verbindung-bereits-ausstehend:
+  title: "§cWarte auf Bestätigung"
+  subtitle: "§7Du wartest bereits auf eine Bestätigung. Bitte gib /kontoverbinden bestätigen ein."
 
-kaldirildi:
-  title: "§cVerknüpfung Entfernt"
-  subtitle: "§7Deine Verknüpfung wurde entfernt."
+verbindung-entfernt:
+  title: "§cVerbindung Entfernt"
+  subtitle: "§7Deine Verbindung wurde entfernt."
 
-yenilendi:
+neu-geladen:
   title: "§aNeu Geladen"
   subtitle: "§7Nachrichten wurden neu geladen."
 
-bilinmeyen-komut:
+unbekannter-befehl:
   title: "§cUnbekannter Befehl"
-  subtitle: "§7Bitte verwende einen gültigen Befehl."
+  subtitle: "§7Bitte benutze einen gültigen Befehl."
 
-hesap-esle-kodiptal:
-  title: "§cCode Abgebrochen"
-  subtitle: "§7Dein Verknüpfungscode wurde abgebrochen."
+konto-verbinden-code-storniert:
+  title: "§cCode Storniert"
+  subtitle: "§7Dein Verbindungscode wurde storniert."
 
-yetki-yok:
+keine-berechtigung:
   title: "§cKeine Berechtigung"
   subtitle: "§7Du hast keine Berechtigung, diesen Befehl zu verwenden."
 
-hatalı-kullanim:
-  title: "§cFalsche Verwendung"
+falsche-anwendung:
+  title: "§cFalsche Anwendung"
   subtitle: "§7Bitte verwende den Befehl korrekt."
 
-oyuncu-bulunamadi:
+spieler-nicht-gefunden:
   title: "§cSpieler Nicht Gefunden"
   subtitle: "§7Ein solcher Spieler wurde nicht gefunden."
 
-eslesme-yok:
-  title: "§cKeine Verknüpfung"
-  subtitle: "§7Dieser Spieler hat keine Verknüpfung."
+keine-verbindung-gefunden:
+  title: "§cKeine Verbindung"
+  subtitle: "§7Dieser Spieler hat keine Verbindung."
 
-title-baslik:
-  title: "§aVerknüpfung Erfolgreich!"
+titel-header:
+  title: "§aVerbindung Erfolgreich!"
   subtitle: "§7Deine Belohnungen wurden zugestellt."
 
-title-alt:
-  title: "§aKontoVerknüpfen"
-  subtitle: "§7Qualitätsservice auf deinem Minecraft-Server."
+titel-footer:
+  title: "§aKontoVerbinden"
+  subtitle: "§7Qualitätsdienst auf deinem Minecraft-Server."
 
 # Allgemeine Nachrichten
-only-for-players: "&cDieser Befehl kann nur von Spielern verwendet werden."
-reward-message: "&aGlückwunsch! Du hast dein Konto erfolgreich verknüpft und eine Belohnung erhalten!"
+nur-fuer-spieler: "&cDieser Befehl kann nur von Spielern verwendet werden."
+belohnungsnachricht: "&aGlückwunsch! Du hast dein Konto erfolgreich verbunden und eine Belohnung erhalten!"
+
+# Hilfemenü
+hilfe-header: "&6&lAgnKontoVerbinden &r&7- Befehlsliste"
+hilfe-format: "&e/kontoverbinden %command% %syntax% &7- %description%"
+hilfe-footer: "&7Verwende die Befehle für weitere Informationen."
 
 # 2FA-Nachrichten
-2fa-usage-help: "&cBitte gib /kontoverknüpfen 2fa aktivieren oder /kontoverknüpfen 2fa deaktivieren ein."
-2fa-already-enabled: "&e2FA ist bereits aktiviert."
-2fa-successfully-enabled: "&a2FA erfolgreich aktiviert."
-2fa-already-disabled: "&e2FA ist bereits deaktiviert."
-2fa-successfully-disabled: "&c2FA deaktiviert."
-2fa-not-linked: "&cDu kannst die 2FA-Funktion nicht nutzen, da dein Konto nicht verknüpft ist."
+2fa-nutzungshilfe: "&cBitte gib /kontoverbinden 2fa aktivieren oder /kontoverbinden 2fa deaktivieren ein."
+2fa-bereits-aktiviert: "&e2FA ist bereits aktiviert."
+2fa-erfolgreich-aktiviert: "&a2FA erfolgreich aktiviert."
+2fa-bereits-deaktiviert: "&e2FA ist bereits deaktiviert."
+2fa-erfolgreich-deaktiviert: "&c2FA wurde deaktiviert."
+2fa-nicht-verbunden: "&cDu kannst die 2FA-Funktion nicht nutzen, da dein Konto nicht verbunden ist."
 
 # Admin-Nachrichten
-no-matches-yet: "&cEs gibt noch keine Verknüpfungen."
-list-header: "&6---- [Verknüpfungsliste Seite %page%/%maxPage%] ----"
-list-entry: "&e%player% &7- Discord ID: &a%discordId%"
-list-footer: "&7Um die Seite zu wechseln: /kontoverknüpfen liste <seite>"
-player-match-reset: "&aDie Verknüpfung für den Spieler %player% wurde zurückgesetzt."
+noch-keine-verbindungen: "&cEs gibt noch keine Verbindungen."
+liste-header: "&6---- [Verbindungsliste Seite %page%/%maxPage%] ----"
+liste-eintrag: "&e%player% &7- Discord ID: &a%discordId%"
+liste-footer: "&7Um die Seite zu wechseln: /kontoverbinden liste <Seite>"
+spieler-verbindung-zurueckgesetzt: "&aDie Verbindung für den Spieler %player% wurde zurückgesetzt."
 
 # Kick-Nachrichten
-kick-2fa-ip-changed: |
+kick-2fa-ip-geaendert: |
   &c&lSICHERHEITSWARNUNG
   
-  &eEs wird versucht, sich von einem anderen Standort aus anzumelden!
+  &eEin Anmeldeversuch von einem anderen Standort wurde erkannt!
   &fBitte überprüfe dein Discord-Konto zur Bestätigung.
 
 # ===============================================
@@ -101,73 +106,73 @@ kick-2fa-ip-changed: |
 # ===============================================
 
 # Bot-Status und Befehlsbeschreibungen
-discord-bot-status-starting: "Wird gestartet..."
-discord-command-description-esle: "Verknüpfe dein Minecraft-Konto"
-discord-command-option-code: "Dein Verknüpfungscode"
-discord-command-description-raporla: "Melde einen Spieler dem Team"
-discord-command-option-player: "Der Name des Spielers, den du melden möchtest"
-discord-command-option-reason: "Der Grund für deine Meldung"
-discord-command-description-info: "Zeigt das verknüpfte Minecraft-Konto eines Discord-Benutzers an."
-discord-command-option-user: "Der Discord-Benutzer, der nachgeschlagen werden soll"
-discord-info-reply-no-match: "Dieser Benutzer hat kein verknüpftes Minecraft-Konto."
-discord-info-reply-success: "Dieser Benutzer ist mit dem Minecraft-Konto **%player%** verknüpft."
+discord-bot-status-startet: "Wird gestartet..."
+discord-befehl-beschreibung-verbinden: "Verbinde dein Minecraft-Konto"
+discord-befehl-option-code: "Dein Verbindungscode"
+discord-befehl-beschreibung-melden: "Melde einen Spieler dem Team"
+discord-befehl-option-spieler: "Der Name des Spielers, den du melden möchtest"
+discord-befehl-option-grund: "Dein Meldegrund"
+discord-befehl-beschreibung-info: "Zeigt das verbundene Minecraft-Konto eines Discord-Benutzers."
+discord-befehl-option-benutzer: "Der Discord-Benutzer, dessen Informationen angezeigt werden sollen"
+discord-info-antwort-keine-verbindung: "Dieser Benutzer hat kein verbundenes Minecraft-Konto."
+discord-info-antwort-erfolg: "Dieser Benutzer ist mit dem Minecraft-Konto **%player%** verbunden."
 
-# Info-Kanal-Einbettungsnachricht
-discord-info-embed-title: "📘 AgnVerknüpfen - Kontoverknüpfung"
-discord-info-embed-description: |
-  Hallo! Du kannst besondere Belohnungen erhalten, indem du dein Minecraft-Konto mit Discord verknüpfst!
+# Info-Kanal Embed-Nachricht
+discord-info-embed-titel: "📘 AgnVerbinden - Kontoverbindung"
+discord-info-embed-beschreibung: |
+  Hallo! Du kannst besondere Belohnungen erhalten, indem du dein Minecraft-Konto mit Discord verbindest!
   
-  ➤ Betritt den Server und gib `/kontoverknüpfen verknüpfen` ein, um deinen Code zu erhalten.
+  ➤ Betrete den Server und gib `/kontoverbinden verbinden` ein, um deinen Code zu erhalten.
   ➤ Klicke auf den Button unten und gib deinen Code ein.
-  ➤ Schließe den Vorgang ab, indem du in Minecraft `/kontoverknüpfen bestätigen` eingibst!
-discord-info-embed-footer: "AgnKontoVerknüpfen System"
-discord-info-button-label: "🔗 Verknüpfen"
+  ➤ Schließe den Vorgang ab, indem du in Minecraft `/kontoverbinden bestätigen` eingibst!
+discord-info-embed-footer: "AgnKontoVerbinden System"
+discord-info-button-label: "🔗 Konto Verbinden"
 
-# Verknüpfungs-Modal (Pop-up-Fenster)
-discord-modal-title: "Gib deinen Verknüpfungscode ein"
-discord-modal-textfield-label: "Verknüpfungscode"
-discord-modal-textfield-placeholder: "Z.B.: X7Y2-Z9"
+# Verbindungs-Modal (Popup-Fenster)
+discord-modal-titel: "Gib deinen Verbindungscode ein"
+discord-modal-textfeld-label: "Verbindungscode"
+discord-modal-textfeld-platzhalter: "z.B.: X7Y2-Z9"
 
 # 2FA-Button-Interaktionen
-discord-2fa-confirm-reply: "✅ Anmeldeanfrage erfolgreich bestätigt. Du kannst dich jetzt auf dem Server einloggen."
-discord-2fa-confirm-message-edit: "Diese Anmeldeanfrage wurde **bestätigt**."
-discord-2fa-deny-reply: "❌ Anmeldeanfrage abgelehnt. Dein Konto ist sicher. Wir empfehlen dir, dein Passwort zu ändern."
-discord-2fa-deny-message-edit: "Diese Anmeldeanfrage wurde **abgelehnt**."
+discord-2fa-bestaetigen-antwort: "✅ Anmeldeanfrage erfolgreich bestätigt. Du kannst dich jetzt auf dem Server anmelden."
+discord-2fa-bestaetigen-nachricht-bearbeiten: "Diese Anmeldeanfrage wurde **genehmigt**."
+discord-2fa-ablehnen-antwort: "❌ Anmeldeanfrage abgelehnt. Dein Konto ist sicher. Wir empfehlen dir, dein Passwort zu ändern."
+discord-2fa-ablehnen-nachricht-bearbeiten: "Diese Anmeldeanfrage wurde **abgelehnt**."
 
 # Melde-Button-Interaktionen
-discord-button-invalid-id: "Ungültige Button-ID!"
-discord-button-no-permission: "❌ Nur Teammitglieder können diesen Button verwenden."
-discord-button-player-not-found: "Spieler nicht gefunden!"
-discord-button-control-kick-reason: "Du wirst von einem Teammitglied zur Überprüfung gerufen."
-discord-button-control-reply: "Der Spieler %player% (%discordId%) wurde zur Überprüfung vom Server gekickt."
-discord-button-ban-reason: "Über Discord gebannt."
-discord-button-ban-kick-reason: "Du wurdest von einem Teammitglied über Discord gebannt."
-discord-button-ban-reply: "Der Spieler %player% wurde gebannt."
+discord-button-ungueltige-id: "Ungültige Button-ID!"
+discord-button-keine-berechtigung: "❌ Nur Teammitglieder können diesen Button verwenden."
+discord-button-spieler-nicht-gefunden: "Spieler nicht gefunden!"
+discord-button-kontrolle-kick-grund: "Du wirst von einem Teammitglied zur Überprüfung gerufen."
+discord-button-kontrolle-antwort: "Der Spieler %player% (%discordId%) wurde zur Überprüfung vom Server gekickt."
+discord-button-bann-grund: "Über Discord gebannt."
+discord-button-bann-kick-grund: "Du wurdest von einem Teammitglied über Discord gebannt."
+discord-button-bann-antwort: "Der Spieler %player% wurde gebannt."
 
 # Slash-Befehl-Antworten
-discord-cooldown-message: "❌ Du verwendest diesen Befehl zu oft. Bitte versuche es in **%timeLeft% Sekunden** erneut."
-discord-invalid-code: "❌ Ungültiger Code."
-discord-already-linked-mc: "❌ Dieses Minecraft-Konto ist bereits mit einem anderen Konto verknüpft."
-discord-already-linked-discord: "❌ Dieses Discord-Konto ist bereits mit einem anderen Minecraft-Konto verknüpft oder wartet auf Bestätigung."
-discord-generic-error: "❌ Verknüpfung fehlgeschlagen. Bitte versuche es erneut."
-discord-success: "✅ Der Code ist korrekt! Schließe die Verknüpfung jetzt ab, indem du in Minecraft `/kontoverknüpfen bestätigen` eingibst."
-discord-report-channel-not-set: "❌ Der Melde-Kanal ist nicht festgelegt, Vorgang fehlgeschlagen."
-discord-report-channel-not-found: "❌ Der Melde-Kanal konnte nicht gefunden werden, Vorgang fehlgeschlagen."
-discord-report-embed-title: "🚨 Neue Spielermeldung"
-discord-report-embed-field-player: "Gemeldeter Spieler"
-discord-report-embed-field-reason: "Grund der Meldung"
-discord-report-embed-footer: "Gemeldet von: %reporter%"
-discord-report-success: "✅ Deine Meldung wurde erfolgreich an das Team weitergeleitet."
+discord-abklingzeit-nachricht: "❌ Du verwendest diesen Befehl zu oft. Bitte versuche es in **%timeLeft% Sekunden** erneut."
+discord-ungueltiger-code: "❌ Ungültiger Code."
+discord-bereits-verbunden-mc: "❌ Dieses Minecraft-Konto ist bereits mit einem anderen Konto verbunden."
+discord-bereits-verbunden-discord: "❌ Dieses Discord-Konto ist bereits mit einem anderen Minecraft-Konto verbunden oder wartet auf Bestätigung."
+discord-allgemeiner-fehler: "❌ Verbindung fehlgeschlagen. Bitte versuche es erneut."
+discord-erfolg: "✅ Code korrekt! Schließe nun die Verbindung ab, indem du in Minecraft `/kontoverbinden bestätigen` eingibst."
+discord-melde-kanal-nicht-gesetzt: "❌ Melde-Kanal nicht festgelegt, Vorgang fehlgeschlagen."
+discord-melde-kanal-nicht-gefunden: "❌ Melde-Kanal nicht gefunden, Vorgang fehlgeschlagen."
+discord-melde-embed-titel: "🚨 Neuer Spieler-Report"
+discord-melde-embed-feld-spieler: "Gemeldeter Spieler"
+discord-melde-embed-feld-grund: "Meldegrund"
+discord-melde-embed-footer: "Gemeldet von: %reporter%"
+discord-melde-erfolg: "✅ Deine Meldung wurde erfolgreich an das Team weitergeleitet."
 
-# 2FA DM-Einbettungsnachricht
-discord-2fa-embed-title: "🔒 Sicherheitswarnung: Neuer Anmeldeversuch"
-discord-2fa-embed-description: "Es wird versucht, sich von einem neuen Standort aus in dein Minecraft-Konto **%player%** einzuloggen."
-discord-2fa-embed-field-ip: "Anmelde-IP-Adresse"
-discord-2fa-embed-footer: "Wenn du diese Aktion nicht selbst initiiert hast, bestätige sie auf keinen Fall."
-discord-2fa-button-confirm: "Ja, das war ich (Bestätigen)"
-discord-2fa-button-deny: "Nein, das war ich nicht (Ablehnen)"
+# 2FA DM Embed-Nachricht
+discord-2fa-embed-titel: "🔒 Sicherheitswarnung: Neuer Anmeldeversuch"
+discord-2fa-embed-beschreibung: "Es wird versucht, sich von einem neuen Standort aus in dein Minecraft-Konto **%player%** einzuloggen."
+discord-2fa-embed-feld-ip: "Anmelde-IP-Adresse"
+discord-2fa-embed-footer: "Wenn du diesen Vorgang nicht eingeleitet hast, genehmige ihn auf keinen Fall."
+discord-2fa-button-bestaetigen: "Ja, das war ich (Genehmigen)"
+discord-2fa-button-ablehnen: "Nein, das war ich nicht (Ablehnen)"
 
 # Belohnungsnachrichten
-odul-not-linked: "&cDas Konto dieses Spielers ist nicht verknüpft."
-odul-already-given: "&eDieser Spieler hat seine Belohnung bereits erhalten."
-odul-given-success: "&aDie Belohnung wurde erfolgreich an den Spieler %player% vergeben."
+belohnung-nicht-verbunden: "&cDas Konto dieses Spielers ist nicht verbunden."
+belohnung-bereits-gegeben: "&eDieser Spieler hat seine Belohnung bereits erhalten."
+belohnung-erfolgreich-gegeben: "&aDie Belohnung wurde erfolgreich an den Spieler %player% vergeben."
