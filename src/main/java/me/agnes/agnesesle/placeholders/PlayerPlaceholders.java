@@ -12,6 +12,7 @@ import org.bukkit.OfflinePlayer;
 
 import java.util.concurrent.TimeUnit;
 
+@SuppressWarnings("unused")
 @Placeholder(identifier = "agnesesle", author = "Agnes & bentahsin", version = "1.2")
 public class PlayerPlaceholders {
 
