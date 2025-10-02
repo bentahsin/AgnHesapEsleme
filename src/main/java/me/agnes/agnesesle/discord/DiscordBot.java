@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.components.buttons.Button;
@@ -28,6 +29,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.awt.Color;
 import java.util.concurrent.*;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DiscordBot extends ListenerAdapter {
@@ -142,92 +144,122 @@ public class DiscordBot extends ListenerAdapter {
                     )
                     .build();
             event.replyModal(modal).queue();
+            return;
         }
 
-        else if (id.startsWith("2fa_confirm_")) {
-            String[] parts = id.split("_");
-            UUID playerUUID = UUID.fromString(parts[2]);
-            String newIP = parts[3];
+        if (id.startsWith("2fa_confirm_")) {
+            try {
+                String[] parts = id.split("_", 4);
 
-            EslestirmeManager.setKayitliIP(playerUUID, newIP);
+                if (parts.length < 4) {
+                    event.reply("Buton ID'si hatalı: " + id).setEphemeral(true).queue();
+                    return;
+                }
 
-            event.reply(MessageUtil.getMessage("discord-2fa-confirm-reply")).setEphemeral(true).queue();
-            event.getMessage().editMessage(MessageUtil.getMessage("discord-2fa-confirm-message-edit")).setComponents().queue();
+                UUID playerUUID = UUID.fromString(parts[2]);
+                String newIP = parts[3];
+
+                EslestirmeManager.setKayitliIP(playerUUID, newIP);
+
+                event.reply(MessageUtil.getMessage("discord-2fa-confirm-reply")).setEphemeral(true).queue();
+                event.getMessage().editMessage(MessageUtil.getMessage("discord-2fa-confirm-message-edit")).setComponents().queue();
+
+            } catch (IllegalArgumentException uuidEx) {
+                event.reply("Geçersiz UUID formatı: `" + id + "`").setEphemeral(true).queue();
+            } catch (Exception e) {
+                logger.log(Level.SEVERE, "2FA onayı sırasında bir hata oluştu:", e);
+                event.reply("2FA onayı sırasında bilinmeyen bir hata oluştu.").setEphemeral(true).queue();
+            }
+            return;
         }
 
-        else if (id.startsWith("2fa_deny_")) {
-            event.reply(MessageUtil.getMessage("discord-2fa-deny-reply")).setEphemeral(true).queue();
-            event.getMessage().editMessage(MessageUtil.getMessage("discord-2fa-deny-message-edit")).setComponents().queue();
+        if (id.startsWith("2fa_deny_")) {
+            try {
+                event.reply(MessageUtil.getMessage("discord-2fa-deny-reply")).setEphemeral(true).queue();
+                event.getMessage().editMessage(MessageUtil.getMessage("discord-2fa-deny-message-edit")).setComponents().queue();
+            } catch (Exception e) {
+                logger.log(Level.SEVERE, "2FA reddi sırasında bir hata oluştu:", e);
+            }
+            return;
         }
 
-        else if (id.startsWith("report_kontrol_")) {
-            String[] parts = id.split("_");
-            if (parts.length < 4) {
-                event.reply(MessageUtil.getMessage("discord-button-invalid-id")).setEphemeral(true).queue();
-                return;
-            }
-            String raporlananDiscordId = parts[2];
-            String uuidStr = parts[3];
-            String yetkiliRolId = AgnesEsle.getInstance().getConfig().getString("yetkili-rol-id");
+        if (id.startsWith("report_kontrol_")) {
+            try {
+                String[] parts = id.split("_");
+                if (parts.length < 4) {
+                    event.reply(MessageUtil.getMessage("discord-button-invalid-id")).setEphemeral(true).queue();
+                    return;
+                }
+                String raporlananDiscordId = parts[2];
+                String uuidStr = parts[3];
+                String yetkiliRolId = AgnesEsle.getInstance().getConfig().getString("yetkili-rol-id");
 
-            if (yetkiliRolId == null || Objects.requireNonNull(event.getMember()).getRoles().stream().noneMatch(role -> role.getId().equals(yetkiliRolId))) {
-                event.reply(MessageUtil.getMessage("discord-button-no-permission")).setEphemeral(true).queue();
-                return;
-            }
+                if (yetkiliRolId == null || Objects.requireNonNull(event.getMember()).getRoles().stream().noneMatch(role -> role.getId().equals(yetkiliRolId))) {
+                    event.reply(MessageUtil.getMessage("discord-button-no-permission")).setEphemeral(true).queue();
+                    return;
+                }
 
-            OfflinePlayer target = Bukkit.getOfflinePlayer(UUID.fromString(uuidStr));
-            if (!target.hasPlayedBefore()) {
-                event.reply(MessageUtil.getMessage("discord-button-player-not-found")).setEphemeral(true).queue();
-                return;
-            }
+                OfflinePlayer target = Bukkit.getOfflinePlayer(UUID.fromString(uuidStr));
+                if (!target.hasPlayedBefore()) {
+                    event.reply(MessageUtil.getMessage("discord-button-player-not-found")).setEphemeral(true).queue();
+                    return;
+                }
 
-            Player player = Bukkit.getPlayer(target.getUniqueId());
-            if (player != null) {
-                player.kickPlayer(MessageUtil.getMessage("discord-button-control-kick-reason"));
-            }
-
-            Map<String, String> vars = new HashMap<>();
-            vars.put("player", target.getName());
-            vars.put("discordId", raporlananDiscordId);
-            event.reply(MessageUtil.getMessage("discord-button-control-reply", vars)).setEphemeral(true).queue();
-        }
-
-        else if (id.startsWith("report_ban_")) {
-            String[] parts = id.split("_");
-            if (parts.length < 4) {
-                event.reply(MessageUtil.getMessage("discord-button-invalid-id")).setEphemeral(true).queue();
-                return;
-            }
-            String uuidStr = parts[3];
-            String yetkiliRolId = AgnesEsle.getInstance().getConfig().getString("yetkili-rol-id");
-
-            if (yetkiliRolId == null || Objects.requireNonNull(event.getMember()).getRoles().stream().noneMatch(role -> role.getId().equals(yetkiliRolId))) {
-                event.reply(MessageUtil.getMessage("discord-button-no-permission")).setEphemeral(true).queue();
-                return;
-            }
-            OfflinePlayer target = Bukkit.getOfflinePlayer(UUID.fromString(uuidStr));
-            if (!target.hasPlayedBefore()) {
-                event.reply(MessageUtil.getMessage("discord-button-player-not-found")).setEphemeral(true).queue();
-                return;
-            }
-
-            Bukkit.getScheduler().runTask(AgnesEsle.getInstance(), () -> {
-                Bukkit.getBanList(org.bukkit.BanList.Type.NAME).addBan(Objects.requireNonNull(target.getName()), MessageUtil.getMessage("discord-button-ban-reason"), null, event.getUser().getAsTag());
                 Player player = Bukkit.getPlayer(target.getUniqueId());
                 if (player != null) {
-                    player.kickPlayer(MessageUtil.getMessage("discord-button-ban-kick-reason"));
+                    player.kickPlayer(MessageUtil.getMessage("discord-button-control-kick-reason"));
                 }
-            });
 
-            Map<String, String> vars = new HashMap<>();
-            vars.put("player", target.getName());
-            event.reply(MessageUtil.getMessage("discord-button-ban-reply", vars)).setEphemeral(true).queue();
+                Map<String, String> vars = new HashMap<>();
+                vars.put("player", target.getName());
+                vars.put("discordId", raporlananDiscordId);
+                event.reply(MessageUtil.getMessage("discord-button-control-reply", vars)).setEphemeral(true).queue();
+            } catch (Exception e) {
+                logger.log(Level.SEVERE, "Rapor kontrolü sırasında bir hata oluştu:", e);
+            }
+            return;
+        }
+
+        if (id.startsWith("report_ban_")) {
+            try {
+                String[] parts = id.split("_");
+                if (parts.length < 4) {
+                    event.reply(MessageUtil.getMessage("discord-button-invalid-id")).setEphemeral(true).queue();
+                    return;
+                }
+                String uuidStr = parts[3];
+                String yetkiliRolId = AgnesEsle.getInstance().getConfig().getString("yetkili-rol-id");
+
+                if (yetkiliRolId == null || Objects.requireNonNull(event.getMember()).getRoles().stream().noneMatch(role -> role.getId().equals(yetkiliRolId))) {
+                    event.reply(MessageUtil.getMessage("discord-button-no-permission")).setEphemeral(true).queue();
+                    return;
+                }
+                OfflinePlayer target = Bukkit.getOfflinePlayer(UUID.fromString(uuidStr));
+                if (!target.hasPlayedBefore()) {
+                    event.reply(MessageUtil.getMessage("discord-button-player-not-found")).setEphemeral(true).queue();
+                    return;
+                }
+
+                Bukkit.getScheduler().runTask(AgnesEsle.getInstance(), () -> {
+                    Bukkit.getBanList(org.bukkit.BanList.Type.NAME).addBan(Objects.requireNonNull(target.getName()), MessageUtil.getMessage("discord-button-ban-reason"), null, event.getUser().getAsTag());
+                    Player player = Bukkit.getPlayer(target.getUniqueId());
+                    if (player != null) {
+                        player.kickPlayer(MessageUtil.getMessage("discord-button-ban-kick-reason"));
+                    }
+                });
+
+                Map<String, String> vars = new HashMap<>();
+                vars.put("player", target.getName());
+                event.reply(MessageUtil.getMessage("discord-button-ban-reply", vars)).setEphemeral(true).queue();
+            } catch (Exception e) {
+                logger.log(Level.SEVERE, "Rapor ban işlemi sırasında bir hata oluştu:", e);
+            }
         }
     }
 
     @SuppressWarnings("deprecation")
     @Override
-    public void onSlashCommandInteraction(net.dv8tion.jda.api.events.interaction.command.@NotNull SlashCommandInteractionEvent event) {
+    public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
         try {
             if (event.getName().equals("eşle")) {
                 String userId = event.getUser().getId();
@@ -358,7 +390,12 @@ public class DiscordBot extends ListenerAdapter {
         }, error -> logger.warning("Kullanıcı bulunamadı veya rol atanamadı: " + error.getMessage()));
     }
 
-    public void send2FAConfirmationMessage(String discordId, String playerName, String newIpAddress) {
+    public void send2FAConfirmationMessage(UUID playerUUID, String playerName, String newIpAddress) {
+        String discordId = EslestirmeManager.getDiscordId(playerUUID);
+        if (discordId == null) {
+            logger.warning("2FA mesajı gönderilemedi: " + playerUUID + " için Discord ID bulunamadı.");
+            return;
+        }
         if (jda == null) return;
 
         jda.retrieveUserById(discordId).queue(user -> {
@@ -373,8 +410,11 @@ public class DiscordBot extends ListenerAdapter {
                     .setColor(Color.ORANGE)
                     .setFooter(MessageUtil.getMessage("discord-2fa-embed-footer"));
 
-            Button confirmButton = Button.success("2fa_confirm_", MessageUtil.getMessage("discord-2fa-button-confirm"));
-            Button denyButton = Button.danger("2fa_deny_", MessageUtil.getMessage("discord-2fa-button-deny"));
+            String confirmId = "2fa_confirm_" + playerUUID.toString() + "_" + newIpAddress;
+            String denyId = "2fa_deny_" + playerUUID;
+
+            Button confirmButton = Button.success(confirmId, MessageUtil.getMessage("discord-2fa-button-confirm"));
+            Button denyButton = Button.danger(denyId, MessageUtil.getMessage("discord-2fa-button-deny"));
 
             user.openPrivateChannel().queue(channel -> {
                 channel.sendMessageEmbeds(embed.build()).setActionRow(confirmButton, denyButton).queue();

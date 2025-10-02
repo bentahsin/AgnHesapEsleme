@@ -1,6 +1,5 @@
 package me.agnes.agnesesle.listener;
 
-import me.agnes.agnesesle.AgnesEsle;
 import me.agnes.agnesesle.data.EslestirmeManager;
 import me.agnes.agnesesle.discord.DiscordBot;
 import me.agnes.agnesesle.util.MessageUtil;
@@ -11,6 +10,13 @@ import org.bukkit.event.player.PlayerLoginEvent;
 import java.util.UUID;
 
 public class PlayerLoginListener implements Listener {
+
+    // YENİ: Bağımlılıklar için alanlar
+    private final DiscordBot discordBot;
+
+    public PlayerLoginListener(DiscordBot discordBot) {
+        this.discordBot = discordBot;
+    }
 
     @EventHandler
     public void onPlayerLogin(PlayerLoginEvent event) {
@@ -28,11 +34,8 @@ public class PlayerLoginListener implements Listener {
             if (EslestirmeManager.ipDegisti(playerUUID, currentIP)) {
                 event.disallow(PlayerLoginEvent.Result.KICK_OTHER, MessageUtil.getMessage("kick-2fa-ip-changed"));
 
-                DiscordBot bot = AgnesEsle.getInstance().getDiscordBot();
-                String discordId = EslestirmeManager.getDiscordId(playerUUID);
-
-                if (discordId != null && bot != null) {
-                    bot.send2FAConfirmationMessage(discordId, event.getPlayer().getName(), currentIP);
+                if (this.discordBot != null) {
+                    this.discordBot.send2FAConfirmationMessage(playerUUID, event.getPlayer().getName(), currentIP);
                 }
             }
         }

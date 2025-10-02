@@ -6,6 +6,9 @@ import com.bentahsin.benthpapimanager.BenthPAPIManager;
 import me.agnes.agnesesle.commands.EsleCommandACF;
 import me.agnes.agnesesle.discord.DiscordBot;
 import me.agnes.agnesesle.data.EslestirmeManager;
+import me.agnes.agnesesle.listener.PlayerLoginListener;
+import me.agnes.agnesesle.placeholders.PlayerPlaceholders;
+import me.agnes.agnesesle.placeholders.ServerPlaceholders;
 import me.agnes.agnesesle.util.MessageUtil;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
@@ -21,6 +24,7 @@ public class AgnesEsle extends JavaPlugin {
     private static AgnesEsle instance;
     private DiscordBot discordBot;
     private LuckPerms luckPerms;
+    private BenthPAPIManager papiMgr;
 
     @Override
     public void onEnable() {
@@ -55,12 +59,18 @@ public class AgnesEsle extends JavaPlugin {
 
         EslestirmeManager.init();
 
-        getServer().getPluginManager().registerEvents(new me.agnes.agnesesle.listener.PlayerLoginListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerLoginListener(discordBot), this);
 
         if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
             try {
-                BenthPAPIManager papiManager = new BenthPAPIManager(this);
-                papiManager.registerPlaceholders("me.agnes.agnesesle.placeholders");
+                this.papiMgr = BenthPAPIManager.create(this)
+                        .withInjectable(DiscordBot.class, this.discordBot)
+                        .withInjectable(LuckPerms.class, this.luckPerms)
+                        .withDebugMode()
+                        .register(
+                                PlayerPlaceholders.class,
+                                ServerPlaceholders.class
+                        );
                 getLogger().info("PlaceholderAPI desteği başarıyla etkinleştirildi.");
             } catch (Exception e) {
                 getLogger().severe("BenthPAPIManager başlatılırken bir hata oluştu!");
@@ -75,6 +85,9 @@ public class AgnesEsle extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        if (this.papiMgr != null) {
+            this.papiMgr.unregisterAll();
+        }
         if (discordBot != null) discordBot.shutdown();
         getLogger().info("[AgnHesapEsle] Plugin kapatıldı!");
     }

@@ -5,8 +5,8 @@ import com.bentahsin.benthpapimanager.annotations.Placeholder;
 import com.bentahsin.benthpapimanager.annotations.PlaceholderIdentifier;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.LoadingCache;
-import me.agnes.agnesesle.AgnesEsle;
 import me.agnes.agnesesle.data.EslestirmeManager;
+import me.agnes.agnesesle.discord.DiscordBot;
 import net.dv8tion.jda.api.JDA;
 import org.bukkit.OfflinePlayer;
 
@@ -17,13 +17,13 @@ import java.util.concurrent.TimeUnit;
 public class PlayerPlaceholders {
 
     @Inject
-    private AgnesEsle plugin;
+    private DiscordBot discordBot;
 
     private final LoadingCache<String, String> discordNameCache = Caffeine.newBuilder()
             .maximumSize(500)
             .expireAfterWrite(10, TimeUnit.MINUTES)
             .build(discordId -> {
-                JDA jda = plugin.getDiscordBot().getJda();
+                JDA jda = discordBot.getJda();
                 if (jda == null) return "Bilinmiyor";
 
                 try {
