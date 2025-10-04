@@ -7,7 +7,7 @@
 
     <groupId>me.agnes</groupId>
     <artifactId>AgnHesapEsle</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.4</version>
     <name>AgnHesapEsle</name>
     <description>Discord - Minecraft Hesap Eşleme Sistemi</description>
 
@@ -158,6 +158,10 @@
                                 <relocation>
                                     <pattern>co.aikar.locales</pattern>
                                     <shadedPattern>me.agnes.shaded.locales</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>com.bentahsin.benthpapimanager</pattern>
+                                    <shadedPattern>me.agnes.shaded.benthpapimanager</shadedPattern>
                                 </relocation>
                             </relocations>
                             <transformers>

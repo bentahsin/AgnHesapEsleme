@@ -11,7 +11,6 @@ import java.util.UUID;
 
 public class PlayerLoginListener implements Listener {
 
-    // YENİ: Bağımlılıklar için alanlar
     private final DiscordBot discordBot;
 
     public PlayerLoginListener(DiscordBot discordBot) {
