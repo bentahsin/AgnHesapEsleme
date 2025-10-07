@@ -9,6 +9,7 @@ import me.agnes.agnesesle.data.EslestirmeManager;
 import me.agnes.agnesesle.listener.PlayerLoginListener;
 import me.agnes.agnesesle.placeholders.PlayerPlaceholders;
 import me.agnes.agnesesle.placeholders.ServerPlaceholders;
+import me.agnes.agnesesle.util.LuckPermsUtil;
 import me.agnes.agnesesle.util.MessageUtil;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
@@ -25,6 +26,7 @@ public class AgnesEsle extends JavaPlugin {
     private DiscordBot discordBot;
     private LuckPerms luckPerms;
     private BenthPAPIManager papiMgr;
+    private LuckPermsUtil luckPermsUtil;
 
     @Override
     public void onEnable() {
@@ -35,8 +37,10 @@ public class AgnesEsle extends JavaPlugin {
         try {
             this.luckPerms = LuckPermsProvider.get();
             getLogger().info("[AgnHesapEsle] LuckPerms API başarıyla yüklendi.");
+            this.luckPermsUtil = new LuckPermsUtil(this.luckPerms, getLogger());
         } catch (IllegalStateException e) {
             getLogger().warning("[AgnHesapEsle] LuckPerms API yüklenemedi! Plugin düzgün çalışmayabilir.");
+            getLogger().severe(e.getMessage());
             this.luckPerms = null;
         }
 
@@ -55,7 +59,7 @@ public class AgnesEsle extends JavaPlugin {
             return Bukkit.getOnlinePlayers().stream().map(Player::getName).collect(Collectors.toList());
         });
 
-        commandManager.registerCommand(new EsleCommandACF());
+        commandManager.registerCommand(new EsleCommandACF(this));
 
         EslestirmeManager.init();
 
@@ -102,6 +106,10 @@ public class AgnesEsle extends JavaPlugin {
 
     public LuckPerms getLuckPerms() {
         return luckPerms;
+    }
+
+    public LuckPermsUtil getLuckPermsUtil() {
+        return luckPermsUtil;
     }
 
     public void odulVer(UUID uuid) {

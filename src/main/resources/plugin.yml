@@ -1,5 +1,5 @@
 name: AgnHesapEsle
-version: 1.2
+version: 1.4
 main: me.agnes.agnesesle.AgnesEsle
 api-version: 1.13
 softdepend: [PlaceholderAPI]

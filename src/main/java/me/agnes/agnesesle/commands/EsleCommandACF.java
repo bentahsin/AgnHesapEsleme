@@ -21,6 +21,12 @@ import java.util.UUID;
 @CommandAlias("hesapesle|hesapeşle")
 @Description("AgnHesapEsle ana komutu.")
 public class EsleCommandACF extends BaseCommand {
+    private final AgnesEsle plugin;
+
+    public EsleCommandACF(AgnesEsle plugin) {
+        this.plugin = plugin;
+    }
+
     private void playSuccess(Player p) {
         p.playSound(p.getLocation(), Sound.UI_BUTTON_CLICK, 1f, 1f);
     }
@@ -105,21 +111,33 @@ public class EsleCommandACF extends BaseCommand {
                     DiscordBot bot = AgnesEsle.getInstance().getDiscordBot();
                     bot.changeNickname(discordId, player.getName());
 
-                    LuckPermsUtil lpUtil = new LuckPermsUtil(AgnesEsle.getInstance().getLuckPerms(), AgnesEsle.getInstance().getLogger());
-                    String group = lpUtil.getPrimaryGroup(player.getUniqueId());
-                    if (group != null) {
-                        String rolePath;
-                        switch (group.toLowerCase()) {
-                            case "vip": rolePath = "roller.vip-rol-id"; break;
-                            case "vipplus": rolePath = "roller.vipplus-rol-id"; break;
-                            case "mvip": rolePath = "roller.mvip-rol-id"; break;
-                            case "mvipplus": rolePath = "roller.mvipplus-rol-id"; break;
-                            default: rolePath = null; break;
-                        }
-                        if (rolePath != null) {
-                            String roleId = AgnesEsle.getInstance().getConfig().getString(rolePath);
-                            if (roleId != null && !roleId.isEmpty()) {
-                                bot.addRoleToMember(discordId, roleId);
+                    LuckPermsUtil lpUtil = plugin.getLuckPermsUtil();
+                    if (lpUtil != null) {
+                        String group = lpUtil.getPrimaryGroup(player.getUniqueId());
+                        if (group != null) {
+                            String rolePath;
+                            switch (group.toLowerCase()) {
+                                case "vip":
+                                    rolePath = "roller.vip-rol-id";
+                                    break;
+                                case "vipplus":
+                                    rolePath = "roller.vipplus-rol-id";
+                                    break;
+                                case "mvip":
+                                    rolePath = "roller.mvip-rol-id";
+                                    break;
+                                case "mvipplus":
+                                    rolePath = "roller.mvipplus-rol-id";
+                                    break;
+                                default:
+                                    rolePath = null;
+                                    break;
+                            }
+                            if (rolePath != null) {
+                                String roleId = AgnesEsle.getInstance().getConfig().getString(rolePath);
+                                if (roleId != null && !roleId.isEmpty()) {
+                                    bot.addRoleToMember(discordId, roleId);
+                                }
                             }
                         }
                     }
