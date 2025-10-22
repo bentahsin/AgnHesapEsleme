@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Compiled class file
 *.class
 
@@ -5,12 +6,62 @@
 *.log
 
 # BlueJ files
+=======
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+
+# Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# VS Code
+.vscode/
+
+# Mac OS
+.DS_Store
+
+# Java output
+*.class
+*.log
+>>>>>>> 3528b16 (günlük ödül sistemi eklendi, hatalar giderildi)
 *.ctxt
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+<<<<<<< HEAD
 # Package Files #
+=======
+# Package Files
+>>>>>>> 3528b16 (günlük ödül sistemi eklendi, hatalar giderildi)
 *.jar
 *.war
 *.nar
@@ -19,6 +70,14 @@
 *.tar.gz
 *.rar
 
+<<<<<<< HEAD
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+=======
+# JVM crash logs
+hs_err_pid*
+replay_pid*
+
+dependency-reduced-pom.xml
+>>>>>>> 3528b16 (günlük ödül sistemi eklendi, hatalar giderildi)

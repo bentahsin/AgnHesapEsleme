@@ -1,0 +1,60 @@
+##################################################
+#                                                #
+#           🔗 Account Linking Config 🔗          #
+#                by AgnHesapEsleme               #
+#                                                #
+################################################
+
+#Bot Settings
+token: "DISCORD_BOT_TOKEN"
+status-messages:
+  - "ServerName.net"
+  - "Account Linking System"
+  - "{aktifkullanici} Active Players"
+
+
+
+#Channels
+log-channel-id: "log-channel-id"
+log-system: true
+
+# Role İd
+admin-role-id: "admin-role-id"
+verified-role-id: "verified-role-id"
+
+roles:
+  vip-role-id: ""
+  vipplus-role-id: ""
+  mvip-role-id: ""
+  mvipplus-role-id: ""
+
+# Information Settings
+information-sent: false
+information-channel-id: "information-channel-id"
+
+# Reward Commands
+rewards:
+  - "give %player% minecraft:diamond 5"
+  - "say Congratulations %player% linked their account!"
+  - "experience add %player% 100 points"
+
+#DailyRewards System
+reward-cooldown: 86400000 # 24 hours (milisaniye cinsinden)
+daily-rewards:
+  - "give %player% diamond 1"
+  - "xp %player% add 100"
+
+
+
+
+#Server Settings
+guild-id: "" # Your Discord Server (Guild) ID
+
+# Language options: tr, en, es, fr, de, zh
+lang: en
+
+players:
+  2fa:
+    "uuid-string": true
+
+config-version: 1.2

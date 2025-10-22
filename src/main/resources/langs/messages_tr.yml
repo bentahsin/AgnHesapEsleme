@@ -1,0 +1,189 @@
+hesap-zaten-eslesmis:
+  title: "§cZaten Eşleşmiş"
+  subtitle: "§7Bir Discord hesabı ile zaten eşleşmişsin."
+
+kod-lutfen-bekleyin:
+  title: "§cBekleyin"
+  subtitle: "§7Lütfen önceki kodun süresinin dolmasını bekle."
+
+kod-verildi:
+  title: "Kodunuz: %kod%"
+  subtitle: "Discord ile eşleştirin!"
+  message: "&aKodunuz: &e%kod% &7(Discord ile eşleştirin)"
+
+eslesme-onayi-beklemiyor:
+  title: "§cBekleyen Kod Yok"
+  subtitle: "§7Eşleşme onayı bekleyen bir kod yok."
+
+eslesme-onaylanamadi:
+  title: "§cBaşarısız"
+  subtitle: "§7Eşleşme onaylanamadı."
+
+eslesme-iptal-edilemedi:
+  title: "§cİptal Edilemedi"
+  subtitle: "§7Bekleyen bir kod bulunamadı veya bir hata oluştu."
+
+eslesme-basariyla-tamamlandi:
+  title: "§aBaşarılı"
+  subtitle: "§7Hesabınız başarıyla eşleşti!"
+
+eslesme-zaten-bekliyor:
+  title: "§cOnay Bekleniyor"
+  subtitle: "§7Zaten bir onay bekliyorsun. Lütfen /hesapeşle onayla yaz."
+
+kaldirildi:
+  title: "§cEşleşme Kaldırıldı"
+  subtitle: "§7Eşleşmeniz kaldırıldı."
+
+yenilendi:
+  title: "§aYenilendi"
+  subtitle: "§7Mesajlar yeniden yüklendi."
+
+bilinmeyen-komut:
+  title: "§cBilinmeyen Komut"
+  subtitle: "§7Lütfen geçerli bir komut kullanın."
+
+hesap-esle-kodiptal:
+  title: "§cKod İptal Edildi"
+  subtitle: "§7Eşleştirme kodunuz iptal edildi."
+
+yetki-yok:
+  title: "§cYetki Yok"
+  subtitle: "§7Bu komutu kullanmak için yetkin yok."
+
+hatalı-kullanim:
+  title: "§cHatalı Kullanım"
+  subtitle: "§7Lütfen komutu doğru biçimde kullanın."
+
+oyuncu-bulunamadi:
+  title: "§cOyuncu Bulunamadı"
+  subtitle: "§7Böyle bir oyuncu bulunamadı."
+
+eslesme-yok:
+  title: "§cEşleşme Yok"
+  subtitle: "§7Bu oyuncunun eşleşmesi yok."
+
+title-baslik:
+  title: "§aEşleşme Başarılı!"
+  subtitle: "§7Ödüllerin Teslim Edildi."
+
+title-alt:
+  title: "§aHesapEşle"
+  subtitle: "§7Minecraft sunucunuzda kaliteli hizmet."
+
+
+log-message-embed:
+  title: "✅ Yeni Hesap Eşlemesi"
+  player-field-name: "👤 Oyuncu"
+  discord-field-name: "🆔 Discord"
+  date-field-name: "🗓️ Tarih"
+  security-field-name: "🛡️ Güvenlik"
+  footer: "Hesap Eşleme Sistemi"
+
+
+# Genel Mesajlar
+only-for-players: "&cBu komut sadece oyuncular tarafından kullanılabilir."
+reward-message: "&aTebrikler! Hesabını başarıyla eşleştirdin, ödül kazandın!"
+
+# Yardım Menüsü
+help-header: "&6&lAgnHesapEsle &r&7- Komut Listesi"
+help-format: "&e/hesapesle %command% %syntax% &7- %description%"
+help-footer: "&7Daha fazla bilgi için komutları kullanın."
+
+# 2FA Mesajları
+2fa-usage-help: "&cLütfen /hesapeşle 2fa aç veya /hesapeşle 2fa kapat yazın."
+2fa-already-enabled: "&e2FA zaten açık."
+2fa-successfully-enabled: "&a2FA başarıyla açıldı."
+2fa-already-disabled: "&e2FA zaten kapalı."
+2fa-successfully-disabled: "&c2FA kapatıldı."
+2fa-not-linked: "&cHesabın eşleşmemiş olduğu için 2FA özelliğini kullanamazsın."
+
+# Admin Mesajları
+no-matches-yet: "&cHenüz hiç eşleşme yok."
+list-header: "&6---- [Eşleşme Listesi Sayfa %page%/%maxPage%] ----"
+list-entry: "&e%player% &7- Discord ID: &a%discordId%"
+list-footer: "&7Sayfa değiştirmek için: /hesapeşle liste <sayfa>"
+player-match-reset: "&a%player% isimli oyuncunun eşleşmesi sıfırlandı."
+
+# Kick Mesajları
+kick-2fa-ip-changed: |
+  &c&lGÜVENLİK UYARISI
+  
+  &eFarklı bir konumdan giriş yapılıyor!
+  &fLütfen onay için Discord hesabını kontrol et.
+
+# ===============================================
+# Discord Metinleri (Renk kodları kullanılmaz!)
+# ===============================================
+
+# Bot Durumu ve Komut Açıklamaları
+discord-bot-status-starting: "Başlatılıyor..."
+discord-command-description-esle: "Minecraft hesabını eşleştir"
+discord-command-option-code: "Eşleştirme kodun"
+discord-command-description-raporla: "Bir oyuncuyu yetkililere bildir"
+discord-command-option-player: "Raporlamak istediğin oyuncunun adı"
+discord-command-option-reason: "Raporlama sebebin"
+discord-command-description-info: "Bir Discord kullanıcısının eşleşmiş olduğu Minecraft hesabını gösterir."
+discord-command-option-user: "Bilgisine bakılacak Discord kullanıcısı"
+discord-info-reply-no-match: "Bu kullanıcının eşleşmiş bir Minecraft hesabı yok."
+ddiscord-info-reply-success: "Bu kullanıcı **%player%** adlı Minecraft hesabıyla eşleşmiş."
+
+# Bilgilendirme Kanalı Embed Mesajı
+discord-info-embed-title: "📘 AgnEşle - Hesap Eşleştirme"
+discord-info-embed-description: |
+  Merhaba! Minecraft hesabını Discord ile eşleştirerek özel ödüller kazanabilirsin!
+  
+  ➤ Sunucuya gir ve `/hesapeşle eşle` yazarak kodunu al.
+  ➤ Aşağıdaki butona tıkla ve kodunu gir.
+  ➤ Son olarak Minecraft'ta `/hesapeşle onayla` yazarak işlemi tamamla!
+discord-info-embed-footer: "AgnHesapEşle Sistemi"
+discord-info-button-label: "🔗 Eşleş"
+
+# Eşleşme Modalı (Açılır Pencere)
+discord-modal-title: "Eşleşme Kodunu Gir"
+discord-modal-textfield-label: "Eşleştirme Kodu"
+discord-modal-textfield-placeholder: "Örn: X7Y2-Z9"
+
+# 2FA Buton Etkileşimleri
+discord-2fa-confirm-reply: "✅ Giriş talebi başarıyla onaylandı. Artık sunucuya giriş yapabilirsin."
+discord-2fa-confirm-message-edit: "Bu giriş talebi **onaylandı**."
+discord-2fa-deny-reply: "❌ Giriş talebi reddedildi. Hesabınız güvende. Şifrenizi değiştirmenizi öneririz."
+discord-2fa-deny-message-edit: "Bu giriş talebi **reddedildi**."
+
+# Raporlama Buton Etkileşimleri
+discord-button-invalid-id: "Hatalı buton ID!"
+discord-button-no-permission: "❌ Bu butonu sadece yetkililer kullanabilir."
+discord-button-player-not-found: "Oyuncu bulunamadı!"
+discord-button-control-kick-reason: "Yetkili tarafından kontrol için çağrılıyorsun."
+discord-button-control-reply: "%player% adlı oyuncu (%discordId%) kontrol için sunucudan atıldı."
+discord-button-ban-reason: "Discord üzerinden banlandı."
+discord-button-ban-kick-reason: "Discord Üzerinden Yetkili Tarafından Banlandınız."
+discord-button-ban-reply: "%player% adlı oyuncu banlandı."
+
+# Slash Komut Cevapları
+discord-cooldown-message: "❌ Bu komutu çok sık kullanıyorsun. Lütfen **%timeLeft% saniye** sonra tekrar dene."
+discord-invalid-code: "❌ Geçersiz kod."
+discord-already-linked-mc: "❌ Bu Minecraft hesabı zaten başka bir hesapla eşleşmiş."
+discord-already-linked-discord: "❌ Bu Discord hesabı zaten başka bir Minecraft hesabıyla eşleşmiş veya onay bekliyor."
+discord-generic-error: "❌ Eşleştirme başarısız oldu. Lütfen tekrar deneyin."
+discord-success: "✅ Kod doğru! Şimdi Minecraft'ta `/hesapeşle onayla` yazarak eşleşmeyi tamamla."
+discord-report-channel-not-set: "❌ Rapor kanalı ayarlanmamış, işlem başarısız."
+discord-report-channel-not-found: "❌ Rapor kanalı bulunamadı, işlem başarısız."
+discord-report-embed-title: "🚨 Yeni Oyuncu Raporu"
+discord-report-embed-field-player: "Raporlanan Oyuncu"
+discord-report-embed-field-reason: "Raporlama Sebebi"
+discord-report-embed-footer: "Raporlayan: %reporter%"
+discord-report-success: "✅ Raporun başarıyla yetkililere iletildi."
+
+# 2FA DM Embed Mesajı
+discord-2fa-embed-title: "🔒 Güvenlik Uyarısı: Yeni Giriş Talebi"
+discord-2fa-embed-description: "**%player%** adlı Minecraft hesabınıza yeni bir konumdan giriş yapılmaya çalışılıyor."
+discord-2fa-embed-field-ip: "Giriş Yapılan IP Adresi"
+discord-2fa-embed-footer: "Bu işlemi siz yapmadıysanız kesinlikle onaylamayın."
+discord-2fa-button-confirm: "Evet, Bu Bendim (Onayla)"
+discord-2fa-button-deny: "Hayır, Bu Ben Değildim (Reddet)"
+
+# Ödül Mesajları
+odul-not-linked: "&cBu oyuncunun hesabı eşleşmemiş."
+odul-already-given: "&eBu oyuncu ödülünü zaten almış."
+odul-given-success: "&a%player% adlı oyuncuya ödül başarıyla verildi."

@@ -1,0 +1,191 @@
+already-linked:
+  title: "§c已经绑定"
+  subtitle: "§7您已绑定一个Discord帐户。"
+
+code-please-wait:
+  title: "§c请稍候"
+  subtitle: "§7请等待先前的代码过期。"
+
+code-given:
+  title: "§a已提供代码"
+  subtitle: "§7您的代码是: §f%kod%"
+  message: "&a您的代码是: &e%kod% &7(请与Discord绑定)"
+
+
+link-confirmation-not-pending:
+  title: "§c没有待处理的代码"
+  subtitle: "§7没有等待确认的代码。"
+
+link-could-not-be-confirmed:
+  title: "§c失败"
+  subtitle: "§7无法确认绑定。"
+
+link-could-not-be-canceled:
+  title: "§c无法取消"
+  subtitle: "§7未找到待处理的代码或发生错误。"
+
+link-successfully-completed:
+  title: "§a成功"
+  subtitle: "§7您的帐户已成功绑定！"
+
+link-already-pending:
+  title: "§c等待确认"
+  subtitle: "§7您已在等待确认。请输入 /accountlink confirm。"
+
+unlinked:
+  title: "§c绑定已移除"
+  subtitle: "§7您的绑定已被移除。"
+
+reloaded:
+  title: "§a已刷新"
+  subtitle: "§7消息已重新加载。"
+
+unknown-command:
+  title: "§c未知命令"
+  subtitle: "§7请输入一个有效的命令。"
+
+account-link-code-canceled:
+  title: "§c代码已取消"
+  subtitle: "§7您的绑定代码已被取消。"
+
+no-permission:
+  title: "§c权限不足"
+  subtitle: "§7您没有权限使用此命令。"
+
+incorrect-usage:
+  title: "§c用法错误"
+  subtitle: "§7请正确使用此命令。"
+
+player-not-found:
+  title: "§c找不到玩家"
+  subtitle: "§7找不到该玩家。"
+
+no-link-found:
+  title: "§c未绑定"
+  subtitle: "§7此玩家尚未绑定帐户。"
+
+title-header:
+  title: "§a绑定成功！"
+  subtitle: "§7您的奖励已发放。"
+
+title-footer:
+  title: "§a帐户绑定"
+  subtitle: "§7在您的 Minecraft 服务器上提供优质服务。"
+
+
+# 中文
+log-message-embed:
+  title: "✅ 新账户已绑定"
+  player-field-name: "👤 玩家"
+  discord-field-name: "🆔 Discord"
+  date-field-name: "🗓️ 日期"
+  security-field-name: "🛡️ 安全"
+  footer: "账户绑定系统"
+
+
+# 常规消息
+only-for-players: "&c此命令只能由玩家使用。"
+reward-message: "&a恭喜！您已成功绑定帐户并获得奖励！"
+
+# 帮助菜单
+help-header: "&6&lAgn帐户绑定 &r&7- 命令列表"
+help-format: "&e/accountlink %command% %syntax% &7- %description%"
+help-footer: "&7使用命令获取更多信息。"
+
+# 2FA 消息
+2fa-usage-help: "&c请输入 /accountlink 2fa enable 或 /accountlink 2fa disable。"
+2fa-already-enabled: "&e2FA 已启用。"
+2fa-successfully-enabled: "&a2FA 已成功启用。"
+2fa-already-disabled: "&e2FA 已禁用。"
+2fa-successfully-disabled: "&c2FA 已被禁用。"
+2fa-not-linked: "&c您的帐户尚未绑定，无法使用 2FA 功能。"
+
+# 管理员消息
+no-matches-yet: "&c尚无任何绑定记录。"
+list-header: "&6---- [绑定列表 第 %page%/%maxPage% 页] ----"
+list-entry: "&e%player% &7- Discord ID: &a%discordId%"
+list-footer: "&7要更改页面，请使用: /accountlink list <页码>"
+player-match-reset: "&a玩家 %player% 的绑定已重置。"
+
+# 踢出消息
+kick-2fa-ip-changed: |
+  &c&l安全警报
+  
+  &e检测到来自不同位置的登录尝试！
+  &f请检查您的 Discord 帐户以进行确认。
+
+# ===============================================
+# Discord 文本 (不使用颜色代码！)
+# ===============================================
+
+# 机器人状态和命令说明
+discord-bot-status-starting: "正在启动..."
+discord-command-description-link: "绑定您的 Minecraft 帐户"
+discord-command-option-code: "您的绑定代码"
+discord-command-description-report: "向管理人员举报一名玩家"
+discord-command-option-player: "您要举报的玩家名称"
+discord-command-option-reason: "您的举报原因"
+discord-command-description-info: "显示 Discord 用户绑定的 Minecraft 帐户。"
+discord-command-option-user: "要查询的 Discord 用户"
+discord-info-reply-no-match: "该用户没有绑定的 Minecraft 帐户。"
+discord-info-reply-success: "该用户已与 Minecraft 帐户 **%player%** 绑定。"
+
+# 信息频道嵌入消息
+discord-info-embed-title: "📘 Agn绑定 - 帐户绑定"
+discord-info-embed-description: |
+  您好！通过将您的 Minecraft 帐户与 Discord 绑定，您可以获得特殊奖励！
+  
+  ➤ 进入服务器并输入 `/accountlink link` 以获取您的代码。
+  ➤ 点击下面的按钮并输入您的代码。
+  ➤ 最后，在 Minecraft 中输入 `/accountlink confirm` 完成该过程！
+discord-info-embed-footer: "Agn帐户绑定系统"
+discord-info-button-label: "🔗 绑定帐户"
+
+# 绑定模式窗口（弹出窗口）
+discord-modal-title: "输入您的绑定代码"
+discord-modal-textfield-label: "绑定代码"
+discord-modal-textfield-placeholder: "例如: X7Y2-Z9"
+
+# 2FA 按钮交互
+discord-2fa-confirm-reply: "✅ 登录请求已成功确认。您现在可以登录服务器了。"
+discord-2fa-confirm-message-edit: "此登录请求已**批准**。"
+discord-2fa-deny-reply: "❌ 登录请求被拒绝。您的帐户是安全的。我们建议您更改密码。"
+discord-2fa-deny-message-edit: "此登录请求已**拒绝**。"
+
+# 举报按钮交互
+discord-button-invalid-id: "无效的按钮 ID！"
+discord-button-no-permission: "❌ 只有管理人员才能使用此按钮。"
+discord-button-player-not-found: "找不到玩家！"
+discord-button-control-kick-reason: "您被管理人员传唤进行检查。"
+discord-button-control-reply: "玩家 %player% (%discordId%) 已被踢出服务器以进行检查。"
+discord-button-ban-reason: "通过 Discord 封禁。"
+discord-button-ban-kick-reason: "您已被管理人员通过 Discord 封禁。"
+discord-button-ban-reply: "玩家 %player% 已被封禁。"
+
+# Slash 命令回复
+discord-cooldown-message: "❌ 您使用此命令过于频繁。请在 **%timeLeft% 秒**后重试。"
+discord-invalid-code: "❌ 无效代码。"
+discord-already-linked-mc: "❌ 此 Minecraft 帐户已与其他帐户绑定。"
+discord-already-linked-discord: "❌ 此 Discord 帐户已与其他 Minecraft 帐户绑定或正在等待确认。"
+discord-generic-error: "❌ 绑定失败。请重试。"
+discord-success: "✅ 代码正确！现在，请在 Minecraft 中输入 `/accountlink confirm` 来完成绑定。"
+discord-report-channel-not-set: "❌ 未设置举报频道，操作失败。"
+discord-report-channel-not-found: "❌ 找不到举报频道，操作失败。"
+discord-report-embed-title: "🚨 新的玩家举报"
+discord-report-embed-field-player: "被举报的玩家"
+discord-report-embed-field-reason: "举报原因"
+discord-report-embed-footer: "举报人: %reporter%"
+discord-report-success: "✅ 您的举报已成功发送给管理人员。"
+
+# 2FA 私信嵌入消息
+discord-2fa-embed-title: "🔒 安全警报：新的登录请求"
+discord-2fa-embed-description: "正在尝试从新位置登录您的 Minecraft 帐户 **%player%**。"
+discord-2fa-embed-field-ip: "登录 IP 地址"
+discord-2fa-embed-footer: "如果您未发起此操作，请勿批准。"
+discord-2fa-button-confirm: "是的，是我 (批准)"
+discord-2fa-button-deny: "不，不是我 (拒绝)"
+
+# 奖励消息
+reward-not-linked: "&c该玩家的帐户未绑定。"
+reward-already-given: "&e该玩家已领取奖励。"
+reward-given-success: "&a已成功向玩家 %player% 发放奖励。"
