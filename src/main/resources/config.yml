@@ -22,11 +22,16 @@ log-system: true
 admin-role-id: "admin-role-id"
 verified-role-id: "verified-role-id"
 
+
+# Role System
+# Kontrol Edilmesini İstediğiniz Grup İsimlerini Roles Adı Altında Yazınız. (TR)
+# Write the Group Names you want to be checked under the Roles Name. (EN)
 roles:
   vip-role-id: ""
   vipplus-role-id: ""
   mvip-role-id: ""
   mvipplus-role-id: ""
+
 
 # Information Settings
 information-sent: false

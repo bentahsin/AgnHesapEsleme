@@ -11,6 +11,7 @@ import me.agnes.agnesesle.util.MessageUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Particle;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
@@ -118,28 +119,17 @@ public class EsleCommandACF extends BaseCommand {
                     if (lpUtil != null) {
                         String group = lpUtil.getPrimaryGroup(player.getUniqueId());
                         if (group != null) {
-                            String rolePath;
-                            switch (group.toLowerCase()) {
-                                case "vip":
-                                    rolePath = "roles.vip-role-id";
-                                    break;
-                                case "vipplus":
-                                    rolePath = "roles.vipplus-role-id";
-                                    break;
-                                case "mvip":
-                                    rolePath = "roles.mvip-role-id";
-                                    break;
-                                case "mvipplus":
-                                    rolePath = "roles.mvipplus-role-id";
-                                    break;
-                                default:
-                                    rolePath = null;
-                                    break;
-                            }
-                            if (rolePath != null) {
-                                String roleId = AgnesEsle.getInstance().getConfig().getString(rolePath);
-                                if (roleId != null && !roleId.isEmpty()) {
-                                    bot.addRoleToMember(discordId, roleId);
+
+                            ConfigurationSection rolesSection = AgnesEsle.getInstance().getConfig().getConfigurationSection("roles");
+                            if (rolesSection != null) {
+                                for (String roleName : rolesSection.getKeys(false)) {
+                                    String roleId = rolesSection.getString(roleName);
+                                    if (roleId == null || roleId.isEmpty()) continue;
+
+                                    if (group.equalsIgnoreCase(roleName)) {
+                                        bot.addRoleToMember(discordId, roleId);
+                                        Bukkit.getLogger().info(player.getName() + " oyuncusuna " + roleName + " Discord rolü verildi.");
+                                    }
                                 }
                             }
                         }
