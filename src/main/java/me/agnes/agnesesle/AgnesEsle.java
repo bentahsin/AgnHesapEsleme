@@ -35,7 +35,7 @@ public class AgnesEsle extends JavaPlugin {
     private BenthPAPIManager papiMgr;
     private LuckPermsUtil luckPermsUtil;
 
-    // ------------- BURAYA EKLENDİ -----------------
+    // ------------- Günlük Ödül Sistemi Data -----------------
     private File rewardsDataFile;
     private FileConfiguration rewardsDataConfig;
     // ---------------------------------------------
@@ -128,7 +128,7 @@ public class AgnesEsle extends JavaPlugin {
     }
 
     public void handleRewardCheck(String discordId) {
-        // ...
+        // METHOT İÇERİĞİ ALTTA BULUNUYOR
     }
 
 
@@ -204,7 +204,7 @@ public class AgnesEsle extends JavaPlugin {
     }
 
 
-
+     // ödül Verme İşlevi
     public void odulVer(UUID uuid) {
         Player player = Bukkit.getPlayer(uuid);
         if (player != null && player.isOnline()) {

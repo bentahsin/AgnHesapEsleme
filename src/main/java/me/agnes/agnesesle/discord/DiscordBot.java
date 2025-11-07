@@ -36,6 +36,7 @@ import java.util.concurrent.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+ // Kod Giriş Modal'ı
 public class DiscordBot extends ListenerAdapter {
 
     @Override
@@ -98,6 +99,8 @@ public class DiscordBot extends ListenerAdapter {
 
     }
 
+
+    // Discord Bot'u Komutları
     public void start() {
         try {
             jda = JDABuilder.createDefault(token)
@@ -131,7 +134,7 @@ public class DiscordBot extends ListenerAdapter {
                 jda.getPresence().setActivity(net.dv8tion.jda.api.entities.Activity.playing(islenmisMesaj));
             }, 0, 5, TimeUnit.SECONDS);
 
-
+            // Bilgilendirme Mesajı Kısmı
             if (!AgnesEsle.getInstance().getConfig().getBoolean("information-sent", false)) {
                 String kanalId = AgnesEsle.getInstance().getConfig().getString("information-channel-id");
                 if (kanalId == null || kanalId.isEmpty()) {
@@ -193,12 +196,17 @@ public class DiscordBot extends ListenerAdapter {
 
 
 
+
+
         } catch (Exception e) {
             logger.warning(e.getMessage());
         }
     }
 
+
+
     @SuppressWarnings("deprecation")
+    // Bilgilendirme Mesajın da ki Buton İşlevleri
     @Override
     public void onButtonInteraction(ButtonInteractionEvent event) {
         String id = event.getComponentId();
@@ -250,13 +258,7 @@ public class DiscordBot extends ListenerAdapter {
 
         }
 
-
-
-
-
-
-
-
+        // 2FA Butonları
 
         if (id.startsWith("2fa_confirm_")) {
             try {
@@ -374,6 +376,7 @@ public class DiscordBot extends ListenerAdapter {
 
     @SuppressWarnings("deprecation")
     @Override
+    // Eşle Komutu
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
         try {
             if (event.getName().equals("eşle")) {
@@ -509,7 +512,7 @@ public class DiscordBot extends ListenerAdapter {
     }
 
 
-
+          // Eşlediğinde Rol Verme İşlevi
     public void addRoleToMember(String discordId, String roleId) {
         String guildId = AgnesEsle.getInstance().getConfig().getString("guild-id");
         if (guildId == null || guildId.isEmpty()) {
@@ -540,7 +543,7 @@ public class DiscordBot extends ListenerAdapter {
 
 
 
-
+      // 2FA Gönderme işlevi
     public void send2FAConfirmationMessage(UUID playerUUID, String playerName, String newIpAddress) {
         String discordId = EslestirmeManager.getDiscordId(playerUUID);
         if (discordId == null) {
@@ -574,7 +577,7 @@ public class DiscordBot extends ListenerAdapter {
             logger.warning("2FA onayı için " + discordId + " ID'li kullanıcıya DM gönderilemedi.");
         });
     }
-
+    //Cooldown
     private boolean isUserOnCooldown(String userId, Cache<String, Long> cooldowns, long cooldownTimeSeconds, net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent event) {
         Long lastUsed = cooldowns.getIfPresent(userId);
 
@@ -608,7 +611,7 @@ public class DiscordBot extends ListenerAdapter {
         return jda;
     }
 
-
+     //Hesap Durumu Butonu İçin
     private void handleHesapDurumu(ButtonInteractionEvent event) {
         String discordId = event.getUser().getId();
         UUID uuid = EslestirmeManager.getUUIDByDiscordId(discordId);
@@ -641,7 +644,7 @@ public class DiscordBot extends ListenerAdapter {
     }
 
 
-
+    // Eşleşme Kaldırma Butonu İşlevi
     private void handleEslesmeyiKaldir(ButtonInteractionEvent event) {
         String discordId = event.getUser().getId();
         UUID uuid = EslestirmeManager.getUUIDByDiscordId(discordId);
@@ -658,7 +661,7 @@ public class DiscordBot extends ListenerAdapter {
 
 
 
-
+     // Eşleştirme Log Gönderme
     public void sendEslestirmeEmbed(UUID playerUUID, String discordId) {
         OfflinePlayer player = Bukkit.getOfflinePlayer(playerUUID);
         String playerName = player.getName() != null ? player.getName() : "Bilinmiyor";

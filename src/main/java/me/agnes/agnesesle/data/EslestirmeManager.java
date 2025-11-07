@@ -53,7 +53,7 @@ public class EslestirmeManager {
             logger.warning(e.getMessage());
         }
     }
-
+    // Ödül Verilenleri Kaydedilme İşlevi
     public static void saveOdulVerilenler() {
         try (Writer writer = new FileWriter(odulFile)) {
             gson.toJson(odulVerilenler, writer);
@@ -63,7 +63,7 @@ public class EslestirmeManager {
     }
 
 
-
+    // Kod Üretme İşlevi
     public static String uretKod(UUID uuid) {
         String kod = UUID.randomUUID().toString().substring(0, 6).toUpperCase();
         kodlar.put(kod, uuid);
@@ -71,12 +71,12 @@ public class EslestirmeManager {
         kodZamanlari.put(kod, System.currentTimeMillis());
         return kod;
     }
-
+    // Kod Kontrol
     public static UUID koduKontrolEt(String kod) {
         if (kod == null) return null;
         return kodlar.get(kod.toUpperCase());
     }
-
+    // Eşleştirme
     public static boolean eslestir(UUID uuid, String discordId) {
         if (discordId == null || uuid == null) return false;
         if (eslesmeler.containsValue(discordId) || bekleyenEslesmeler.containsValue(discordId)) {
@@ -85,7 +85,7 @@ public class EslestirmeManager {
         bekleyenEslesmeler.put(uuid, discordId);
         return true;
     }
-
+     // Onay Kısmı
     public static boolean onaylaEslesme(UUID uuid, String ip) {
         AgnesEsle.getInstance().getLogger().info("onaylaEslesme çağrıldı: " + uuid);
         String discordId = bekleyenEslesmeler.remove(uuid);
@@ -286,7 +286,7 @@ public class EslestirmeManager {
             logger.warning(e.getMessage());
         }
     }
-
+     // Data'ya Kaydetme işlevi
     private static <T> void saveData(File file, T data) {
         try (Writer writer = new FileWriter(file)) {
             gson.toJson(data, writer);
