@@ -45,6 +45,12 @@ Rol tanımlamaları config.yml üzerinden yapılır ve şu kurallar desteklenir:
 VIP, Premium, Elit gibi özel üyelik sistemleri
 Çoklu rol desteği (birden fazla rol aynı anda atanabilir)
 
+- **Otomatik Rol Verme:**
+Oyuncu Hesabını Eşlediğinde, Configrasyonda belirlediğiniz, Verified-Rol-Id Oyuncuya Discord Üzerinden İletilir.
+
+- **GünlükÖdül Sistemi:**
+Discord Bilgilendirme Mesajı Üzerinden, Ödül kontrol Butonuna Basarak Ödüllerinizi Kontrol Edebilir, Her Güne özel ödüller belirleyebilirsiniz, Tamamen Özelleştirilebilir ödüller.
+
 ###   Kurulum Talimatları
 
 Yayınlanan jar dosyasını plugins/ klasörüne kopyalayın.
