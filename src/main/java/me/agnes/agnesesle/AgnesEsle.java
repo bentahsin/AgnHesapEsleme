@@ -23,7 +23,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -78,6 +80,29 @@ public class AgnesEsle extends JavaPlugin {
         MessageUtil.setLang(getConfig().getString("lang", "tr"));
 
         PaperCommandManager commandManager = new PaperCommandManager(this);
+        String mainCmd = getConfig().getString("commands.main", "hesapesle|sync");
+
+        String subEsle = getConfig().getString("commands.subs.esle", "esle|link");
+        String subOnayla = getConfig().getString("commands.subs.onayla", "onayla|confirm");
+        String subIptal = getConfig().getString("commands.subs.iptal", "iptal|cancel");
+        String subKaldir = getConfig().getString("commands.subs.kaldir", "kaldir|unlink");
+        String sub2fa = getConfig().getString("commands.subs.ikifa", "2fa");
+        String subListe = getConfig().getString("commands.subs.liste", "liste|list");
+        String subSifirla = getConfig().getString("commands.subs.sifirla", "sifirla|reset");
+        String subOdul = getConfig().getString("commands.subs.odul", "odul|reward");
+        String subYenile = getConfig().getString("commands.subs.yenile", "yenile|reload");
+
+        commandManager.getCommandReplacements().addReplacement("main_cmd", mainCmd);
+        commandManager.getCommandReplacements().addReplacement("sub_esle", subEsle);
+        commandManager.getCommandReplacements().addReplacement("sub_onayla", subOnayla);
+        commandManager.getCommandReplacements().addReplacement("sub_iptal", subIptal);
+        commandManager.getCommandReplacements().addReplacement("sub_kaldir", subKaldir);
+        commandManager.getCommandReplacements().addReplacement("sub_2fa", sub2fa);
+        commandManager.getCommandReplacements().addReplacement("sub_liste", subListe);
+        commandManager.getCommandReplacements().addReplacement("sub_sifirla", subSifirla);
+        commandManager.getCommandReplacements().addReplacement("sub_odul", subOdul);
+        commandManager.getCommandReplacements().addReplacement("sub_yenile", subYenile);
+
         commandManager.getCommandContexts().registerContext(BukkitCommandIssuer.class, c -> {
             return commandManager.getCommandIssuer(c.getSender());
         });
@@ -176,18 +201,18 @@ public class AgnesEsle extends JavaPlugin {
         Bukkit.getScheduler().runTask(this, () -> {
 
             if (playerUUID == null) {
-                hook.sendMessage("⚠️ Minecraft hesabınız eşlenmemiş!").setEphemeral(true).queue();
+                hook.sendMessage(MessageUtil.stripColors(MessageUtil.getMessage("odul-sistemi.eslesmemis"))).setEphemeral(true).queue();
                 return;
             }
 
             Player player = Bukkit.getPlayer(playerUUID);
             if (player == null || !player.isOnline()) {
-                hook.sendMessage("⚠️ Minecraft oyuncunuz şu anda çevrimiçi değil. Ödül verilemiyor.").setEphemeral(true).queue();
+                hook.sendMessage(MessageUtil.stripColors(MessageUtil.getMessage("odul-sistemi.oyuncu-cevrimdisi"))).setEphemeral(true).queue();
                 return;
             }
 
             FileConfiguration rewardsData = getRewardsDataConfig();
-            String path = playerUUID.toString() + ".lastClaim";
+            String path = playerUUID + ".lastClaim";
 
             long lastClaim = rewardsData.getLong(path, 0);
             long cooldown = getConfig().getLong("reward-cooldown", 86400000L);
@@ -200,8 +225,18 @@ public class AgnesEsle extends JavaPlugin {
                 long minutes = (remainingMillis % 3600000) / 60000;
                 long seconds = (remainingMillis % 60000) / 1000;
 
-                String timeLeft = String.format("%02d saat %02d dakika %02d saniye", hours, minutes, seconds);
-                hook.sendMessage("⏳ Ödül almak için lütfen **" + timeLeft + "** bekleyin!").setEphemeral(true).queue();
+
+                Map<String, String> timeVars = new HashMap<>();
+                timeVars.put("hours", String.format("%02d", hours));
+                timeVars.put("minutes", String.format("%02d", minutes));
+                timeVars.put("seconds", String.format("%02d", seconds));
+
+                String timeString = MessageUtil.getMessage("odul-sistemi.zaman-formati", timeVars);
+
+                Map<String, String> msgVars = new HashMap<>();
+                msgVars.put("time", timeString);
+
+                hook.sendMessage(MessageUtil.stripColors(MessageUtil.getMessage("odul-sistemi.bekleme-suresi", msgVars))).setEphemeral(true).queue();
                 return;
             }
 
@@ -214,7 +249,7 @@ public class AgnesEsle extends JavaPlugin {
             rewardsData.set(path, now);
             Bukkit.getScheduler().runTaskAsynchronously(this, this::saveRewardsDataConfig);
 
-            hook.sendMessage("🎉 Günlük ödülünüz başarıyla teslim edildi!").setEphemeral(true).queue();
+            hook.sendMessage(MessageUtil.stripColors(MessageUtil.getMessage("odul-sistemi.basarili"))).setEphemeral(true).queue();
         });
     }
 

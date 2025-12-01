@@ -40,22 +40,21 @@ public class DiscordBot extends ListenerAdapter {
             UUID uuid = EslestirmeManager.koduKontrolEt(kod);
 
             if (uuid == null) {
-                event.reply("Geçersiz veya süresi geçmiş kod girdiniz!").setEphemeral(true).queue();
+                event.reply(MessageUtil.stripColors(MessageUtil.getMessage("discord-modal-cevap.gecersiz-kod"))).setEphemeral(true).queue();
                 return;
             }
 
             if (EslestirmeManager.discordZatenEslesmis(event.getUser().getId())) {
-                event.reply("Bu Discord hesabı zaten başka bir Minecraft hesabıyla eşleşmiş.").setEphemeral(true).queue();
+                event.reply(MessageUtil.stripColors(MessageUtil.getMessage("discord-modal-cevap.discord-zaten-esli"))).setEphemeral(true).queue();
                 return;
             }
 
             boolean basarili = EslestirmeManager.eslestir(uuid, event.getUser().getId());
 
             if (basarili) {
-                event.reply("Kod doğrulandı, şimdi oyun içinden `/hesapeşle onayla` komutunu kullanarak eşleşmeyi onaylayabilirsiniz.")
-                        .setEphemeral(true).queue();
+                event.reply(MessageUtil.stripColors(MessageUtil.getMessage("discord-modal-cevap.basarili-yonlendirme"))).setEphemeral(true).queue();
             } else {
-                event.reply("Eşleştirme işlemi başarısız oldu, lütfen tekrar deneyin.").setEphemeral(true).queue();
+                event.reply(MessageUtil.stripColors(MessageUtil.getMessage("discord-modal-cevap.basarisiz"))).setEphemeral(true).queue();
             }
         }
     }
@@ -205,14 +204,16 @@ public class DiscordBot extends ListenerAdapter {
                 UUID playerUUID = EslestirmeManager.getUUIDByDiscordId(discordId);
 
                 if (playerUUID == null) {
-                    event.reply("⚠️ Minecraft hesabınız bulunamadı, ya da hesabınız eşlenmemiş!")
+                    event.reply(MessageUtil.stripColors(MessageUtil.getMessage("discord-odul-butonu.hesap-bulunamadi")))
                             .setEphemeral(true)
                             .queue();
                     break;
                 }
-                event.reply("🎁 Ödül durumu kontrol ediliyor...")
+                event.reply(MessageUtil.stripColors(MessageUtil.getMessage("discord-odul-butonu.kontrol-ediliyor")))
                         .setEphemeral(true)
-                        .queue(hook -> AgnesEsle.getInstance().handleRewardCheck(playerUUID, hook));
+                        .queue(hook -> {
+                            AgnesEsle.getInstance().handleRewardCheck(playerUUID, hook);
+                        });
                 break;
         }
 
@@ -574,7 +575,7 @@ public class DiscordBot extends ListenerAdapter {
         UUID uuid = EslestirmeManager.getUUIDByDiscordId(discordId);
 
         if (uuid == null) {
-            event.reply("Bu Discord hesabı herhangi bir Minecraft hesabıyla eşleşmemiş.").setEphemeral(true).queue();
+            event.reply(MessageUtil.stripColors(MessageUtil.getMessage("discord-hesap-durumu.eslesmemis"))).setEphemeral(true).queue();
             return;
         }
 
@@ -584,18 +585,22 @@ public class DiscordBot extends ListenerAdapter {
         File playerDataFile = new File("plugins/AgnesEsle/data.json");
         long days = 0;
         if (playerDataFile.exists()) {
-            days = playerDataFile.lastModified();
-            long now = System.currentTimeMillis();
-            days = (now - days) / (1000 * 60 * 60 * 24);
+            days = (System.currentTimeMillis() - playerDataFile.lastModified()) / (1000 * 60 * 60 * 24);
         }
 
+        Map<String, String> vars = new HashMap<>();
+        vars.put("days", String.valueOf(days));
+
         EmbedBuilder embed = new EmbedBuilder()
-                .setTitle("📄 Hesap Durumu")
+                .setTitle(MessageUtil.stripColors(MessageUtil.getMessage("discord-hesap-durumu.embed-baslik")))
                 .setColor(Color.CYAN)
-                .addField("Oyuncu Adı", playerName != null ? playerName : "Bilinmiyor", false)
-                .addField("2FA Durumu", is2FA ? "✅ Açık" : "❌ Kapalı", false)
-                .addField("Eşleşme Tarihi", "Veri dosyasına göre yaklaşık " + days + " gün önce", false)
-                .setFooter("Hesap durumu bilgisi");
+                .addField(MessageUtil.stripColors(MessageUtil.getMessage("discord-hesap-durumu.field-oyuncu")),
+                        playerName != null ? playerName : "Bilinmiyor", false)
+                .addField(MessageUtil.stripColors(MessageUtil.getMessage("discord-hesap-durumu.field-2fa")),
+                        is2FA ? MessageUtil.stripColors(MessageUtil.getMessage("discord-hesap-durumu.acik")) : MessageUtil.stripColors(MessageUtil.getMessage("discord-hesap-durumu.kapali")), false)
+                .addField(MessageUtil.stripColors(MessageUtil.getMessage("discord-hesap-durumu.field-tarih")),
+                        MessageUtil.stripColors(MessageUtil.getMessage("discord-hesap-durumu.field-tarih-deger", vars)), false)
+                .setFooter(MessageUtil.stripColors(MessageUtil.getMessage("discord-hesap-durumu.footer")));
 
         event.replyEmbeds(embed.build()).setEphemeral(true).queue();
     }
@@ -607,13 +612,13 @@ public class DiscordBot extends ListenerAdapter {
         UUID uuid = EslestirmeManager.getUUIDByDiscordId(discordId);
 
         if (uuid == null) {
-            event.reply("Bu Discord hesabı herhangi bir Minecraft hesabıyla eşleşmemiş.").setEphemeral(true).queue();
+            event.reply(MessageUtil.stripColors(MessageUtil.getMessage("discord-kaldir-butonu.eslesmemis"))).setEphemeral(true).queue();
             return;
         }
 
         EslestirmeManager.kaldirEslesme(uuid);
 
-        event.reply("Eşleşme başarıyla kaldırıldı. Artık bu hesap eşleşmiş değil.").setEphemeral(true).queue();
+        event.reply(MessageUtil.stripColors(MessageUtil.getMessage("discord-kaldir-butonu.basarili"))).setEphemeral(true).queue();
     }
 
 

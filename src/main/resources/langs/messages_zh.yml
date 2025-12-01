@@ -1,191 +1,226 @@
-already-linked:
-  title: "§c已经绑定"
-  subtitle: "§7您已绑定一个Discord帐户。"
+hesap-zaten-eslesmis:
+  title: "§c已绑定"
+  subtitle: "§7您已经绑定了一个 Discord 账号。"
 
-code-please-wait:
+kod-lutfen-bekleyin:
   title: "§c请稍候"
-  subtitle: "§7请等待先前的代码过期。"
+  subtitle: "§7请等待上一个验证码过期。"
 
-code-given:
-  title: "§a已提供代码"
-  subtitle: "§7您的代码是: §f%kod%"
-  message: "&a您的代码是: &e%kod% &7(请与Discord绑定)"
+kod-verildi:
+  title: "您的验证码：%kod%"
+  subtitle: "与 Discord 绑定！"
+  message: "&a您的验证码：&e%kod% &7(与 Discord 绑定)"
 
+eslesme-onayi-beklemiyor:
+  title: "§c无待定验证码"
+  subtitle: "§7没有任何代码正在等待确认。"
 
-link-confirmation-not-pending:
-  title: "§c没有待处理的代码"
-  subtitle: "§7没有等待确认的代码。"
-
-link-could-not-be-confirmed:
+eslesme-onaylanamadi:
   title: "§c失败"
-  subtitle: "§7无法确认绑定。"
+  subtitle: "§7绑定无法确认。"
 
-link-could-not-be-canceled:
+eslesme-iptal-edilemedi:
   title: "§c无法取消"
-  subtitle: "§7未找到待处理的代码或发生错误。"
+  subtitle: "§7未找到待定代码或发生错误。"
 
-link-successfully-completed:
+eslesme-basariyla-tamamlandi:
   title: "§a成功"
-  subtitle: "§7您的帐户已成功绑定！"
+  subtitle: "§7您的账号已成功绑定！"
 
-link-already-pending:
+eslesme-zaten-bekliyor:
   title: "§c等待确认"
-  subtitle: "§7您已在等待确认。请输入 /accountlink confirm。"
+  subtitle: "§7您已经在等待确认。请输入 /link confirm。"
 
-unlinked:
-  title: "§c绑定已移除"
-  subtitle: "§7您的绑定已被移除。"
+kaldirildi:
+  title: "§c已解绑"
+  subtitle: "§7您的绑定关系已被移除。"
 
-reloaded:
-  title: "§a已刷新"
-  subtitle: "§7消息已重新加载。"
+yenilendi:
+  title: "§a已重载"
+  subtitle: "§7消息配置已重新加载。"
 
-unknown-command:
-  title: "§c未知命令"
-  subtitle: "§7请输入一个有效的命令。"
+bilinmeyen-komut:
+  title: "§c未知指令"
+  subtitle: "§7请输入有效的指令。"
 
-account-link-code-canceled:
-  title: "§c代码已取消"
-  subtitle: "§7您的绑定代码已被取消。"
+hesap-esle-kodiptal:
+  title: "§c验证码已取消"
+  subtitle: "§7您的绑定验证码已被取消。"
 
-no-permission:
-  title: "§c权限不足"
-  subtitle: "§7您没有权限使用此命令。"
+yetki-yok:
+  title: "§c无权限"
+  subtitle: "§7您没有权限使用此指令。"
 
-incorrect-usage:
-  title: "§c用法错误"
-  subtitle: "§7请正确使用此命令。"
+hatalı-kullanim:
+  title: "§c错误用法"
+  subtitle: "§7请按正确格式使用指令。"
 
-player-not-found:
-  title: "§c找不到玩家"
+oyuncu-bulunamadi:
+  title: "§c未找到玩家"
   subtitle: "§7找不到该玩家。"
 
-no-link-found:
-  title: "§c未绑定"
-  subtitle: "§7此玩家尚未绑定帐户。"
+eslesme-yok:
+  title: "§c无绑定"
+  subtitle: "§7该玩家未绑定任何账号。"
 
-title-header:
+title-baslik:
   title: "§a绑定成功！"
   subtitle: "§7您的奖励已发放。"
 
-title-footer:
-  title: "§a帐户绑定"
-  subtitle: "§7在您的 Minecraft 服务器上提供优质服务。"
+title-alt:
+  title: "§aAccountLink"
+  subtitle: "§7为您的 Minecraft 服务器提供优质服务。"
 
 
-# 中文
 log-message-embed:
-  title: "✅ 新账户已绑定"
+  title: "✅ 新的账号绑定"
   player-field-name: "👤 玩家"
   discord-field-name: "🆔 Discord"
   date-field-name: "🗓️ 日期"
   security-field-name: "🛡️ 安全"
-  footer: "账户绑定系统"
+  footer: "账号绑定系统"
 
 
-# 常规消息
-only-for-players: "&c此命令只能由玩家使用。"
-reward-message: "&a恭喜！您已成功绑定帐户并获得奖励！"
+# 通用消息
+only-for-players: "&c此指令仅限玩家使用。"
+reward-message: "&a恭喜！您已成功绑定账号并获得了奖励！"
 
 # 帮助菜单
-help-header: "&6&lAgn帐户绑定 &r&7- 命令列表"
-help-format: "&e/accountlink %command% %syntax% &7- %description%"
-help-footer: "&7使用命令获取更多信息。"
+help-header: "&6&lAgnAccountLink &r&7- 指令列表"
+help-format: "&e/link %command% %syntax% &7- %description%"
+help-footer: "&7使用指令以获取更多信息。"
 
-# 2FA 消息
-2fa-usage-help: "&c请输入 /accountlink 2fa enable 或 /accountlink 2fa disable。"
-2fa-already-enabled: "&e2FA 已启用。"
-2fa-successfully-enabled: "&a2FA 已成功启用。"
-2fa-already-disabled: "&e2FA 已禁用。"
-2fa-successfully-disabled: "&c2FA 已被禁用。"
-2fa-not-linked: "&c您的帐户尚未绑定，无法使用 2FA 功能。"
+# 2FA (双重验证) 消息
+2fa-usage-help: "&c请输入 /link 2fa on (开启) 或 /link 2fa off (关闭)。"
+2fa-already-enabled: "&e双重验证 (2FA) 已开启。"
+2fa-successfully-enabled: "&a双重验证 (2FA) 开启成功。"
+2fa-already-disabled: "&e双重验证 (2FA) 已关闭。"
+2fa-successfully-disabled: "&c双重验证 (2FA) 已关闭。"
+2fa-not-linked: "&c您无法使用双重验证，因为您的账号尚未绑定。"
 
 # 管理员消息
-no-matches-yet: "&c尚无任何绑定记录。"
+no-matches-yet: "&c暂无绑定记录。"
 list-header: "&6---- [绑定列表 第 %page%/%maxPage% 页] ----"
 list-entry: "&e%player% &7- Discord ID: &a%discordId%"
-list-footer: "&7要更改页面，请使用: /accountlink list <页码>"
-player-match-reset: "&a玩家 %player% 的绑定已重置。"
+list-footer: "&7翻页请使用：/link list <页码>"
+player-match-reset: "&a玩家 %player% 的绑定已被重置。"
 
 # 踢出消息
 kick-2fa-ip-changed: |
   &c&l安全警报
   
-  &e检测到来自不同位置的登录尝试！
-  &f请检查您的 Discord 帐户以进行确认。
+  &e检测到异地登录！
+  &f请检查您的 Discord 账号进行确认。
 
 # ===============================================
-# Discord 文本 (不使用颜色代码！)
+# Discord 文本 (此处不要使用颜色代码！)
 # ===============================================
 
-# 机器人状态和命令说明
-discord-bot-status-starting: "正在启动..."
-discord-command-description-link: "绑定您的 Minecraft 帐户"
-discord-command-option-code: "您的绑定代码"
-discord-command-description-report: "向管理人员举报一名玩家"
+# 机器人状态与指令描述
+discord-bot-status-starting: "启动中..."
+discord-command-description-esle: "绑定您的 Minecraft 账号"
+discord-command-option-code: "您的绑定验证码"
+discord-command-description-raporla: "向管理团队举报玩家"
 discord-command-option-player: "您要举报的玩家名称"
-discord-command-option-reason: "您的举报原因"
-discord-command-description-info: "显示 Discord 用户绑定的 Minecraft 帐户。"
+discord-command-option-reason: "举报原因"
+discord-command-description-info: "显示 Discord 用户绑定的 Minecraft 账号。"
 discord-command-option-user: "要查询的 Discord 用户"
-discord-info-reply-no-match: "该用户没有绑定的 Minecraft 帐户。"
-discord-info-reply-success: "该用户已与 Minecraft 帐户 **%player%** 绑定。"
+discord-info-reply-no-match: "该用户没有绑定的 Minecraft 账号。"
+ddiscord-info-reply-success: "该用户已与 Minecraft 账号 **%player%** 绑定。"
 
-# 信息频道嵌入消息
-discord-info-embed-title: "📘 Agn绑定 - 帐户绑定"
+# 信息频道 Embed 消息
+discord-info-embed-title: "📘 AgnLink - 账号绑定"
 discord-info-embed-description: |
-  您好！通过将您的 Minecraft 帐户与 Discord 绑定，您可以获得特殊奖励！
+  您好！将您的 Minecraft 账号与 Discord 绑定即可获得特别奖励！
   
-  ➤ 进入服务器并输入 `/accountlink link` 以获取您的代码。
-  ➤ 点击下面的按钮并输入您的代码。
-  ➤ 最后，在 Minecraft 中输入 `/accountlink confirm` 完成该过程！
-discord-info-embed-footer: "Agn帐户绑定系统"
-discord-info-button-label: "🔗 绑定帐户"
+  ➤ 进入服务器并输入 `/link link` 获取您的验证码。
+  ➤ 点击下方按钮并输入您的验证码。
+  ➤ 最后，在 Minecraft 中输入 `/link confirm` 完成流程！
+discord-info-embed-footer: "AgnAccountLink 系统"
+discord-info-button-label: "🔗 绑定"
 
-# 绑定模式窗口（弹出窗口）
-discord-modal-title: "输入您的绑定代码"
-discord-modal-textfield-label: "绑定代码"
-discord-modal-textfield-placeholder: "例如: X7Y2-Z9"
+# 绑定弹窗 (Modal)
+discord-modal-title: "输入绑定验证码"
+discord-modal-textfield-label: "绑定验证码"
+discord-modal-textfield-placeholder: "例如：X7Y2-Z9"
 
 # 2FA 按钮交互
-discord-2fa-confirm-reply: "✅ 登录请求已成功确认。您现在可以登录服务器了。"
-discord-2fa-confirm-message-edit: "此登录请求已**批准**。"
-discord-2fa-deny-reply: "❌ 登录请求被拒绝。您的帐户是安全的。我们建议您更改密码。"
-discord-2fa-deny-message-edit: "此登录请求已**拒绝**。"
+discord-2fa-confirm-reply: "✅ 登录请求已批准。您现在可以进入服务器了。"
+discord-2fa-confirm-message-edit: "此登录请求已被 **批准**。"
+discord-2fa-deny-reply: "❌ 登录请求已拒绝。您的账号是安全的。我们建议您更改密码。"
+discord-2fa-deny-message-edit: "此登录请求已被 **拒绝**。"
 
 # 举报按钮交互
 discord-button-invalid-id: "无效的按钮 ID！"
-discord-button-no-permission: "❌ 只有管理人员才能使用此按钮。"
-discord-button-player-not-found: "找不到玩家！"
-discord-button-control-kick-reason: "您被管理人员传唤进行检查。"
-discord-button-control-reply: "玩家 %player% (%discordId%) 已被踢出服务器以进行检查。"
-discord-button-ban-reason: "通过 Discord 封禁。"
-discord-button-ban-kick-reason: "您已被管理人员通过 Discord 封禁。"
+discord-button-no-permission: "❌ 只有管理人员可以使用此按钮。"
+discord-button-player-not-found: "未找到玩家！"
+discord-button-control-kick-reason: "您已被管理团队传唤进行检查。"
+discord-button-control-reply: "玩家 %player% (%discordId%) 已被踢出以进行检查。"
+discord-button-ban-reason: "已通过 Discord 封禁。"
+discord-button-ban-kick-reason: "您已被管理团队通过 Discord 封禁。"
 discord-button-ban-reply: "玩家 %player% 已被封禁。"
 
-# Slash 命令回复
-discord-cooldown-message: "❌ 您使用此命令过于频繁。请在 **%timeLeft% 秒**后重试。"
-discord-invalid-code: "❌ 无效代码。"
-discord-already-linked-mc: "❌ 此 Minecraft 帐户已与其他帐户绑定。"
-discord-already-linked-discord: "❌ 此 Discord 帐户已与其他 Minecraft 帐户绑定或正在等待确认。"
+# 斜杠指令 (Slash Command) 回复
+discord-cooldown-message: "❌ 您使用此指令过于频繁。请在 **%timeLeft% 秒** 后重试。"
+discord-invalid-code: "❌ 无效的验证码。"
+discord-already-linked-mc: "❌ 此 Minecraft 账号已与其他账号绑定。"
+discord-already-linked-discord: "❌ 此 Discord 账号已与其他 Minecraft 账号绑定或正在等待批准。"
 discord-generic-error: "❌ 绑定失败。请重试。"
-discord-success: "✅ 代码正确！现在，请在 Minecraft 中输入 `/accountlink confirm` 来完成绑定。"
-discord-report-channel-not-set: "❌ 未设置举报频道，操作失败。"
-discord-report-channel-not-found: "❌ 找不到举报频道，操作失败。"
+discord-success: "✅ 验证码正确！现在请在 Minecraft 中输入 `/link confirm` 完成绑定。"
+discord-report-channel-not-set: "❌ 举报频道未设置，操作失败。"
+discord-report-channel-not-found: "❌ 举报频道未找到，操作失败。"
 discord-report-embed-title: "🚨 新的玩家举报"
-discord-report-embed-field-player: "被举报的玩家"
-discord-report-embed-field-reason: "举报原因"
-discord-report-embed-footer: "举报人: %reporter%"
-discord-report-success: "✅ 您的举报已成功发送给管理人员。"
+discord-report-embed-field-player: "被举报玩家"
+discord-report-embed-field-reason: "原因"
+discord-report-embed-footer: "举报人：%reporter%"
+discord-report-success: "✅ 您的举报已成功发送给管理团队。"
 
-# 2FA 私信嵌入消息
+# 2FA 私信 Embed 消息
 discord-2fa-embed-title: "🔒 安全警报：新的登录请求"
-discord-2fa-embed-description: "正在尝试从新位置登录您的 Minecraft 帐户 **%player%**。"
+discord-2fa-embed-description: "正在尝试从新位置登录您的 Minecraft 账号 **%player%**。"
 discord-2fa-embed-field-ip: "登录 IP 地址"
-discord-2fa-embed-footer: "如果您未发起此操作，请勿批准。"
-discord-2fa-button-confirm: "是的，是我 (批准)"
-discord-2fa-button-deny: "不，不是我 (拒绝)"
+discord-2fa-embed-footer: "如果这不是您的操作，请绝对不要批准。"
+discord-2fa-button-confirm: "是，这是我 (批准)"
+discord-2fa-button-deny: "不，这不是我 (拒绝)"
 
 # 奖励消息
-reward-not-linked: "&c该玩家的帐户未绑定。"
-reward-already-given: "&e该玩家已领取奖励。"
-reward-given-success: "&a已成功向玩家 %player% 发放奖励。"
+odul-not-linked: "&c该玩家的账号未绑定。"
+odul-already-given: "&e该玩家已领取过奖励。"
+odul-given-success: "&a奖励已成功发放给玩家 %player%。"
+
+# 每日奖励系统
+odul-sistemi:
+  eslesmemis: "⚠️ 您的 Minecraft 账号未绑定！"
+  oyuncu-cevrimdisi: "⚠️ 您的 Minecraft 角色当前不在线。无法发放奖励。"
+  bekleme-suresi: "⏳ 请等待 **%time%** 后再领取奖励！"
+  basarili: "🎉 您的每日奖励已成功发放！"
+  zaman-formati: "%hours% 小时 %minutes% 分钟 %seconds% 秒"
+
+# Discord Modal (验证码输入屏幕)
+discord-modal-cevap:
+  gecersiz-kod: "您输入了无效或过期的验证码！"
+  discord-zaten-esli: "此 Discord 账号已与其他 Minecraft 账号绑定。"
+  basarili-yonlendirme: "验证码已核实，您现在可以在游戏内使用 `/link confirm` 确认绑定。"
+  basarisiz: "绑定过程失败，请重试。"
+
+# Discord 账号状态按钮
+discord-hesap-durumu:
+  eslesmemis: "此 Discord 账号未与任何 Minecraft 账号绑定。"
+  embed-baslik: "📄 账号状态"
+  field-oyuncu: "玩家名称"
+  field-2fa: "2FA 状态"
+  field-tarih: "绑定日期"
+  field-tarih-deger: "大约 %days% 天前"
+  footer: "账号状态信息"
+  acik: "✅ 开启"
+  kapali: "❌ 关闭"
+
+# Discord 解除绑定按钮
+discord-kaldir-butonu:
+  eslesmemis: "此 Discord 账号未与任何 Minecraft 账号绑定。"
+  basarili: "绑定已成功移除。此账号不再处于绑定状态。"
+
+# Discord 奖励检查按钮
+discord-odul-butonu:
+  hesap-bulunamadi: "⚠️ 未找到 Minecraft 账号，或者您的账号未绑定！"
+  kontrol-ediliyor: "🎁 正在检查奖励状态..."

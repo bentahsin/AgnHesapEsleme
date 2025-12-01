@@ -5,6 +5,24 @@
 #                                                #
 ################################################
 
+# ==========================================
+# DYNAMIC COMMAND SYSTEM
+# You can add multiple aliases by separating commands with "|".
+# Example: "hesapesle|sync|link"
+# ==========================================
+commands:
+  main: "hesapesle|hesapeşle|sync|link" # Main Command
+  subs: # Sub Commands
+    esle: "eşle|esle|link"
+    onayla: "onayla|confirm"
+    iptal: "iptal|cancel"
+    kaldir: "kaldır|kaldir|unlink"
+    ikifa: "2fa|guvenlik"
+    liste: "liste|list"
+    sifirla: "sıfırla|sifirla|reset"
+    odul: "ödül|odul|reward"
+    yenile: "yenile|reload"
+
 #Bot Settings
 token: "DISCORD_BOT_TOKEN"
 status-messages:

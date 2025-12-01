@@ -1,78 +1,79 @@
-already-linked:
+hesap-zaten-eslesmis:
   title: "§cAlready Linked"
   subtitle: "§7You are already linked with a Discord account."
 
-code-please-wait:
-  title: "§cPlease Wait"
+kod-lutfen-bekleyin:
+  title: "§cWait"
   subtitle: "§7Please wait for the previous code to expire."
 
-code-given:
-  title: "§aCode Given"
-  subtitle: "§7Your code is: §f%code%"
-  message: "&aKodunuz: &e%kod% &7(Discord ile eşleştirin)"
+kod-verildi:
+  title: "Your Code: %kod%"
+  subtitle: "Link with Discord!"
+  message: "&aYour Code: &e%kod% &7(Link with Discord)"
 
-link-confirmation-not-pending:
+eslesme-onayi-beklemiyor:
   title: "§cNo Pending Code"
-  subtitle: "§7There is no code awaiting confirmation."
+  subtitle: "§7There is no code waiting for confirmation."
 
-link-could-not-be-confirmed:
+eslesme-onaylanamadi:
   title: "§cFailed"
-  subtitle: "§7The link could not be confirmed."
+  subtitle: "§7Linking could not be confirmed."
 
-link-could-not-be-canceled:
+eslesme-iptal-edilemedi:
   title: "§cCould Not Cancel"
-  subtitle: "§7No pending code was found or an error occurred."
+  subtitle: "§7No pending code found or an error occurred."
 
-link-successfully-completed:
+eslesme-basariyla-tamamlandi:
   title: "§aSuccessful"
   subtitle: "§7Your account has been successfully linked!"
 
-link-already-pending:
-  title: "§cAwaiting Confirmation"
-  subtitle: "§7You are already awaiting confirmation. Please type /accountlink confirm."
+eslesme-zaten-bekliyor:
+  title: "§cWaiting for Confirmation"
+  subtitle: "§7You are already waiting for confirmation. Please type /link confirm."
 
-unlinked:
-  title: "§cLink Removed"
+kaldirildi:
+  title: "§cUnlinked"
   subtitle: "§7Your link has been removed."
 
-reloaded:
+yenilendi:
   title: "§aReloaded"
   subtitle: "§7Messages have been reloaded."
 
-unknown-command:
+bilinmeyen-komut:
   title: "§cUnknown Command"
   subtitle: "§7Please use a valid command."
 
-account-link-code-canceled:
-  title: "§cCode Canceled"
-  subtitle: "§7Your linking code has been canceled."
+hesap-esle-kodiptal:
+  title: "§cCode Cancelled"
+  subtitle: "§7Your linking code has been cancelled."
 
-no-permission:
+yetki-yok:
   title: "§cNo Permission"
   subtitle: "§7You do not have permission to use this command."
 
-incorrect-usage:
+hatalı-kullanim:
   title: "§cIncorrect Usage"
   subtitle: "§7Please use the command correctly."
 
-player-not-found:
+oyuncu-bulunamadi:
   title: "§cPlayer Not Found"
-  subtitle: "§7Such a player could not be found."
+  subtitle: "§7No such player found."
 
-no-link-found:
-  title: "§cNo Link Found"
-  subtitle: "§7This player does not have a linked account."
+eslesme-yok:
+  title: "§cNo Link"
+  subtitle: "§7This player has no link."
 
-title-header:
+title-baslik:
   title: "§aLink Successful!"
   subtitle: "§7Your rewards have been delivered."
 
-title-footer:
+title-alt:
   title: "§aAccountLink"
   subtitle: "§7Quality service on your Minecraft server."
 
+
 log-message-embed:
-  title: "✅ New Account Linked"
+  title: "✅ New Account Link"
   player-field-name: "👤 Player"
   discord-field-name: "🆔 Discord"
   date-field-name: "🗓️ Date"
@@ -82,107 +83,145 @@ log-message-embed:
 
 # General Messages
 only-for-players: "&cThis command can only be used by players."
-reward-message: "&aCongratulations! You have successfully linked your account and earned a reward!"
+reward-message: "&aCongratulations! You successfully linked your account and won a reward!"
 
 # Help Menu
 help-header: "&6&lAgnAccountLink &r&7- Command List"
-help-format: "&e/accountlink %command% %syntax% &7- %description%"
-help-footer: "&7Use the commands for more information."
+# Kullanıcıya gösterilen komut formatı
+help-format: "&e/link %command% %syntax% &7- %description%"
+help-footer: "&7Use commands for more information."
 
 # 2FA Messages
-2fa-usage-help: "&cPlease type /accountlink 2fa enable or /accountlink 2fa disable."
+2fa-usage-help: "&cPlease type /link 2fa on or /link 2fa off."
 2fa-already-enabled: "&e2FA is already enabled."
 2fa-successfully-enabled: "&a2FA successfully enabled."
 2fa-already-disabled: "&e2FA is already disabled."
-2fa-successfully-disabled: "&c2FA has been disabled."
-2fa-not-linked: "&cYou cannot use the 2FA feature as your account is not linked."
+2fa-successfully-disabled: "&c2FA disabled."
+2fa-not-linked: "&cYou cannot use 2FA because your account is not linked."
 
 # Admin Messages
-no-matches-yet: "&cThere are no links yet."
+no-matches-yet: "&cNo links yet."
 list-header: "&6---- [Link List Page %page%/%maxPage%] ----"
 list-entry: "&e%player% &7- Discord ID: &a%discordId%"
-list-footer: "&7To change the page: /accountlink list <page>"
-player-match-reset: "&aThe link for the player named %player% has been reset."
+list-footer: "&7To change page: /link list <page>"
+player-match-reset: "&aAccount link for %player% has been reset."
 
 # Kick Messages
 kick-2fa-ip-changed: |
-  &c&lSECURITY WARNING
+  &c&lSECURITY ALERT
   
-  &eA login attempt from a different location is detected!
+  &eLogin detected from a different location!
   &fPlease check your Discord account for confirmation.
 
 # ===============================================
-# Discord Texts (Color codes are not used!)
+# Discord Texts (Do not use color codes here!)
 # ===============================================
 
 # Bot Status and Command Descriptions
 discord-bot-status-starting: "Starting..."
-discord-command-description-link: "Link your Minecraft account"
+discord-command-description-esle: "Link your Minecraft account"
 discord-command-option-code: "Your linking code"
-discord-command-description-report: "Report a player to the staff"
-discord-command-option-player: "The name of the player you want to report"
-discord-command-option-reason: "The reason for your report"
-discord-command-description-info: "Shows the linked Minecraft account of a Discord user."
-discord-command-option-user: "The Discord user to look up"
+discord-command-description-raporla: "Report a player to staff"
+discord-command-option-player: "Name of the player you want to report"
+discord-command-option-reason: "Reason for reporting"
+discord-command-description-info: "Shows the Minecraft account linked to a Discord user."
+discord-command-option-user: "Discord user to check"
 discord-info-reply-no-match: "This user does not have a linked Minecraft account."
-discord-info-reply-success: "This user is linked with the Minecraft account **%player%**."
+ddiscord-info-reply-success: "This user is linked with the Minecraft account **%player%**."
 
-# Information Channel Embed Message
+# Info Channel Embed Message
 discord-info-embed-title: "📘 AgnLink - Account Linking"
 discord-info-embed-description: |
-  Hello! You can earn special rewards by linking your Minecraft account with Discord!
+  Hello! Link your Minecraft account with Discord to earn special rewards!
   
-  ➤ Enter the server and type `/accountlink link` to get your code.
+  ➤ Enter the server and type `/link link` to get your code.
   ➤ Click the button below and enter your code.
-  ➤ Finally, complete the process by typing `/accountlink confirm` in Minecraft!
+  ➤ Finally, type `/link confirm` in Minecraft to complete the process!
 discord-info-embed-footer: "AgnAccountLink System"
-discord-info-button-label: "🔗 Link Account"
+discord-info-button-label: "🔗 Link"
 
-# Linking Modal (Popup Window)
-discord-modal-title: "Enter Your Linking Code"
+# Linking Modal (Popup)
+discord-modal-title: "Enter Link Code"
 discord-modal-textfield-label: "Linking Code"
-discord-modal-textfield-placeholder: "e.g., X7Y2-Z9"
+discord-modal-textfield-placeholder: "Ex: X7Y2-Z9"
 
 # 2FA Button Interactions
-discord-2fa-confirm-reply: "✅ Login request successfully confirmed. You can now log in to the server."
-discord-2fa-confirm-message-edit: "This login request has been **approved**."
-discord-2fa-deny-reply: "❌ Login request denied. Your account is secure. We recommend changing your password."
-discord-2fa-deny-message-edit: "This login request has been **denied**."
+discord-2fa-confirm-reply: "✅ Login request approved. You can now join the server."
+discord-2fa-confirm-message-edit: "This login request was **approved**."
+discord-2fa-deny-reply: "❌ Login request denied. Your account is safe. We recommend changing your password."
+discord-2fa-deny-message-edit: "This login request was **denied**."
 
-# Report Button Interactions
+# Reporting Button Interactions
 discord-button-invalid-id: "Invalid button ID!"
-discord-button-no-permission: "❌ Only staff members can use this button."
+discord-button-no-permission: "❌ Only staff can use this button."
 discord-button-player-not-found: "Player not found!"
-discord-button-control-kick-reason: "You are being summoned for a check by a staff member."
-discord-button-control-reply: "The player %player% (%discordId%) has been kicked from the server for a check."
+discord-button-control-kick-reason: "You are being summoned by staff for a check."
+discord-button-control-reply: "Player %player% (%discordId%) kicked for check."
 discord-button-ban-reason: "Banned via Discord."
-discord-button-ban-kick-reason: "You have been banned by a Staff Member via Discord."
-discord-button-ban-reply: "The player %player% has been banned."
+discord-button-ban-kick-reason: "You were banned by staff via Discord."
+discord-button-ban-reply: "Player %player% has been banned."
 
-# Slash Command Replies
-discord-cooldown-message: "❌ You are using this command too frequently. Please try again in **%timeLeft% seconds**."
+# Slash Command Responses
+discord-cooldown-message: "❌ You are using this command too often. Please try again in **%timeLeft% seconds**."
 discord-invalid-code: "❌ Invalid code."
 discord-already-linked-mc: "❌ This Minecraft account is already linked to another account."
-discord-already-linked-discord: "❌ This Discord account is already linked to another Minecraft account or is awaiting confirmation."
+discord-already-linked-discord: "❌ This Discord account is already linked to another Minecraft account or is pending approval."
 discord-generic-error: "❌ Linking failed. Please try again."
-discord-success: "✅ Correct code! Now, complete the link by typing `/accountlink confirm` in Minecraft."
-discord-report-channel-not-set: "❌ The report channel has not been set, the operation failed."
-discord-report-channel-not-found: "❌ The report channel could not be found, the operation failed."
+discord-success: "✅ Code correct! Now type `/link confirm` in Minecraft to complete the link."
+discord-report-channel-not-set: "❌ Report channel not set, operation failed."
+discord-report-channel-not-found: "❌ Report channel not found, operation failed."
 discord-report-embed-title: "🚨 New Player Report"
 discord-report-embed-field-player: "Reported Player"
-discord-report-embed-field-reason: "Reason for Report"
+discord-report-embed-field-reason: "Reason"
 discord-report-embed-footer: "Reported by: %reporter%"
-discord-report-success: "✅ Your report has been successfully forwarded to the staff."
+discord-report-success: "✅ Your report has been successfully sent to staff."
 
 # 2FA DM Embed Message
-discord-2fa-embed-title: "🔒 Security Alert: New Login Attempt"
-discord-2fa-embed-description: "A login attempt to your Minecraft account **%player%** is being made from a new location."
+discord-2fa-embed-title: "🔒 Security Alert: New Login Request"
+discord-2fa-embed-description: "A new login attempt is being made to your Minecraft account **%player%** from a new location."
 discord-2fa-embed-field-ip: "Login IP Address"
-discord-2fa-embed-footer: "If you did not initiate this action, do not approve it."
+discord-2fa-embed-footer: "If this wasn't you, absolutely do not approve it."
 discord-2fa-button-confirm: "Yes, It Was Me (Approve)"
-discord-2fa-button-deny: "No, It Was Not Me (Deny)"
+discord-2fa-button-deny: "No, It Wasn't Me (Deny)"
 
 # Reward Messages
-reward-not-linked: "&cThis player's account is not linked."
-reward-already-given: "&eThis player has already received their reward."
-reward-given-success: "&aThe reward was successfully given to the player %player%."
+odul-not-linked: "&cThis player's account is not linked."
+odul-already-given: "&eThis player has already received their reward."
+odul-given-success: "&aReward successfully given to player %player%."
+
+# Daily Reward System
+odul-sistemi:
+  eslesmemis: "⚠️ Your Minecraft account is not linked!"
+  oyuncu-cevrimdisi: "⚠️ Your Minecraft player is not online. Cannot deliver reward."
+  bekleme-suresi: "⏳ Please wait **%time%** to claim the reward!"
+  basarili: "🎉 Your daily reward has been successfully delivered!"
+  zaman-formati: "%hours% hours %minutes% minutes %seconds% seconds"
+
+# Discord Modal (Code Entry Screen)
+discord-modal-cevap:
+  gecersiz-kod: "You entered an invalid or expired code!"
+  discord-zaten-esli: "This Discord account is already linked to another Minecraft account."
+  basarili-yonlendirme: "Code verified, you can now confirm the link in-game using `/link confirm`."
+  basarisiz: "Linking process failed, please try again."
+
+# Discord Account Status Button
+discord-hesap-durumu:
+  eslesmemis: "This Discord account is not linked to any Minecraft account."
+  embed-baslik: "📄 Account Status"
+  field-oyuncu: "Player Name"
+  field-2fa: "2FA Status"
+  field-tarih: "Link Date"
+  field-tarih-deger: "Approximately %days% days ago"
+  footer: "Account status info"
+  acik: "✅ On"
+  kapali: "❌ Off"
+
+# Discord Unlink Button
+discord-kaldir-butonu:
+  eslesmemis: "This Discord account is not linked to any Minecraft account."
+  basarili: "Link successfully removed. This account is no longer linked."
+
+# Discord Reward Check Button
+discord-odul-butonu:
+  hesap-bulunamadi: "⚠️ Minecraft account not found, or your account is not linked!"
+  kontrol-ediliyor: "🎁 Checking reward status..."
