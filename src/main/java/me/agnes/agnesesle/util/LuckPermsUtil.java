@@ -20,9 +20,15 @@ public class LuckPermsUtil {
                 .maximumSize(1000)
                 .expireAfterAccess(10, TimeUnit.MINUTES)
                 .build(uuid -> {
-                    logger.info(uuid + " için LuckPerms verisi cache'leniyor...");
-                    User user = luckPerms.getUserManager().loadUser(uuid).join();
-                    return user.getPrimaryGroup();
+                    try {
+                        User user = luckPerms.getUserManager().loadUser(uuid).join();
+                        if (user != null) {
+                            return user.getPrimaryGroup();
+                        }
+                    } catch (Exception e) {
+                        logger.warning("LuckPerms verisi alınırken hata oluştu (UUID: " + uuid + "): " + e.getMessage());
+                    }
+                    return null;
                 });
     }
 

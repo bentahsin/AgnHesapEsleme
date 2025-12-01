@@ -106,10 +106,10 @@ public class EsleCommandACF extends BaseCommand {
         MessageUtil.sendTitle(player, "eslesme-basariyla-tamamlandi");
 
         if (ilkEslesme) {
-            Bukkit.getScheduler().runTask(AgnesEsle.getInstance(), () -> {
-                player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1f, 1f);
-                player.getWorld().spawnParticle(Particle.VILLAGER_HAPPY, player.getLocation().add(0, 1, 0), 15, 0.5, 0.5, 0.5);
+            player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1f, 1f);
+            player.getWorld().spawnParticle(Particle.VILLAGER_HAPPY, player.getLocation().add(0, 1, 0), 15, 0.5, 0.5, 0.5);
 
+            Bukkit.getScheduler().runTaskAsynchronously(AgnesEsle.getInstance(), () -> {
                 String discordId = EslestirmeManager.getDiscordId(player.getUniqueId());
                 if (discordId != null) {
                     DiscordBot bot = AgnesEsle.getInstance().getDiscordBot();
@@ -119,7 +119,6 @@ public class EsleCommandACF extends BaseCommand {
                     if (lpUtil != null) {
                         String group = lpUtil.getPrimaryGroup(player.getUniqueId());
                         if (group != null) {
-
                             ConfigurationSection rolesSection = AgnesEsle.getInstance().getConfig().getConfigurationSection("roles");
                             if (rolesSection != null) {
                                 for (String roleName : rolesSection.getKeys(false)) {
@@ -128,7 +127,7 @@ public class EsleCommandACF extends BaseCommand {
 
                                     if (group.equalsIgnoreCase(roleName)) {
                                         bot.addRoleToMember(discordId, roleId);
-                                        Bukkit.getLogger().info(player.getName() + " oyuncusuna " + roleName + " Discord rolü verildi.");
+                                        plugin.getLogger().info(player.getName() + " oyuncusuna " + roleName + " Discord rolü verildi.");
                                     }
                                 }
                             }

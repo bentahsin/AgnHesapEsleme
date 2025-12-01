@@ -41,6 +41,21 @@ public class EslestirmeManager {
         loadIkiFA();
         loadIPler();
         loadOdulVerilenler();
+
+        AgnesEsle.getInstance().getServer().getScheduler().runTaskTimerAsynchronously(AgnesEsle.getInstance(), () -> {
+            long now = System.currentTimeMillis();
+            long expirationTime = 10 * 60 * 1000;
+
+            kodZamanlari.entrySet().removeIf(entry -> {
+                boolean expired = (now - entry.getValue()) > expirationTime;
+                if (expired) {
+                    String kod = entry.getKey();
+                    kodlar.remove(kod);
+                    bekleyenKodlar.remove(kod);
+                }
+                return expired;
+            });
+        }, 1200L, 1200L);
     }
 
     public static void loadOdulVerilenler() {
@@ -63,19 +78,28 @@ public class EslestirmeManager {
     }
 
 
-    // Kod Üretme İşlevi
+    // Kod Üretme İşlevi (Çakışma Kontrolü ile)
     public static String uretKod(UUID uuid) {
-        String kod = UUID.randomUUID().toString().substring(0, 6).toUpperCase();
+        String kod;
+        int denemeSayisi = 0;
+
+        do {
+            kod = UUID.randomUUID().toString().substring(0, 6).toUpperCase();
+            denemeSayisi++;
+        } while ((kodlar.containsKey(kod) || bekleyenKodlar.containsKey(kod)) && denemeSayisi < 5);
+
         kodlar.put(kod, uuid);
         bekleyenKodlar.put(kod, uuid);
         kodZamanlari.put(kod, System.currentTimeMillis());
         return kod;
     }
+
     // Kod Kontrol
     public static UUID koduKontrolEt(String kod) {
         if (kod == null) return null;
         return kodlar.get(kod.toUpperCase());
     }
+
     // Eşleştirme
     public static boolean eslestir(UUID uuid, String discordId) {
         if (discordId == null || uuid == null) return false;
@@ -85,6 +109,7 @@ public class EslestirmeManager {
         bekleyenEslesmeler.put(uuid, discordId);
         return true;
     }
+
      // Onay Kısmı
     public static boolean onaylaEslesme(UUID uuid, String ip) {
         AgnesEsle.getInstance().getLogger().info("onaylaEslesme çağrıldı: " + uuid);
@@ -125,13 +150,8 @@ public class EslestirmeManager {
             AgnesEsle.getInstance().getDiscordBot().sendEslestirmeEmbed(uuid, discordId);
         }
 
-
         return true;
     }
-
-
-
-
 
     public static boolean beklemeVar(UUID uuid) {
         return bekleyenEslesmeler.containsKey(uuid);
@@ -141,7 +161,6 @@ public class EslestirmeManager {
         eslesmeler.remove(uuid);
         ikiFADurumu.remove(uuid);
         kayitliIPler.remove(uuid);
-
 
         saveEslesmeler();
         saveIkiFA();
@@ -286,14 +305,29 @@ public class EslestirmeManager {
             logger.warning(e.getMessage());
         }
     }
-     // Data'ya Kaydetme işlevi
-    private static <T> void saveData(File file, T data) {
-        try (Writer writer = new FileWriter(file)) {
-            gson.toJson(data, writer);
-        } catch (IOException e) {
-            logger.warning("Veri kaydedilemedi: " + file.getName() + " -> " + e.getMessage());
-        }
-    }
+
+     private static <T> void saveData(File file, T data) {
+         AgnesEsle.getInstance().getServer().getScheduler().runTaskAsynchronously(AgnesEsle.getInstance(), () -> {
+             File tmpFile = new File(file.getParentFile(), file.getName() + ".tmp");
+
+             synchronized (file) {
+                 try (Writer writer = new FileWriter(tmpFile)) {
+                     gson.toJson(data, writer);
+                 } catch (IOException e) {
+                     logger.warning("Geçici veri kaydedilemedi: " + e.getMessage());
+                     return;
+                 }
+
+                 if (file.exists()) {
+                     boolean ignored = file.delete();
+                 }
+                 boolean basarili = tmpFile.renameTo(file);
+                 if (!basarili) {
+                     logger.warning("Dosya adı değiştirilemedi: " + file.getName());
+                 }
+             }
+         });
+     }
 
     private static <T> T loadData(Type type) {
         if (!EslestirmeManager.dataFile.exists()) {
