@@ -124,7 +124,7 @@ public class EslestirmeManager {
             saveOdulVerilenler();
         }
 
-        String roleId = AgnesEsle.getInstance().getConfig().getString("verified-role-id");
+        String roleId = AgnesEsle.getInstance().getMainConfig().verifiedRoleId;
         if (roleId != null && !roleId.isEmpty()) {
             AgnesEsle.getInstance().getDiscordBot().addRoleToMember(discordId, roleId);
         } else {
@@ -146,7 +146,7 @@ public class EslestirmeManager {
         saveEslesmeler();
         saveIPler();
 
-        if (AgnesEsle.getInstance().getConfig().getBoolean("log-system", false)) {
+        if (AgnesEsle.getInstance().getMainConfig().logSystem) {
             AgnesEsle.getInstance().getDiscordBot().sendEslestirmeEmbed(uuid, discordId);
         }
 

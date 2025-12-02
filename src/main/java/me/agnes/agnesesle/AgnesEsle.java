@@ -3,7 +3,9 @@ package me.agnes.agnesesle;
 import co.aikar.commands.BukkitCommandIssuer;
 import co.aikar.commands.PaperCommandManager;
 import com.bentahsin.benthpapimanager.BenthPAPIManager;
+import com.bentahsin.configuration.Configuration;
 import me.agnes.agnesesle.commands.EsleCommandACF;
+import me.agnes.agnesesle.configuration.MainConfig;
 import me.agnes.agnesesle.discord.DiscordBot;
 import me.agnes.agnesesle.data.EslestirmeManager;
 import me.agnes.agnesesle.listener.PlayerLoginListener;
@@ -32,6 +34,8 @@ import java.util.stream.Collectors;
 public class AgnesEsle extends JavaPlugin {
 
     private static AgnesEsle instance;
+    private Configuration configManager;
+    private MainConfig mainConfig;
     private DiscordBot discordBot;
     private LuckPerms luckPerms;
     private BenthPAPIManager papiMgr;
@@ -46,7 +50,9 @@ public class AgnesEsle extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
-        saveDefaultConfig();
+        this.configManager = new Configuration(this);
+        this.mainConfig = new MainConfig();
+        this.configManager.init(mainConfig, "config.yml");
 
         try {
             this.luckPerms = LuckPermsProvider.get();
@@ -61,9 +67,9 @@ public class AgnesEsle extends JavaPlugin {
             this.luckPermsUtil = null;
         }
 
-        String token = getConfig().getString("token");
+        String token = getMainConfig().token;
 
-        if (token == null || token.isEmpty() || token.equals("DISCORD_BOT_TOKEN")) {
+        if (token.equals("DISCORD_BOT_TOKEN")) {
             getLogger().severe("---------------------------------------------------");
             getLogger().severe("HATA: Discord Bot Tokeni girilmemiş!");
             getLogger().severe("Lütfen config.yml dosyasını düzenleyin ve sunucuyu yeniden başlatın.");
@@ -77,31 +83,20 @@ public class AgnesEsle extends JavaPlugin {
         this.discordBot.start();
 
         MessageUtil.load();
-        MessageUtil.setLang(getConfig().getString("lang", "tr"));
+        MessageUtil.setLang(mainConfig.lang);
 
         PaperCommandManager commandManager = new PaperCommandManager(this);
-        String mainCmd = getConfig().getString("commands.main", "hesapesle|sync");
 
-        String subEsle = getConfig().getString("commands.subs.esle", "esle|link");
-        String subOnayla = getConfig().getString("commands.subs.onayla", "onayla|confirm");
-        String subIptal = getConfig().getString("commands.subs.iptal", "iptal|cancel");
-        String subKaldir = getConfig().getString("commands.subs.kaldir", "kaldir|unlink");
-        String sub2fa = getConfig().getString("commands.subs.ikifa", "2fa");
-        String subListe = getConfig().getString("commands.subs.liste", "liste|list");
-        String subSifirla = getConfig().getString("commands.subs.sifirla", "sifirla|reset");
-        String subOdul = getConfig().getString("commands.subs.odul", "odul|reward");
-        String subYenile = getConfig().getString("commands.subs.yenile", "yenile|reload");
-
-        commandManager.getCommandReplacements().addReplacement("main_cmd", mainCmd);
-        commandManager.getCommandReplacements().addReplacement("sub_esle", subEsle);
-        commandManager.getCommandReplacements().addReplacement("sub_onayla", subOnayla);
-        commandManager.getCommandReplacements().addReplacement("sub_iptal", subIptal);
-        commandManager.getCommandReplacements().addReplacement("sub_kaldir", subKaldir);
-        commandManager.getCommandReplacements().addReplacement("sub_2fa", sub2fa);
-        commandManager.getCommandReplacements().addReplacement("sub_liste", subListe);
-        commandManager.getCommandReplacements().addReplacement("sub_sifirla", subSifirla);
-        commandManager.getCommandReplacements().addReplacement("sub_odul", subOdul);
-        commandManager.getCommandReplacements().addReplacement("sub_yenile", subYenile);
+        commandManager.getCommandReplacements().addReplacement("main_cmd", mainConfig.commands.main);
+        commandManager.getCommandReplacements().addReplacement("sub_esle", mainConfig.commands.subs.esle);
+        commandManager.getCommandReplacements().addReplacement("sub_onayla", mainConfig.commands.subs.onayla);
+        commandManager.getCommandReplacements().addReplacement("sub_iptal", mainConfig.commands.subs.iptal);
+        commandManager.getCommandReplacements().addReplacement("sub_kaldir", mainConfig.commands.subs.kaldir);
+        commandManager.getCommandReplacements().addReplacement("sub_2fa", mainConfig.commands.subs.ikifa);
+        commandManager.getCommandReplacements().addReplacement("sub_liste", mainConfig.commands.subs.liste);
+        commandManager.getCommandReplacements().addReplacement("sub_sifirla", mainConfig.commands.subs.sifirla);
+        commandManager.getCommandReplacements().addReplacement("sub_odul", mainConfig.commands.subs.odul);
+        commandManager.getCommandReplacements().addReplacement("sub_yenile", mainConfig.commands.subs.yenile);
 
         commandManager.getCommandContexts().registerContext(BukkitCommandIssuer.class, c -> {
             return commandManager.getCommandIssuer(c.getSender());
@@ -215,7 +210,7 @@ public class AgnesEsle extends JavaPlugin {
             String path = playerUUID + ".lastClaim";
 
             long lastClaim = rewardsData.getLong(path, 0);
-            long cooldown = getConfig().getLong("reward-cooldown", 86400000L);
+            long cooldown = getMainConfig().rewardCooldown;
             long now = System.currentTimeMillis();
             long timeDiff = now - lastClaim;
 
@@ -240,7 +235,7 @@ public class AgnesEsle extends JavaPlugin {
                 return;
             }
 
-            List<String> rewardCommands = getConfig().getStringList("daily-rewards");
+            List<String> rewardCommands = getMainConfig().dailyRewards;
             ConsoleCommandSender console = Bukkit.getConsoleSender();
             for (String cmd : rewardCommands) {
                 Bukkit.dispatchCommand(console, cmd.replace("%player%", player.getName()));
@@ -261,7 +256,7 @@ public class AgnesEsle extends JavaPlugin {
             getLogger().info("Ödül veriliyor: " + player.getName());
             player.sendMessage(MessageUtil.getMessage("reward-message"));
 
-            for (String cmd : getConfig().getStringList("oduller")) {
+            for (String cmd : getMainConfig().rewards) {
                 String command = cmd.replace("%player%", player.getName());
                 getLogger().info("Komut çalıştırılıyor: " + command);
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
@@ -269,4 +264,18 @@ public class AgnesEsle extends JavaPlugin {
         }
     }
 
+    public MainConfig getMainConfig() {
+        return mainConfig;
+    }
+
+    public Configuration getConfigManager() {
+        return configManager;
+    }
+
+    @Override
+    public void reloadConfig() {
+        if (configManager != null) {
+            configManager.reload(mainConfig, "config.yml");
+        }
+    }
 }

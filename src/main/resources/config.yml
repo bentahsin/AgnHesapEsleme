@@ -1,9 +1,8 @@
 ##################################################
 #                                                #
-#           🔗 Account Linking Config 🔗          #
-#                by AgnHesapEsleme               #
+#              Account Linking Config            #
 #                                                #
-################################################
+##################################################
 
 # ==========================================
 # DYNAMIC COMMAND SYSTEM
@@ -36,7 +35,7 @@ status-messages:
 log-channel-id: "log-channel-id"
 log-system: true
 
-# Role İd
+# Role ID
 admin-role-id: "admin-role-id"
 verified-role-id: "verified-role-id"
 
@@ -45,10 +44,10 @@ verified-role-id: "verified-role-id"
 # Kontrol Edilmesini İstediğiniz Grup İsimlerini Roles Adı Altında Yazınız. (TR)
 # Write the Group Names you want to be checked under the Roles Name. (EN)
 roles:
-  vip: "" # Role İd
-  vipplus: "" # Role İd
-  mvip: "" # Role İd
-  mvipplus: "" # Rol İd
+  vip: "" # Role ID
+  vipplus: "" # Role ID
+  mvip: "" # Role ID
+  mvipplus: "" # Rol ID
 
 
 
@@ -68,17 +67,10 @@ daily-rewards:
   - "give %player% diamond 1"
   - "xp %player% add 100"
 
-
-
-
 #Server Settings
 guild-id: "" # Your Discord Server (Guild) ID
 
 # Language options: tr, en, es, fr, de, zh
 lang: en
 
-players:
-  2fa:
-    "uuid-string": true
-
-config-version: 1.2
+config-version: 2
