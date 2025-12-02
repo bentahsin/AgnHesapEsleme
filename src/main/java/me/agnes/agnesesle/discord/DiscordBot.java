@@ -105,7 +105,7 @@ public class DiscordBot extends ListenerAdapter {
             jda.upsertCommand("bilgi", "Bir kullanıcı hakkında bilgi al")
                     .addOption(net.dv8tion.jda.api.interactions.commands.OptionType.USER, "kullanıcı", "Bilgi alınacak kullanıcı", true)
                     .queue();
-            List<String> durumlar = AgnesEsle.getInstance().getConfig().getStringList("status-messages");
+            List<String> durumlar = AgnesEsle.getInstance().getMainConfig().statusMessages;
             new org.bukkit.scheduler.BukkitRunnable() {
                 @Override
                 public void run() {
@@ -119,8 +119,8 @@ public class DiscordBot extends ListenerAdapter {
                     jda.getPresence().setActivity(activity);
                 }
             }.runTaskTimer(AgnesEsle.getInstance(), 0L, 100L);
-            if (!AgnesEsle.getInstance().getConfig().getBoolean("information-sent", false)) {
-                String kanalId = AgnesEsle.getInstance().getConfig().getString("information-channel-id");
+            if (!AgnesEsle.getInstance().getMainConfig().informationSent) {
+                String kanalId = AgnesEsle.getInstance().getMainConfig().informationChannelId;
                 if (kanalId == null || kanalId.isEmpty()) {
                     System.out.println("AgnHesapEşle: Bilgilendirme kanalı ID'si ayarlanmamış.");
                     return;
@@ -164,8 +164,8 @@ public class DiscordBot extends ListenerAdapter {
                                     Button.secondary("odul-kontrol", "🎁 Ödüllerini Kontrol Et!")
                             )
                             .queue();
-                    AgnesEsle.getInstance().getConfig().set("information-sent", true);
-                    AgnesEsle.getInstance().saveConfig();
+                    AgnesEsle.getInstance().getMainConfig().informationSent = true;
+                    AgnesEsle.getInstance().getConfigManager().save(AgnesEsle.getInstance().getMainConfig(), "config.yml");
                 }
             }
         } catch (Exception e) {
@@ -264,7 +264,7 @@ public class DiscordBot extends ListenerAdapter {
                 }
                 String raporlananDiscordId = parts[2];
                 String uuidStr = parts[3];
-                String yetkiliRolId = AgnesEsle.getInstance().getConfig().getString("admin-role-id");
+                String yetkiliRolId = AgnesEsle.getInstance().getMainConfig().adminRoleId;
 
                 if (yetkiliRolId == null || Objects.requireNonNull(event.getMember()).getRoles().stream().noneMatch(role -> role.getId().equals(yetkiliRolId))) {
                     event.reply(MessageUtil.getMessage("discord-button-no-permission")).setEphemeral(true).queue();
@@ -300,7 +300,7 @@ public class DiscordBot extends ListenerAdapter {
                     return;
                 }
                 String uuidStr = parts[3];
-                String yetkiliRolId = AgnesEsle.getInstance().getConfig().getString("admin-role-id");
+                String yetkiliRolId = AgnesEsle.getInstance().getMainConfig().adminRoleId;
 
                 if (yetkiliRolId == null || Objects.requireNonNull(event.getMember()).getRoles().stream().noneMatch(role -> role.getId().equals(yetkiliRolId))) {
                     event.reply(MessageUtil.getMessage("discord-button-no-permission")).setEphemeral(true).queue();
@@ -388,7 +388,7 @@ public class DiscordBot extends ListenerAdapter {
                 String sebep = Objects.requireNonNull(event.getOption("sebep")).getAsString();
                 String raporlayanKullanici = Objects.requireNonNull(event.getUser()).getAsTag();
 
-                String logKanalId = AgnesEsle.getInstance().getConfig().getString("log-channel-id");
+                String logKanalId = AgnesEsle.getInstance().getMainConfig().logChannelId;
                 if (logKanalId == null || logKanalId.isEmpty()) {
                     event.reply(MessageUtil.getMessage("discord-report-channel-not-set")).setEphemeral(true).queue();
                     return;
@@ -437,7 +437,7 @@ public class DiscordBot extends ListenerAdapter {
 
 
     public void changeNickname(String discordId, String newNickname) {
-        String guildId = AgnesEsle.getInstance().getConfig().getString("guild-id");
+        String guildId = AgnesEsle.getInstance().getMainConfig().guildId;
         if (guildId == null || guildId.isEmpty()) {
             System.out.println("AgnHesapEşle: Guild ID ayarlanmamış.");
             return;
@@ -473,7 +473,7 @@ public class DiscordBot extends ListenerAdapter {
 
     // Eşlediğinde Rol Verme İşlevi
     public void addRoleToMember(String discordId, String roleId) {
-        String guildId = AgnesEsle.getInstance().getConfig().getString("guild-id");
+        String guildId = AgnesEsle.getInstance().getMainConfig().guildId;
         if (guildId == null || guildId.isEmpty()) {
             System.out.println("AgnHesapEşle: Guild ID ayarlanmamış.");
             return;
@@ -628,7 +628,7 @@ public class DiscordBot extends ListenerAdapter {
         OfflinePlayer player = Bukkit.getOfflinePlayer(playerUUID);
         String playerName = player.getName() != null ? player.getName() : "Bilinmiyor";
 
-        String logChannelId = AgnesEsle.getInstance().getConfig().getString("log-channel-id");
+        String logChannelId = AgnesEsle.getInstance().getMainConfig().logChannelId;
         if (logChannelId == null || logChannelId.isEmpty()) {
             logger.warning("Log kanalı ID'si ayarlanmamış.");
             return;

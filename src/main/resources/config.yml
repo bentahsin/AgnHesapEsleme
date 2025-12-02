@@ -1,9 +1,8 @@
 ##################################################
 #                                                #
-#           🔗 Account Linking Config 🔗          #
-#                by AgnHesapEsleme               #
+#              Account Linking Config            #
 #                                                #
-################################################
+##################################################
 
 # ==========================================
 # DYNAMIC COMMAND SYSTEM
@@ -68,17 +67,10 @@ daily-rewards:
   - "give %player% diamond 1"
   - "xp %player% add 100"
 
-
-
-
 #Server Settings
 guild-id: "" # Your Discord Server (Guild) ID
 
 # Language options: tr, en, es, fr, de, zh
 lang: en
 
-players:
-  2fa:
-    "uuid-string": true
-
-config-version: 1.2
+config-version: 1

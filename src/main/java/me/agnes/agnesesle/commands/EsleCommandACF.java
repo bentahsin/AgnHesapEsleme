@@ -11,7 +11,6 @@ import me.agnes.agnesesle.util.MessageUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Particle;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
@@ -119,10 +118,13 @@ public class EsleCommandACF extends BaseCommand {
                     if (lpUtil != null) {
                         String group = lpUtil.getPrimaryGroup(player.getUniqueId());
                         if (group != null) {
-                            ConfigurationSection rolesSection = AgnesEsle.getInstance().getConfig().getConfigurationSection("roles");
-                            if (rolesSection != null) {
-                                for (String roleName : rolesSection.getKeys(false)) {
-                                    String roleId = rolesSection.getString(roleName);
+                            Map<String, String> rolesMap = AgnesEsle.getInstance().getMainConfig().roles;
+
+                            if (rolesMap != null) {
+                                for (Map.Entry<String, String> entry : rolesMap.entrySet()) {
+                                    String roleName = entry.getKey();
+                                    String roleId = entry.getValue();
+
                                     if (roleId == null || roleId.isEmpty()) continue;
 
                                     if (group.equalsIgnoreCase(roleName)) {
