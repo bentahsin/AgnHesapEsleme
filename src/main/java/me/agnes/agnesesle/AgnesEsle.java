@@ -69,8 +69,12 @@ public class AgnesEsle extends JavaPlugin {
 
         String token = getMainConfig().token;
 
-        if (mainConfig.token.equals("DISCORD_BOT_TOKEN")) {
+        if (token.equals("DISCORD_BOT_TOKEN")) {
+            getLogger().severe("---------------------------------------------------");
             getLogger().severe("HATA: Discord Bot Tokeni girilmemiş!");
+            getLogger().severe("Lütfen config.yml dosyasını düzenleyin ve sunucuyu yeniden başlatın.");
+            getLogger().severe("Plugin devre dışı bırakılıyor...");
+            getLogger().severe("---------------------------------------------------");
             getServer().getPluginManager().disablePlugin(this);
             return;
         }

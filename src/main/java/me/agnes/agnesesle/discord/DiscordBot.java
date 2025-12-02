@@ -110,7 +110,7 @@ public class DiscordBot extends ListenerAdapter {
                 @Override
                 public void run() {
                     if (jda == null || jda.getStatus() != JDA.Status.CONNECTED) return;
-                    if (durumlar.isEmpty()) return;
+                    if (durumlar == null || durumlar.isEmpty()) return;
 
                     int index = (int) ((System.currentTimeMillis() / 5000) % durumlar.size());
                     String mesaj = durumlar.get(index);

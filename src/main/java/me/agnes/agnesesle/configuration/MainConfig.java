@@ -13,7 +13,7 @@ import java.util.Map;
         "#                                                #",
         "##################################################"
 })
-@ConfigVersion(1)
+@ConfigVersion(2)
 @Backup(enabled = true, onFailure = true, onMigration = true)
 public class MainConfig {
 
@@ -45,7 +45,7 @@ public class MainConfig {
     @ConfigPath("log-system")
     public boolean logSystem = true;
 
-    @Comment("Role İd")
+    @Comment("Role ID")
     @ConfigPath("admin-role-id")
     public String adminRoleId = "admin-role-id";
 
@@ -57,12 +57,13 @@ public class MainConfig {
             "Kontrol Edilmesini İstediğiniz Grup İsimlerini Roles Adı Altında Yazınız. (TR)",
             "Write the Group Names you want to be checked under the Roles Name. (EN)"
     })
-    public Map<String, String> roles = new HashMap<String, String>() {{
-        put("vip", "");
-        put("vipplus", "");
-        put("mvip", "");
-        put("mvipplus", "");
-    }};
+    public Map<String, String> roles = new HashMap<>();
+    {
+        roles.put("vip", "");
+        roles.put("vipplus", "");
+        roles.put("mvip", "");
+        roles.put("mvipplus", "");
+    }
 
     @Comment("Information Settings")
     @ConfigPath("information-sent")
